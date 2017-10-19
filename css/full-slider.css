@@ -5,7 +5,7 @@
  */
 
 .carousel-item {
-    height: 70vh;
+    height: 100vh;
     min-height: 300px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -14,6 +14,26 @@
     background-size: cover;
 }
 
+
+/*  video css*/
+
+video{
+
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+
+}
+
+/* footer change csss*/
+
+.text-white {
+    color: #000!important;
+}
+.bg-dark {
+    background-color: #ffffff!important;
+}
 
 /*
 .btn {

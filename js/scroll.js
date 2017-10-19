@@ -13,7 +13,7 @@ $(document).ready(function(){
 //slide carisoul 1000= 1 second = 1000 * 60 = 1 minute
 $(function () {
     $('#carouselExampleIndicators').carousel({
-        interval: 1000 * 60
+        interval: 1000 * 17
 
     }).bind('slide', function () {
         console.log("ended video ");
