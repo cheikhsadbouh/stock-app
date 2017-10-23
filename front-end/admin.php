@@ -20,6 +20,9 @@
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- Custom  date CSS -->
+    <link href="../css/date.css" rel="stylesheet">
+
     <!-- Custom  table CSS -->
     <link href="../css/custom-table.css" rel="stylesheet">
 
@@ -200,13 +203,29 @@
                              <div class="col-lg-12">
                                  <div class="panel panel-default " id="mypanel">
                                      <div class="panel-heading">
-                                        table
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                table
+                                            </div>
+                                            <div class="col-xs-3">
+
+                                            </div>
+                                            <div class="col-xs-3  col-xs-pull-0 ">
+                                                <a class="c-btn c-datepicker-btn" id="add-new-item" href="#" onclick="add_new_item();">
+                                                <i class="fa fa-plus-circle  fa-2x">
+                                                    <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
+
+                                                </i>
+                                                </a>
+                                            </div>
+
+                                        </div>
                                      </div>
                                      <div class="panel-body">
-                                         <div class=" ">
 
-                                           <form  class="form-horizontal" action="#" method="#">
-                                               <table class="table table-bordered">
+                                             <form  class="form-horizontal" action="#" method="#">
+                                               <div class="scrollable">
+                                               <table class="table  " id="mytable">
                                                    <thead>
                                                    <tr>
                                                        <th>Firstname</th>
@@ -248,8 +267,8 @@
                                                        </td>
                                                        <td>
                                                            <div class="form-group">
-                                                               <div class="col-xs-12">
-                                                                   <button class="btn btn-danger glyphicon glyphicon-remove " ></button>
+                                                               <div class="col-xs-8">
+                                                                   <button class="btn btn-danger   glyphicon glyphicon-remove " onclick="deleteRow($(this))" ></button>
 
                                                                </div>
                                                            </div>
@@ -258,14 +277,32 @@
                                                    </tbody>
                                                </table>
 
+                                               </div>
 
-                                         </form>
-                                         <!--end form -->
-                                         </div>
+
+                                             </form>
+                                             <!--end form -->
                                      </div>
                                      <div class="panel-footer">
+                                         <div class="row">
+                                             <div class="col-xs-4">
+
+                                                 <label for="dateofbirth">Date Of Birth</label>
+                                                 <input type="date"  id="cmd-date">
+
+                                             </div>
+
+                                             <div class="col-xs-4 pull-right col-xs-offset-3 ">
+
+                                                 <a class="c-btn c-datepicker-btn">
+                                                     <span class="material-icon">calender</span>
+                                                 </a>
+
+                                             </div>
+                                         </div>
 
                                      </div>
+
                                  </div>
                              </div>
                          </div>
@@ -439,6 +476,10 @@
 <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+<!-- create new tr in table -->
+<script src="../js/dynamic-row.js"></script>
+
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
