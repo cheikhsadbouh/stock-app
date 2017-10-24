@@ -20,6 +20,9 @@
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- Custom model-header  CSS -->
+    <link href="../css/model-header.css" rel="stylesheet">
+
     <!-- Custom  date CSS -->
     <link href="../css/date.css" rel="stylesheet">
 
@@ -70,14 +73,12 @@
 
         <ul class="nav navbar-top-links navbar-right">
 
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <li class="dropdown  " style="background-color: #607d8b;">
+                <a class="dropdown-toggle  " data-toggle="dropdown" href="#" >
                     <i class="fa fa-user-circle-o "></i> <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-user">
-
-
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> الخروج</a>
+                <ul class="dropdown-menu dropdown-user pull-right ">
+                    <li><a href="login.html"  class="text-right" ><i class=" fa fa-sign-out fa-fw "></i> الخروج</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -204,13 +205,13 @@
                                  <div class="panel panel-default " id="mypanel">
                                      <div class="panel-heading">
                                         <div class="row">
-                                            <div class="col-xs-6">
-                                                table
+                                            <div class="col-xs-6 text-capitalize">
+                                            <!--- --> إنشاء  طلبية
                                             </div>
                                             <div class="col-xs-3">
 
                                             </div>
-                                            <div class="col-xs-3  col-xs-pull-0 ">
+                                            <div class="col-xs-3  col-xs-pull-1 col-md-pull-0">
                                                 <a class="c-btn c-datepicker-btn" id="add-new-item" href="#" onclick="add_new_item();">
                                                 <i class="fa fa-plus-circle  fa-2x">
                                                     <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
@@ -223,16 +224,16 @@
                                      </div>
                                      <div class="panel-body">
 
-                                             <form  class="form-horizontal" action="#" method="#">
+                                             <form  class="form-horizontal"  id="myfrm"  action="#" method="#">
                                                <div class="scrollable">
-                                               <table class="table  " id="mytable">
-                                                   <thead>
+                                               <table class="table   " id="mytable">
+                                                   <thead >
                                                    <tr>
-                                                       <th>Firstname</th>
-                                                       <th>Lastname</th>
-                                                       <th>Email</th>
-                                                       <th>Email</th>
-                                                       <th>   <i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
+                                                       <th class="text-center">أعداد</th>
+                                                       <th class="text-center">سعر البيع</th>
+                                                       <th class="text-center">سعر الوحدة</th>
+                                                       <th class="text-center">إسم المنتج</th>
+                                                       <th >   <i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
                                                    </tr>
                                                    </thead>
                                                    <tbody>
@@ -240,28 +241,28 @@
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                                   <input type="email" class="form-control" id="product-numbers0"  name="product-numbers0" placeholder=" أدخل أعداد">
                                                                </div>
                                                            </div>
                                                        </td>
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                                   <input type="email" class="form-control" id="product-buying-price0" name="product-buying-price0" placeholder=" أدخل سعر البيع">
                                                                </div>
                                                            </div>
                                                        </td>
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                                   <input type="email" class="form-control" id="product-unite-price0" name="product-unite-price0" placeholder=" أدخل سعر الوحدة ">
                                                                </div>
                                                            </div>
                                                        </td>
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                                   <input type="email" class="form-control" id="product-name0"  name="product-name0" placeholder="أدخل إسم المنتج">
                                                                </div>
                                                            </div>
                                                        </td>
@@ -279,6 +280,8 @@
 
                                                </div>
 
+                                                  <!-- hiden input date-->
+                                                 <input type="hidden"  id="product-date-creation0"  value="inputdate" name="product-date-creation0" >
 
                                              </form>
                                              <!--end form -->
@@ -287,15 +290,15 @@
                                          <div class="row">
                                              <div class="col-xs-4">
 
-                                                 <label for="dateofbirth">Date Of Birth</label>
-                                                 <input type="date"  id="cmd-date">
+                                                 <label for="dateofbirth">إختر تاريخ</label>
+                                                 <input type="date"  id="cmd-date" name="real-date-cmd-creation">
 
                                              </div>
 
                                              <div class="col-xs-4 pull-right col-xs-offset-3 ">
 
-                                                 <a class="c-btn c-datepicker-btn">
-                                                     <span class="material-icon">calender</span>
+                                                 <a class="c-btn c-datepicker-btn" data-toggle="modal" id="form-sub">
+                                                     <span class="material-icon">حفظ</span>
                                                  </a>
 
                                              </div>
@@ -455,6 +458,48 @@
 </div>
 <!-- /#wrapper -->
 
+
+
+
+<!-- Modal submit form secuss -->
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> Info Modal</h1>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+
+
+
+<!-- Modal submit form warning  -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Warning Modal</h1>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -480,6 +525,8 @@
 <!-- create new tr in table -->
 <script src="../js/dynamic-row.js"></script>
 
+<!-- Custom submit-form JavaScript -->
+<script src="../js/submit-from.js"></script>
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
