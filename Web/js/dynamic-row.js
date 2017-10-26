@@ -2,7 +2,12 @@
 var i=1;
 function add_new_item() {
 
-    '+i+'
+    if($('#count').val()=="after_submit"){
+        console.log("count after : "+$('#count').val());
+        i=1;
+        $('#count').val("0");
+
+    }
 
     var tr ='  <tr>\n' +
         '                                                       <td>\n' +
@@ -45,8 +50,17 @@ function add_new_item() {
 
 
 
-    $('#mytable tr:last').after(tr);
-    i++;
+
+   // document.getElementById('#count').value=i;
+    if($('#count').val()!="after_submit") {
+        $('#mytable tr:last').after(tr);
+        console.log("count  before or after  after : "+$('#count').val());
+        $('#count').val(i);
+        console.log("i="+i+"   input ="+$('#count').val());
+        i=i+1;
+
+    }
+
 }
 
 

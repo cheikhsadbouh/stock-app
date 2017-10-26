@@ -1,0 +1,9 @@
+2017-10-26T00:53:07+00:00 [INFO] myLogger: test from Metier2017-10-16 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 18)
+2017-10-26T00:53:07+00:00 [INFO] myLogger:  count :before_submit (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 41)
+2017-10-26T00:53:07+00:00 [INFO] myLogger: i=   0 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 47)
+2017-10-26T00:53:07+00:00 [ERROR] myLogger: Error while  insert  new products iteration number0INSERT INTO products (name_produts,unite_price,buying_price,number_products)
+   VALUES ('.''.0',
+   '.''.0',
+   '.''.0',
+   '.''.0')
+Incorrect integer value: '.'.0' for column 'unite_price' at row 1 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 71)

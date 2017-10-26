@@ -81,9 +81,11 @@
         $.ajax({
             type : 'POST',
             data: $("#myfrm").serialize(),
-            url : '/stock-app/Metier/add-new-cmd.php',
-            success : function(data){
+            url : '/stock-app/Metier/Metier_new_cmd.php',
+           // url : '/stock-app/Metier/test_file.php',
 
+            success : function(data){
+                console.log('submit success.');
                 $("#info").modal("show");
                 //$("#mytable").find("tr:not(:first)").remove();
                // $("#mytable > tbody:last").children().remove();
@@ -104,7 +106,16 @@
 
                 //document.getElementById("#cmd-date").value="";
                 $("input[type=date]").val("");
-            }
+                $('#product-date-creation0').val("inputdate");
+                $('#count').val("after_submit");
+                console.log("count :"+$('#count').val());
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+
+
         });
         return false;
     });

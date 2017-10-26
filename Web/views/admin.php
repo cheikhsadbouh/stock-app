@@ -1,3 +1,9 @@
+
+<?php
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -282,6 +288,9 @@
 
                                                   <!-- hiden input date-->
                                                  <input type="hidden"  id="product-date-creation0"  value="inputdate" name="product-date-creation0" >
+
+                                                 <!-- hiden input count-->
+                                                 <input type="hidden"  id="count"  value="before_submit" name="count" >
 
                                              </form>
                                              <!--end form -->
