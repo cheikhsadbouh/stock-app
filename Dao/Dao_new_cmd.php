@@ -9,24 +9,49 @@
 include('../Dao/cnxn.php');
 include('../Dao/logging.php');
 
+function Dao_new_cmd($product_date_creation0)
+{
+    $conn = open_cnxn();
+    global $log;
+
+    // Check connection
+    if (!$conn) {
+
+        $log->error("Connection failed: " . mysqli_connect_error());
+
+    }
+
+    if ($conn) {
+
+        $sql = "INSERT INTO cmd (income_date) VALUES ('$product_date_creation0')";
+
+        if (mysqli_query($conn, $sql)) {
+            $last_id_cmd = mysqli_insert_id($conn);
+            close_cnxn($conn);
+
+            return $last_id_cmd;
+        }else{
+
+            $log->error("Error while  insert  in cmd table "  . $sql . "\n" . mysqli_error($conn));
+        }
+
+        return "";
+
+    }
+}//end  Dao_add_cmd
 
 
-
-
-   function Dao_new_cmd
- (
-        $count,
-        $product_date_creation0,
+   function Dao_new_products(
+        $cmd_id,
         $product_name,
         $product_unite_price,
         $product_buying_price,
         $product_numbers
-
- )
+                            )
  {
 
-     global $conn;
-     global $log;
+      $conn=open_cnxn();
+      global $log;
 // Check connection
     if ( !$conn ) {
 
@@ -35,57 +60,42 @@ include('../Dao/logging.php');
     }
 
     if($conn){
-        $i=0;
+$price= $product_unite_price * $product_numbers;
 
+$unite_benefit= $product_buying_price - $product_unite_price;
 
-        $log->info(" count :".$count);
-        $sql = "INSERT INTO cmd (income_date) VALUES ('$product_date_creation0')";
+$total_benefit= $unite_benefit * $product_numbers ;
+      /*  $log->info("unite benefit : " .$product_buying_price." -".$price." = ".$unite_benefit);
+        $log->info("price : " .$product_unite_price." * ".$product_numbers."= ".$price);
+        $log->info("total_benefit : " .$unite_benefit." * ".$product_numbers."= ".$total_benefit);*/
 
-        if (mysqli_query($conn, $sql)) {
-            $last_id_cmd=mysqli_insert_id($conn);
-            for($i;$i<=$count;$i++){
-                $log->info("i=   ".$i);
-                $sql = "INSERT INTO products (name_produts,unite_price,buying_price,number_products)
-   VALUES ('$product_name.''.$i',
-   '$product_unite_price.''.$i',
-   '$product_buying_price.''.$i',
-   '$product_numbers.''.$i')";
+   $sql = "INSERT INTO products (name_produts,unite_price,buying_price,number_products,price,unite_benefit,total_benefit)
+
+   VALUES ('$product_name','$product_unite_price','$product_buying_price','$product_numbers','$price','$unite_benefit','$total_benefit')";
 
                 if (mysqli_query($conn, $sql)) {
 
-                    $last_id_products=mysqli_insert_id($conn);
-                    $log->info("id_cmd : ".$last_id_cmd."  id_produt :  ".$last_id_products);
-                    //  $sql = "INSERT INTO cmd (income_date) VALUES ('".$_POST['product-date-creation0']."')";
+                   $last_id_products=mysqli_insert_id($conn);
+                   $log->info("id_cmd : ".$cmd_id."  id_produt :  ".$last_id_products);
 
-                    /* if (mysqli_query($conn, $sql)) {
+                      $sql = "INSERT INTO cmd_has_products (cmd_idcmd,products_idproducts) VALUES ('$cmd_id','$last_id_products')";
+
+
+                     if (mysqli_query($conn, $sql)) {
 
 
                      } else {
 
                          $log->error("Error while  insert in keys for cmd and products "  . $sql . "\n" . mysqli_error($conn));
 
-                     }*/
+                     }
 
                 } else {
 
-                    $log->error("Error while  insert  new products iteration number".$i.""  . $sql . "\n" . mysqli_error($conn));
+                    $log->error("Error while  insert  new products "  . $sql . "\n" . mysqli_error($conn));
 
                 }
 
             }
-        } else {
-
-            $log->error("Error while insert  new cmd  " . $product_date_creation0 . ''.$sql."\n" . mysqli_error($conn));
-        }
-
-
-
-
-
-        mysqli_close($conn);
-
-    }
-
-
-
+        close_cnxn($conn);
 }//end Dao_new_cmd

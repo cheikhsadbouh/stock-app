@@ -174,21 +174,26 @@
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                 <tr>
-                                                    <th>Rendering engine</th>
-                                                    <th>Browser</th>
-                                                    <th>Platform(s)</th>
-                                                    <th>Engine version</th>
-                                                    <th>CSS grade</th>
+                                                    <th>name_produts</th>
+                                                    <th>price unite_price</th>
+                                                    <th>buying_price</th>
+                                                    <th>unite_benefit</th>
+                                                    <th>total_benefit</th>
+                                                    <th>number_products</th>
+                                                    <th>delete |modifiy</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php   for($i=0;$i<=100;$i++) {?>
+                                                <?php   for($i=0;$i<=10;$i++) {?>
                                                     <tr class="">
                                                         <td><?php  echo $i;?></td>
                                                         <td><?php echo $i;  ?></td>
-                                                        <td>-</td>
-                                                        <td class="center">-</td>
-                                                        <td class="center">U</td>
+                                                        <td><?php echo $i;  ?></td>
+                                                        <td><?php echo $i;  ?></td>
+                                                        <td><?php echo $i;  ?></td>
+                                                        <td><?php echo $i;  ?></td>
+                                                        <td><?php echo $i;  ?></td>
+
                                                     </tr>
                                                 <?php  }?>
                                                 </tbody>

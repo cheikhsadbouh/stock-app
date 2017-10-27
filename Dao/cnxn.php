@@ -8,24 +8,35 @@
 
 
 
-/* database config */
-$servername = "localhost";
-$username = "root";
-$password = "cheikh";
-$dbname = "stock";
+
+
+function open_cnxn()
+{
+
+    /* database config */
+    $servername = "localhost";
+    $username = "root";
+    $password = "cheikh";
+    $dbname = "stock";
 
 // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-$conn= mysqli_connect($servername, $username, $password,$dbname);
+    if ($conn) {
 
-if($conn) {
+        mysqli_query($conn, "SET NAMES 'utf8'");
+        mysqli_query($conn, 'SET CHARACTER SET utf8');
 
-    mysqli_query($conn, "SET NAMES 'utf8'");
-    mysqli_query($conn, 'SET CHARACTER SET utf8');
+
+    }
+
+    return $conn;
+}
+
+function close_cnxn($conn){
+
+    mysqli_close($conn);
 }
 
 
-function a(){
 
-    echo " A from logging file ";
-}
