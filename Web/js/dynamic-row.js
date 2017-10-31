@@ -69,4 +69,5 @@ function add_new_item() {
 function deleteRow(row) {
 
     row.closest('tr').remove();
+
 }

@@ -4568,11 +4568,13 @@
 		var
 			tid = settings.sTableId,
 			nodes = settings.aanFeatures.i,
+
 			n = $('<div/>', {
 				'class': settings.oClasses.sInfo,
 				'id': ! nodes ? tid+'_info' : null
 			} );
-	
+        console.log("settings.sTableId ---- "+settings.sTableId);
+        console.log("settings.aanFeatures.i ---- "+settings.aanFeatures.i);
 		if ( ! nodes ) {
 			// Update display on each draw
 			settings.aoDrawCallback.push( {
@@ -4785,20 +4787,32 @@
 			classes  = settings.oClasses,
 			tableId  = settings.sTableId,
 			menu     = settings.aLengthMenu,
+
 			d2       = $.isArray( menu[0] ),
 			lengths  = d2 ? menu[0] : menu,
 			language = d2 ? menu[1] : menu;
-	
+     var teab1= [5];
+        console.log("settings.aLengthMenu : "+settings.aLengthMenu);
 		var select = $('<select/>', {
 			'name':          tableId+'_length',
 			'aria-controls': tableId,
 			'class':         classes.sLengthSelect
 		} );
 	
-		for ( var i=0, ien=lengths.length ; i<ien ; i++ ) {
-			select[0][ i ] = new Option( language[i], lengths[i] );
+		for ( var i=0, ien=teab1.length ; i<ien ; i++ ) {
+
+            select[0][ i ] = new Option( teab1[i], teab1[i] );
+
 		}
-	
+
+		/*for ( var i=0, ien=lengths.length ; i<ien ; i++ ) {
+			select[0][ i ] = new Option( language[i], lengths[i] );
+
+
+		}*/
+
+
+
 		var div = $('<div><label/></div>').addClass( classes.sLength );
 		if ( ! settings.aanFeatures.l ) {
 			div[0].id = tableId+'_length';
@@ -4994,6 +5008,7 @@
 	function _fnProcessingDisplay ( settings, show )
 	{
 		if ( settings.oFeatures.bProcessing ) {
+
 			$(settings.aanFeatures.r).css( 'display', show ? 'block' : 'none' );
 		}
 	

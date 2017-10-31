@@ -2,6 +2,8 @@
 <?php
 
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 ?>
 <!DOCTYPE html>
@@ -14,8 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="../../Web/img/favicon.ico" />
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>متجري</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap.min.css" rel="stylesheet">
@@ -62,6 +65,14 @@
 
 <body>
 
+<?php
+
+//require "../../../../IdeaProjects/stock-app/Metier/Metier_get_all_products.php";
+//echo "  is --->  ".   dirname( dirname(dirname(__FILE__)))."/Metier/Metier_get_all_products.php";
+
+require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_products.php');
+$stock_table= Metier_get_all_products();
+?>
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -175,27 +186,60 @@
                                                 <thead>
                                                 <tr>
                                                     <th>name_produts</th>
+                                                    <th>price</th>
                                                     <th>price unite_price</th>
                                                     <th>buying_price</th>
                                                     <th>unite_benefit</th>
                                                     <th>total_benefit</th>
                                                     <th>number_products</th>
-                                                    <th>delete |modifiy</th>
+                                                    <th style="width:128px;">delete |modifiy</th>
+
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php   for($i=0;$i<=10;$i++) {?>
+                                                <!-- name_produts
+
+
+
+
+
+
+
+idproducts
+
+if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+-->
+                                                <?php
+
+
+                                                if (mysqli_num_rows($stock_table) > 0) {
+                                                while($row = mysqli_fetch_assoc($stock_table)) {
+                                                    ?>
                                                     <tr class="">
-                                                        <td><?php  echo $i;?></td>
-                                                        <td><?php echo $i;  ?></td>
-                                                        <td><?php echo $i;  ?></td>
-                                                        <td><?php echo $i;  ?></td>
-                                                        <td><?php echo $i;  ?></td>
-                                                        <td><?php echo $i;  ?></td>
-                                                        <td><?php echo $i;  ?></td>
+                                                        <td><?php  echo $row["name_produts"];?></td>
+                                                        <td><?php echo  $row["price"];  ?></td>
+                                                        <td><?php echo  $row["unite_price"];  ?></td>
+                                                        <td><?php echo  $row["buying_price"];  ?></td>
+                                                        <td><?php echo  $row["unite_benefit"];  ?></td>
+                                                        <td><?php echo  $row["total_benefit"];  ?></td>
+                                                        <td><?php echo  $row["number_products"];  ?></td>
+
+                                                        <td align="center" >
+                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>',$(this));"><em class="fa fa-pencil"></em></button>
+
+                                                            <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
+
+                                                        </td>
 
                                                     </tr>
-                                                <?php  }?>
+                                                <?php  } }?>
                                                 </tbody>
                                             </table>
                                             <!-- /.table-responsive -->
@@ -475,18 +519,19 @@
 
 
 
-<!-- Modal submit form secuss -->
+<!-- Modal submit form success -->
 <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> تمت العملية بنجاح </h1>
             </div>
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button  class="btn btn-default pull-left" data-dismiss="modal">أغلق
+                </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -514,6 +559,91 @@
 </div><!-- /.modal -->
 <!-- Modal -->
 
+<!-- Modal delete -->
+<div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-question-circle-o" aria-hidden="true"></i>هل أنت متأكد   </h1>
+            </div>
+            <div class="modal-body">
+                <form id="delele_product_form" >
+                    <input type="hidden"  value="delete_product" name="id_product_to_delete" id="id_product_to_delete">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="">
+                    <div class="clo-xs-5 pull-left" >
+                        <button  class="btn btn-info "  data-dismiss="modal">لا</button>
+
+                    </div>
+                    <div class="clo-xs-5 pull-right">
+                        <button  class="btn btn-danger " id="delete_product" data-dismiss="modal">نعم</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+
+<!-- Modal modify product  -->
+<div class="modal fade" id="model_modify_product" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" id="form_modify_product">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">unite price:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">bying price:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">quantity:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -532,7 +662,7 @@
 <script src="../js/sb-admin-2.js"></script>
 
 <!-- DataTables JavaScript -->
-<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
@@ -542,13 +672,53 @@
 <!-- Custom submit-form JavaScript -->
 <script src="../js/submit-from.js"></script>
 
+<!-- Custom delete_product JavaScript -->
+<script src="../js/delete_product.js"></script>
+
+<!-- Custom modify_product JavaScript -->
+<script src="../js/modify_product.js"></script>
+
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
+
+    $(document).ready( function() {
+   // <select name="dataTables-example_length" aria-controls="dataTables-example" >
+          $('#dataTables-example').dataTable( {
+
+              responsive: true,
+                    "language": {
+                  "lengthMenu": 'Display <select  class="form-control input-sm" >'+
+                        '<option selected="selected"   value="5">5</option>'+
+                        '<option selected="selected" value="10">10</option>'+
+                        '<option value="20">20</option>'+
+                        '<option value="30">30</option>'+
+                        '<option value="40">40</option>'+
+                        '<option value="50">50</option>'+
+                        '<option value="-1">All</option>'+
+                        '</selectmultiple> records',
+                        "paginate": {
+                            "next": "ch",
+                            "previous": "hhhh"
+
+
+
+                        },
+                        "search": "Apply",
+                        "zeroRecords": "mahwnshi ",
+                        "emptyTable": "No data available in table",
+                        "info": "deuja _START_ to _END_ of _TOTAL_ mtrsh",
+                        "sInfoFiltered": "(fil from _MAX_ total entries)",
+                        "sInfoEmpty": "rt3 0 to 0 of 0 entries"
+
+                   }
+
+          } );
+        } );
+
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
+
+
     });
 
 
@@ -560,3 +730,4 @@
 </body>
 
 </html>
+
