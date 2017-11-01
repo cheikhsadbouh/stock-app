@@ -15,8 +15,12 @@
 
                 valid = 0;
 
+
                 var el=document.getElementById(inputid);
+                console.log("before border-color   inputid= "+inputid+" "+$(el).val());
                 el.style.borderColor= "#d9534f" ;
+
+
                 console.log("valid  inside !this.val() -  inputid= "+inputid+" "+$(el).val());
 
             }

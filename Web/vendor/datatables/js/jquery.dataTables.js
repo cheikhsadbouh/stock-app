@@ -4791,7 +4791,7 @@
 			d2       = $.isArray( menu[0] ),
 			lengths  = d2 ? menu[0] : menu,
 			language = d2 ? menu[1] : menu;
-     var teab1= [5];
+    // var teab1= [5];
         console.log("settings.aLengthMenu : "+settings.aLengthMenu);
 		var select = $('<select/>', {
 			'name':          tableId+'_length',
@@ -4799,17 +4799,13 @@
 			'class':         classes.sLengthSelect
 		} );
 	
-		for ( var i=0, ien=teab1.length ; i<ien ; i++ ) {
 
-            select[0][ i ] = new Option( teab1[i], teab1[i] );
 
-		}
-
-		/*for ( var i=0, ien=lengths.length ; i<ien ; i++ ) {
+		for ( var i=0, ien=lengths.length ; i<ien ; i++ ) {
 			select[0][ i ] = new Option( language[i], lengths[i] );
 
 
-		}*/
+		}
 
 
 
