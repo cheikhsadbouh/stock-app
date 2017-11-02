@@ -15,19 +15,15 @@ $conn = open_cnxn();
 global $log;
 
 
-$a=0;
-function check(){
-    global  $a;
-    $a=12;
-    echo $a.'<br>';
-}
-check();
-echo 'after call method '.$a.'<br>' ;
-
 
 function b(){
-    global $a;
-    echo 'from method b '.$a;
+    header('Content-Type: application/json');
+    global $log;
+    $log->info("msg from js   :". (string) $_GET['id_product']);
+
+    $r = array('key1' => $_GET['id_product']);
+
+   echo json_encode($r);;
 
 }
 

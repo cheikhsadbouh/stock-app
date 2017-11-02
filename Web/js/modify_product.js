@@ -2,28 +2,30 @@
 var id_product_to_modify = 0;
 
 function modify_product(id_product,td){
+
     id_product_to_modify=id_product;
     var $row = td.closest("tr");
+    var values="";
+    var $columns = $row.find('td');
+    var in_value1 = document.getElementById("up1");
+    var in_value2 = document.getElementById("up2");
+    var in_value3 = document.getElementById("up3");
+    var in_value4 = document.getElementById("up4");
+    in_value1.value="1";
+    in_value2.value="2";
+    in_value3.value="3";
+    in_value4.value="4";
+    jQuery.each($columns, function(i, item) {
+        values=item.innerHTML;
+        console.log("i : "+i+" values   : "+values);
 
-    var i=1;
-    $('#form_modify_product input').each(
-        function(key, value) {
+    });
 
-            $tds = $row.find("td:nth-child("+i+")");
-            this.value=$tds.text();
-            console.log(this.value);
-            if(i=="1"){
-                i+=2;
-            }else if(i=="4"){
-                i+=3;
-            }else {
-                i++;
-            }
-        });
-    i=1;
     console.log("id_product :"+id_product);
 
+
     $("#model_modify_product").modal("show");
+
 
 
 }
@@ -55,7 +57,7 @@ $("#form_modify_product").submit(function(e){
         error: function (data) {
             console.log('An error occurred.');
             console.log(data);
-        },
+        }
 
 
     });
@@ -68,4 +70,40 @@ $('#info').on('hidden.bs.modal', function () {
     $('body').load("/stock-app/Web/views/admin.php");
 
 });
+
+/*
+*
+*    $.ajax({
+        data: "",
+        dataType: 'json',
+        url : '/stock-app/Metier/test_file.php?id_product='+id_product_to_modify,
+        success: function(data){
+            console.log('submit success.');
+
+            alert(" s  "+data.key1);
+
+
+
+        },
+        complete: function(data){
+
+
+        },
+        error: function (data) {
+            console.log('An error occurred.');
+            console.log(data);
+        },
+
+
+    });
+* */
+
+/*$(".btn-default").click(function(e) {
+    var $tr = $(this).closest('tr');
+    var rowData = $('#dataTables-example').DataTable().row($tr).data();
+
+    console.log("in it ");
+    console.log(rowData);
+});*/
+
 

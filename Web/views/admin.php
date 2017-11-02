@@ -26,8 +26,7 @@ ini_set('display_errors', 1);
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../css/sb-admin-2.css" rel="stylesheet">
+
 
     <!-- Custom model-header  CSS -->
     <link href="../css/model-header.css" rel="stylesheet">
@@ -47,6 +46,8 @@ ini_set('display_errors', 1);
     <!-- DataTables Responsive CSS -->
     <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
@@ -95,7 +96,7 @@ $stock_table= Metier_get_all_products();
                     <i class="fa fa-user-circle-o "></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user pull-right ">
-                    <li><a href="login.html"  class="text-right" ><i class=" fa fa-sign-out fa-fw "></i> الخروج</a>
+                    <li><a href="#"  class="text-right" ><i class=" fa fa-sign-out fa-fw "></i> الخروج</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -170,8 +171,7 @@ $stock_table= Metier_get_all_products();
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active pull-right"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
                         <li role="presentation" class="pull-right"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation" class="pull-right"><a href="#sale" aria-controls="profile" role="tab" data-toggle="tab">بيع
-                            </a></li>
+                        <li role="presentation" class="pull-right"><a href="#sale" aria-controls="sale" role="tab" data-toggle="tab" >بيع</a></li>
 
                     </ul>
 
@@ -374,85 +374,74 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <!-- end  tabs create new item  in stock table-->
                         <div role="tabpanel" class="tab-pane " id="sale">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel " id="mypanel">
-                                        <div class="panel-heading">
-                                            DataTables Advanced Tables
-                                        </div>
-                                        <!-- /.panel-heading -->
-                                        <div class="panel-body ">
-
-                                            <table width="100%"   class=" table table-striped table-bordered table-hover " id = "id-sale">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Basic Table
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="">
+                                            <table width="100%" class="table" id="dataTables-sale">
                                                 <thead>
                                                 <tr>
-                                                    <th>name_produts</th>
-                                                    <th>price</th>
-                                                    <th>unite_price</th>
-                                                    <th>buying_price</th>
-                                                    <th>unite_benefit</th>
-                                                    <th>total_benefit</th>
-                                                    <th>number_products</th>
-                                                    <th style="width:128px;">delete |modifiy</th>
-
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <!-- name_produts
-
-
-
-
-
-
-
-idproducts
-
-if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-        }
-    } else {
-        echo "0 results";
-    }
--->
-                                                <?php
-
-
-                                                if (mysqli_num_rows($stock_table) > 0) {
-                                                    while($row = mysqli_fetch_assoc($stock_table)) {
-                                                        ?>
-                                                        <tr class="">
-                                                            <td><?php  echo $row["name_produts"];?></td>
-                                                            <td><?php echo  $row["price"];  ?></td>
-                                                            <td><?php echo  $row["unite_price"];  ?></td>
-                                                            <td><?php echo  $row["buying_price"];  ?></td>
-                                                            <td><?php echo  $row["unite_benefit"];  ?></td>
-                                                            <td><?php echo  $row["total_benefit"];  ?></td>
-                                                            <td><?php echo  $row["number_products"];  ?></td>
-
-                                                            <td align="center" >
-                                                                <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>',$(this));"><em class="fa fa-pencil"></em></button>
-
-                                                                <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
-
-                                                            </td>
-
-                                                        </tr>
-                                                    <?php  } }?>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Larry</td>
+                                                    <td>the Bird</td>
+                                                    <td>@twitter</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
                                                 </tbody>
                                             </table>
-                                            <!-- /.table-responsive -->
-
                                         </div>
-                                        <!-- /.panel-body -->
+                                        <!-- /.table-responsive -->
                                     </div>
-                                    <!-- /.panel -->
+                                    <!-- /.panel-body -->
                                 </div>
-                                <!-- /.col-lg-12 -->
+                                <!-- /.panel -->
+
+
                             </div>
-                            <!-- /.row stock tables  -->
+
+                        </div>
+
+
                         </div>
                         <!-- end  tabs stock table-->
                         <!-- end  tabs sale-->
@@ -469,7 +458,7 @@ if (mysqli_num_rows($result) > 0) {
                         <h3 class="box-title">Bordered Table</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered">
+                     <!--   <table class="table table-bordered">
                             <tbody><tr>
                                 <th style="width: 10px">#</th>
                                 <th>Task</th>
@@ -516,7 +505,8 @@ if (mysqli_num_rows($result) > 0) {
                                 </td>
                                 <td><span class="badge bg-green">90%</span></td>
                             </tr>
-                            </tbody></table>
+                            </tbody></table>-->
+
                     </div><!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
@@ -694,25 +684,25 @@ if (mysqli_num_rows($result) > 0) {
                     <div class="form-group">
                         <label class="control-label col-sm-2" >name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control"  name="modify_product_name"  id="up1" value="none">
+                            <input type="text" class="form-control"  name="modify_product_name"  id="up1" value="none1">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">unite price:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="modify_unite_price"  id="up2" value="none" >
+                            <input type="text" class="form-control" name="modify_unite_price"  id="up2" value="none2" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" >bying price:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control"  name="modify_bying_price" id="up3"  value="none">
+                            <input type="text" class="form-control"  name="modify_bying_price" id="up3"  value="none3">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" >quantity:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control"name="modify_product_number" id="up4" value="none" >
+                            <input type="text" class="form-control" name ="modify_product_number" id="up4" value="none4" >
                         </div>
                     </div>
 
@@ -743,13 +733,16 @@ if (mysqli_num_rows($result) > 0) {
 <script src="../vendor/morrisjs/morris.min.js"></script>
 <script src="../vendor/data/morris-data.js"></script>-->
 
-<!-- Custom Theme JavaScript -->
-<script src="../js/sb-admin-2.js"></script>
-
 <!-- DataTables JavaScript -->
 <script src="../vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+
+
+
+<!-- Custom Theme JavaScript -->
+<script src="../js/sb-admin-2.js"></script>
 
 <!-- create new tr in table -->
 <script src="../js/dynamic-row.js"></script>
@@ -767,16 +760,16 @@ if (mysqli_num_rows($result) > 0) {
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 
-    $(document).ready( function() {
-        setTimeout(function(){
-        $('#id-sale').dataTable({
+      $(document).ready( function() {
 
-            responsive: true,
-            "bFilter": false,
-            "bLengthChange": false,
-            autoWidth: true
-        });
-        }, 10000);
+
+
+
+
+
+
+
+
    // <select name="dataTables-example_length" aria-controls="dataTables-example" >
           $('#dataTables-example').dataTable( {
 
@@ -813,10 +806,23 @@ if (mysqli_num_rows($result) > 0) {
 
         } );
 
-    $(document).ready(function() {
+      if (typeof(Worker) !== "undefined") {
+          setTimeout(function(){
+
+              $('#dataTables-sale').dataTable({
+
+                  responsive: true,
+
+                  "bFilter": false,
+                  "bLengthChange": false
+
+              });
+          }, 5000);
+      } else {
+          // Sorry! No Web Worker support..
+      }
 
 
-    });
 
 
 
