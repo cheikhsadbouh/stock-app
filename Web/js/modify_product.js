@@ -1,25 +1,18 @@
 
 var id_product_to_modify = 0;
 
-function modify_product(id_product,td){
+function modify_product(id_product,name_product,unite_price,bying_price,number_product){
 
     id_product_to_modify=id_product;
-    var $row = td.closest("tr");
-    var values="";
-    var $columns = $row.find('td');
+
     var in_value1 = document.getElementById("up1");
     var in_value2 = document.getElementById("up2");
     var in_value3 = document.getElementById("up3");
     var in_value4 = document.getElementById("up4");
-    in_value1.value="1";
-    in_value2.value="2";
-    in_value3.value="3";
-    in_value4.value="4";
-    jQuery.each($columns, function(i, item) {
-        values=item.innerHTML;
-        console.log("i : "+i+" values   : "+values);
-
-    });
+    in_value1.value=name_product;
+    in_value2.value=unite_price;
+    in_value3.value=bying_price;
+    in_value4.value=number_product;
 
     console.log("id_product :"+id_product);
 

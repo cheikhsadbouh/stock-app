@@ -739,6 +739,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
 
+
+
+
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
@@ -748,6 +751,250 @@
     });
     </script>
 
+
+
+    <div class="container">
+        <h3>The columns titles are merged with the filters inputs thanks to the placeholders attributes</h3>
+        <hr>
+        <p>Inspired by this <a href="http://bootsnipp.com/snippets/featured/panel-table-with-filters-per-column">snippet1</a></p>
+        <p>Inspired by this <a href="http://bootsnipp.com/snippets/featured/panel-table-with-filters-per-column">snippet2</a></p>
+
+        <div class="creatediv1 marginTop30">
+
+            <div class="row margin-top-50">
+                <div class="col-md-12">
+                    <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cost Centers<span style="color: white; font-weight: bold;"> *</span></h3>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                            </div>
+                        </div>
+                        <table class="span12">
+                            <table>
+                                <tr class="filters">
+                                    <th style="width: 4.1%; width:50px;">
+                                        <div class="checkbox radio-margin">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                            </label>
+                                        </div>
+                                    </th>
+                                    <th style="width: 48%">
+                                        <input type="text" class="form-control" placeholder="Cost Center Name" disabled>
+                                    </th>
+                                    <th style="width: 48%">
+                                        <input type="text" class="form-control" placeholder="Cost Center ID" disabled>
+                                    </th>
+                                </tr>
+                            </table>
+                            <div class="bg tablescroll">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td style="width: 49.8%">BYU-I</th>
+                                        <td style="width: 48%">542584612548</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Timesheet</td>
+                                        <td style="width: 48%">652145875623</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 4.1%; width:50px;">
+                                            <div class="checkbox radio-margin">
+                                                <label>
+                                                    <input type="checkbox" value="">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="width: 48%">Compro</td>
+                                        <td style="width: 48%">854785412563</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <style>
+
+
+
+
+
+
+            /*Radio and Checkbox START*/
+            .checkbox label:after,
+            .radio label:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            .checkbox .cr,
+            .radio .cr {
+                position: relative;
+                display: inline-block;
+                border: 1px solid #a9a9a9;
+                border-radius: .25em;
+                width: 1.3em;
+                height: 1.3em;
+                float: left;
+                margin-right: .5em;
+            }
+
+            .radio .cr {
+                border-radius: 50%;
+            }
+
+            .checkbox .cr .cr-icon,
+            .radio .cr .cr-icon {
+                position: absolute;
+                font-size: .8em;
+                line-height: 0;
+                top: 50%;
+                left: 20%;
+            }
+
+            .checkbox label input[type="checkbox"],
+            .radio label input[type="radio"] {
+                display: none;
+            }
+
+            .checkbox label input[type="checkbox"] + .cr > .cr-icon,
+            .radio label input[type="radio"] + .cr > .cr-icon {
+                transform: scale(3) rotateZ(-20deg);
+                opacity: 0;
+                transition: all .3s ease-in;
+            }
+
+            .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+            .radio label input[type="radio"]:checked + .cr > .cr-icon {
+                transform: scale(1) rotateZ(0deg);
+                opacity: 1;
+            }
+
+            .checkbox label input[type="checkbox"]:disabled + .cr,
+            .radio label input[type="radio"]:disabled + .cr {
+                opacity: .5;
+            }
+            /*Radio and Checkbox END*/
+        </style>
 </body>
 
 </html>

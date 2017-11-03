@@ -52,6 +52,7 @@ ini_set('display_errors', 1);
     <!-- Morris Charts CSS -->
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
+
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -186,9 +187,10 @@ $stock_table= Metier_get_all_products();
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
-                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <table width="100%" class=" colorchange table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                 <tr>
+                                                    <th>check it </th>
                                                     <th>name_produts</th>
                                                     <th>price</th>
                                                     <th>unite_price</th>
@@ -227,6 +229,14 @@ if (mysqli_num_rows($result) > 0) {
                                                 while($row = mysqli_fetch_assoc($stock_table)) {
                                                     ?>
                                                     <tr class="">
+                                                        <td>
+                                                            <div class="checkbox radio-margin">
+                                                                <label>
+                                                                    <input type="checkbox" value="<?php  echo $row["name_produts"];?>,<?php echo  $row["unite_price"];  ?>,<?php echo  $row["buying_price"];  ?>,<?php echo  $row["number_products"];  ?>">
+                                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </td>
                                                         <td><?php  echo $row["name_produts"];?></td>
                                                         <td><?php echo  $row["price"];  ?></td>
                                                         <td><?php echo  $row["unite_price"];  ?></td>
@@ -236,7 +246,7 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td><?php echo  $row["number_products"];  ?></td>
 
                                                         <td align="center" >
-                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>',$(this));"><em class="fa fa-pencil"></em></button>
+                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
 
                                                             <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
 
@@ -373,7 +383,7 @@ if (mysqli_num_rows($result) > 0) {
                          </div>
                         </div>
                         <!-- end  tabs create new item  in stock table-->
-                        <div role="tabpanel" class="tab-pane " id="sale">
+                        <div role="tabpanel" class="tab-pane  fade in" id="sale">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="panel panel-default">
@@ -383,50 +393,31 @@ if (mysqli_num_rows($result) > 0) {
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
                                         <div class="">
-                                            <table width="100%" class="table" id="dataTables-sale">
+                                            <table  width="100%"  cellspacing="0" class="table dt-responsive  " id="dataTables-sale">
                                                 <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
+                                                    <th>pro_name</th>
+                                                    <th>pro_unite_P</th>
+                                                    <th>pro_bying_p</th>
+                                                    <th>pro_number</th>
+                                                    <th>pro_number</th>
+                                                    <th>pro_number</th>
+
+
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>3</td>
+                                                            <td>4</td>
+                                                            <td>4</td>
+                                                            <td>4</td>
+
+                                                        </tr>
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -737,6 +728,11 @@ if (mysqli_num_rows($result) > 0) {
 <script src="../vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src=""></script>
+<script src="../js/add_or_drop_rows_in_DataTable.js"></script>
+
+
+
 
 
 
@@ -760,76 +756,80 @@ if (mysqli_num_rows($result) > 0) {
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 
-      $(document).ready( function() {
 
-
-
-
-
-
-
-
-
-   // <select name="dataTables-example_length" aria-controls="dataTables-example" >
-          $('#dataTables-example').dataTable( {
-
-              responsive: true,
-                    "language": {
-                  "lengthMenu": 'Display <select  class="form-control input-sm" >'+
-                        '<option selected="selected"   value="5">5</option>'+
-                        '<option selected="selected" value="10">10</option>'+
-                        '<option value="20">20</option>'+
-                        '<option value="30">30</option>'+
-                        '<option value="40">40</option>'+
-                        '<option value="50">50</option>'+
-                        '<option value="-1">All</option>'+
-                        '</selectmultiple> records',
-                        "paginate": {
-                            "next": "ch",
-                            "previous": "hhhh"
-
-
-
-                        },
-                        "search": "Apply",
-                        "zeroRecords": "mahwnshi ",
-                        "emptyTable": "No data available in table",
-                        "info": "deuja _START_ to _END_ of _TOTAL_ mtrsh",
-                        "sInfoFiltered": "(fil from _MAX_ total entries)",
-                        "sInfoEmpty": "rt3 0 to 0 of 0 entries"
-                   },
-              "bSort": false
-
-
-          } );
-
-
-        } );
-
-      if (typeof(Worker) !== "undefined") {
-          setTimeout(function(){
-
-              $('#dataTables-sale').dataTable({
-
-                  responsive: true,
-
-                  "bFilter": false,
-                  "bLengthChange": false
-
-              });
-          }, 5000);
-      } else {
-          // Sorry! No Web Worker support..
-      }
-
-
-
-
-
-
+    // Activate an inline edit on click of a table cell
+    $('#dataTables-sale').on( 'click', 'tbody td:not(:first-child)', function (e) {
+       // saleTB.inline( this );
+    } );
 
 </script>
+<style>
 
+
+
+
+
+
+    /*Radio and Checkbox START*/
+    .checkbox label:after,
+    .radio label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr,
+    .radio .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+    .radio .cr {
+        border-radius: 50%;
+    }
+
+    .checkbox .cr .cr-icon,
+    .radio .cr .cr-icon {
+        position: absolute;
+        font-size: .8em;
+        line-height: 0;
+        top: 50%;
+        left: 20%;
+    }
+
+    .checkbox label input[type="checkbox"],
+    .radio label input[type="radio"] {
+        display: none;
+    }
+
+    .checkbox label input[type="checkbox"] + .cr > .cr-icon,
+    .radio label input[type="radio"] + .cr > .cr-icon {
+        transform: scale(3) rotateZ(-20deg);
+        opacity: 0;
+        transition: all .3s ease-in;
+    }
+
+    .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+    .radio label input[type="radio"]:checked + .cr > .cr-icon {
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+
+    .checkbox label input[type="checkbox"]:disabled + .cr,
+    .radio label input[type="radio"]:disabled + .cr {
+        opacity: .5;
+    }
+    /*Radio and Checkbox END*/
+</style>
+<script>
+
+</script>
 </body>
 
 </html>

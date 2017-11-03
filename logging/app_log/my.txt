@@ -16,3 +16,6 @@
 2017-11-01T23:02:58+00:00 [INFO] myLogger: msg from js   :9 (at /home/cheikhna/IdeaProjects/stock-app/Metier/test_file.php line 22)
 2017-11-01T23:03:01+00:00 [INFO] myLogger: msg from js   :10 (at /home/cheikhna/IdeaProjects/stock-app/Metier/test_file.php line 22)
 2017-11-01T23:04:36+00:00 [INFO] myLogger: msg from js   :9 (at /home/cheikhna/IdeaProjects/stock-app/Metier/test_file.php line 22)
+2017-11-02T08:35:15+00:00 [INFO] myLogger: id_cmd : 7  id_produt :  11 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 79)
+2017-11-02T08:35:15+00:00 [INFO] myLogger: test from Metier2017-11-09 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 38)
+2017-11-02T08:35:15+00:00 [INFO] myLogger: last_id_cmd is  ---> 7 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 56)
