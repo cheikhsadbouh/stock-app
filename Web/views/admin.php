@@ -52,6 +52,11 @@ ini_set('display_errors', 1);
     <!-- Morris Charts CSS -->
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
+    <link href="../css/switch.css" rel="stylesheet">
+
+
+    <link href="../date_time_picker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -198,7 +203,7 @@ $stock_table= Metier_get_all_products();
                                                     <th>unite_benefit</th>
                                                     <th>total_benefit</th>
                                                     <th>number_products</th>
-                                                    <th style="width:128px;">delete |modifiy</th>
+                                                    <th>delete |modifiy</th>
 
                                                 </tr>
                                                 </thead>
@@ -386,9 +391,9 @@ if (mysqli_num_rows($result) > 0) {
                         <div role="tabpanel" class="tab-pane  fade in" id="sale">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Basic Table
+                                <div class="panel " style="margin-bottom: 0px;">
+                                    <div class="panel-heading ">
+                                        <h3>المجموع <span class="label label-info">  300000 آوقية  </span></h3>
                                     </div>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
@@ -400,22 +405,14 @@ if (mysqli_num_rows($result) > 0) {
                                                     <th>pro_unite_P</th>
                                                     <th>pro_bying_p</th>
                                                     <th>pro_number</th>
-                                                    <th>pro_number</th>
-                                                    <th>pro_number</th>
+                                                    <th>change_bying_p</th>
+
 
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>4</td>
-                                                            <td>4</td>
 
-                                                        </tr>
 
 
                                                 </tbody>
@@ -424,6 +421,25 @@ if (mysqli_num_rows($result) > 0) {
                                         <!-- /.table-responsive -->
                                     </div>
                                     <!-- /.panel-body -->
+                                    <div class="panel-footer" style="background-color: #fff">
+                                      <div class="row">
+                                          <div class="col-lg-7">
+                                              <div class="form-group">
+                                                  <div class="input-group date form_datetime col-md-7" data-date="2017-02-21T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p">
+                                                      <input class="form-control" size="16" type="text" value="" readonly>
+                                                      <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                  </div>
+                                                  <input type="hidden" id="mirror_field" value="" readonly /><br/>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-3 pull-right">
+                                              <button class=""  id="sale_btn">
+                                                  <span class="material-icon">حفظ</span>
+                                              </button>
+                                          </div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <!-- /.panel -->
 
@@ -749,20 +765,20 @@ if (mysqli_num_rows($result) > 0) {
 <!-- Custom delete_product JavaScript -->
 <script src="../js/delete_product.js"></script>
 
-<!-- Custom modify_product JavaScript -->
+
 <script src="../js/modify_product.js"></script>
 
 
+
+<script src="../date_time_picker/bootstrap-datetimepicker.min.js"></script>
+<script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
+
+
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
 
 
-    // Activate an inline edit on click of a table cell
-    $('#dataTables-sale').on( 'click', 'tbody td:not(:first-child)', function (e) {
-       // saleTB.inline( this );
-    } );
 
-</script>
+
 <style>
 
 
@@ -827,7 +843,42 @@ if (mysqli_num_rows($result) > 0) {
     }
     /*Radio and Checkbox END*/
 </style>
-<script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        language:  'ar',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        linkField: "mirror_field",
+        linkFormat: "yyyy-mm-dd hh:ii"
+    });
+    $('.form_date').datetimepicker({
+        language:  'ar',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'ar',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+
 
 </script>
 </body>

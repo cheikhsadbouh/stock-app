@@ -1,7 +1,9 @@
-var stockTB ;
-var saleTB;
-var i=1;
+var stockTB="" ;
+var saleTB="";
+var ii=1;
 var index_row="none";
+var id_btn=1;
+
 $(document).ready( function() {
     setTimeout(function () {
         if (!$.fn.DataTable.isDataTable('#dataTables-sale')) {
@@ -9,11 +11,17 @@ $(document).ready( function() {
 
                 responsive: true,
                 "autoWidth": false,
-                "bFilter": false,"bLengthChange": false
-
+                "bFilter": false,
+                "bLengthChange": false,
+                "language": {
+                    "zeroRecords": "zero recorddd ",
+                    "emptyTable": "No data available in table  sss",
+                    "info": "",
+                    "sInfoEmpty": ""
+                }
             });
         }
-    }, 3000);
+    }, 2000);
 });
 $(document).ready( function() {
 
@@ -30,7 +38,7 @@ $(document).ready( function() {
             '<option value="40">40</option>'+
             '<option value="50">50</option>'+
             '<option value="-1">All</option>'+
-            '</selectmultiple> records',
+            '</select> records',
             "paginate": {
                 "next": "ch",
                 "previous": "hhhh"
@@ -51,7 +59,7 @@ $(document).ready( function() {
     } );
 
 
-} );
+
 
 
 
@@ -130,35 +138,139 @@ $('table.colorchange input[type=checkbox]').click(
             //  var row = $('#MyDataTable').dataTable().fnGetNodes(rowIndex);
             // $(row).attr( 'id', 'MyUniqueID' );
 
-            if (i == 1) {
+            if (ii == 1) {
 
                 console.log('new row  added');
+
+                var list='<select  class="form-control input-sm" >'+
+                '<option selected="selected"   value="5">5</option>'+
+                '<option selected="selected" value="10">10</option>'+
+                '<option value="20">20</option>'+
+                '<option value="30">30</option>'+
+                '<option value="40">40</option>'+
+                '<option value="50">50</option>'+
+                '<option value="-1">All</option>'+
+                '</select> records';
+                var select = $('<select   class="form-control input-sm ww"  id="select'+tb[3]+'"></select>');
+
+                for(i=1;i<=tb[3];i++){
+                    var option ;
+                    if(i==1){
+                        option = $('<option ></option>');
+                    }else{
+                        option = $('<option></option>');
+                    }
+
+                    option.attr('value', i);
+                    option.text(i);
+                    select.append(option);
+
+                }
+                var jelm = $(select);//convert to jQuery Element
+                var htmlElm = jelm[0]//convert to HTML Element
+
                 saleTB.row.add([
-                    '<div class="form-group"> ' +
+
+                   /* '<div class="form-group"> ' +
                     '<input class="form-control col-sm-12" type=text value="'+tb[0]+'" />' +
-                    '</div>',
+                    '</div>',*/
                     tb[0],
                     tb[1],
                     tb[2],
-                    tb[3],
-                    'ss'
+                    htmlElm.outerHTML ,
+
+                    '<button type="button" id=" '+id_btn+'" onclick="toggle_btn('+id_btn+','+(id_btn+2)+')" class="btn btn-lg btn-toggle " data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                    '<div class="handle"></div>'+
+                        '</button>'+
+
+                    '<div class="form-group"> ' +
+
+                    '<input class="form-control col-sm-12 as"  id="'+(id_btn+2)+'" type=text placeholder="اكتب السعر الجديد" disabled/>' +
+                    '</div> '
+
+
 
 
 
                 ]).draw(false);
                 //  return false;
-
+               id_btn++;
             } else {
                 console.log('already exist cannot be added');
             }
             // do your cool stuff
-            i=1;
+            ii=1;
         }
 
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $($.fn.dataTable.tables(true)).DataTable()
-                .columns.adjust()
-                .responsive.recalc();
-        });
+
     });
 
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $($.fn.dataTable.tables(true)).DataTable()
+        .columns.adjust()
+        .responsive.recalc();
+});
+
+
+
+
+
+
+
+
+
+
+
+} );
+
+var state = "off";
+function toggle_btn(btn,input) {
+
+console.log("real value "+state);
+    if(state == "off"){
+
+        console.log(" is off");
+        $("#"+input).removeAttr('disabled');
+        state="on";
+    }
+
+
+    else {
+
+        console.log(" is on");
+
+        $("#"+input).attr('disabled', 'disabled');
+        state="off";
+    }
+
+}//toggle btn
+
+
+
+
+
+$('#sale_btn').on( 'click', function () {
+
+    saleTB.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        var data = this.data();
+        console.log(data);
+
+
+
+        this.data(data);
+
+        console.log( " select  22:   "+$('#select22 option:selected').val());
+        console.log( " select  23:   "+$('#select23 :selected').val());
+    });
+
+
+} );
+
+$('#select22').change(function(ev) {
+
+    console.log( " select  22:  ddddd ");
+        ev.preventDefault();
+        return false;
+
+
+});
