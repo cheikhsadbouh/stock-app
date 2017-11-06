@@ -19,3 +19,7 @@
 2017-11-02T08:35:15+00:00 [INFO] myLogger: id_cmd : 7  id_produt :  11 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 79)
 2017-11-02T08:35:15+00:00 [INFO] myLogger: test from Metier2017-11-09 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 38)
 2017-11-02T08:35:15+00:00 [INFO] myLogger: last_id_cmd is  ---> 7 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 56)
+2017-11-05T22:17:40+00:00 [INFO] myLogger: id_product78 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_delete_product.php line 13)
+2017-11-05T22:17:40+00:00 [INFO] myLogger: method check last return :   (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_delete_products.php line 35)
+2017-11-05T22:17:40+00:00 [INFO] myLogger: id_cmd is after checklast  :  0 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_delete_products.php line 36)
+2017-11-05T22:17:40+00:00 [INFO] myLogger: is_last is not qual to 1 :   (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_delete_products.php line 59)

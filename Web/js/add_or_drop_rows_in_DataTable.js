@@ -26,8 +26,14 @@ $(document).ready( function() {
 $(document).ready( function() {
 
 
-    stockTB =  $('#dataTables-example').dataTable( {
-
+    stockTB =  $('#dataTables-example').DataTable( {
+        "columnDefs": [
+            {
+                "targets": [9],
+                "visible": false,
+                "searchable": false
+            }
+        ],
         responsive: true,
         "language": {
             "lengthMenu": 'Display <select  class="form-control input-sm" >'+
@@ -56,7 +62,9 @@ $(document).ready( function() {
         "bSort": false
 
 
-    } );
+
+            } );
+
 
 
 
@@ -141,6 +149,7 @@ $('table.colorchange input[type=checkbox]').click(
             if (ii == 1) {
 
                 console.log('new row  added');
+                console.log('id_btn'+id_btn);
 
                 var list='<select  class="form-control input-sm" >'+
                 '<option selected="selected"   value="5">5</option>'+
@@ -151,7 +160,7 @@ $('table.colorchange input[type=checkbox]').click(
                 '<option value="50">50</option>'+
                 '<option value="-1">All</option>'+
                 '</select> records';
-                var select = $('<select   class="form-control input-sm ww"  id="select'+tb[3]+'"></select>');
+                var select = $('<select   class="form-control input-sm ww"  id="select'+id_btn+'"></select>');
 
                 for(i=1;i<=tb[3];i++){
                     var option ;
@@ -179,22 +188,21 @@ $('table.colorchange input[type=checkbox]').click(
                     tb[2],
                     htmlElm.outerHTML ,
 
-                    '<button type="button" id=" '+id_btn+'" onclick="toggle_btn('+id_btn+','+(id_btn+2)+')" class="btn btn-lg btn-toggle " data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                    '<button type="button" id="'+id_btn+'" onclick="toggle_btn('+id_btn+','+(id_btn+200)+')" class="btn btn-lg btn-toggle " data-toggle="button" aria-pressed="false" autocomplete="off">'+
                     '<div class="handle"></div>'+
                         '</button>'+
 
                     '<div class="form-group"> ' +
 
-                    '<input class="form-control col-sm-12 as"  id="'+(id_btn+2)+'" type=text placeholder="اكتب السعر الجديد" disabled/>' +
+                    '<input class="form-control col-sm-12 as"  id="'+(id_btn+200)+'" type=text placeholder="اكتب السعر الجديد"  oninput="this.value = this.value.replace(/[^0-9]/g, \'\'); this.value = this.value.replace(/(\\..*)\\./g, \'$1\');" disabled/>' +
                     '</div> '
-
 
 
 
 
                 ]).draw(false);
                 //  return false;
-               id_btn++;
+                id_btn++;
             } else {
                 console.log('already exist cannot be added');
             }
@@ -219,58 +227,8 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
 
 
-
-
 } );
 
-var state = "off";
-function toggle_btn(btn,input) {
-
-console.log("real value "+state);
-    if(state == "off"){
-
-        console.log(" is off");
-        $("#"+input).removeAttr('disabled');
-        state="on";
-    }
-
-
-    else {
-
-        console.log(" is on");
-
-        $("#"+input).attr('disabled', 'disabled');
-        state="off";
-    }
-
-}//toggle btn
 
 
 
-
-
-$('#sale_btn').on( 'click', function () {
-
-    saleTB.rows().every(function (rowIdx, tableLoop, rowLoop) {
-        var data = this.data();
-        console.log(data);
-
-
-
-        this.data(data);
-
-        console.log( " select  22:   "+$('#select22 option:selected').val());
-        console.log( " select  23:   "+$('#select23 :selected').val());
-    });
-
-
-} );
-
-$('#select22').change(function(ev) {
-
-    console.log( " select  22:  ddddd ");
-        ev.preventDefault();
-        return false;
-
-
-});

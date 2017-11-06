@@ -54,6 +54,8 @@ ini_set('display_errors', 1);
 
     <link href="../css/switch.css" rel="stylesheet">
 
+    <link href="../css/checkbox_style.css" rel="stylesheet">
+
 
     <link href="../date_time_picker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
@@ -204,6 +206,7 @@ $stock_table= Metier_get_all_products();
                                                     <th>total_benefit</th>
                                                     <th>number_products</th>
                                                     <th>delete |modifiy</th>
+                                                    <th style="">id_pro</th>
 
                                                 </tr>
                                                 </thead>
@@ -242,6 +245,7 @@ if (mysqli_num_rows($result) > 0) {
                                                                 </label>
                                                             </div>
                                                         </td>
+
                                                         <td><?php  echo $row["name_produts"];?></td>
                                                         <td><?php echo  $row["price"];  ?></td>
                                                         <td><?php echo  $row["unite_price"];  ?></td>
@@ -250,12 +254,14 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td><?php echo  $row["total_benefit"];  ?></td>
                                                         <td><?php echo  $row["number_products"];  ?></td>
 
+
                                                         <td align="center" >
                                                             <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
 
                                                             <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
 
                                                         </td>
+                                                        <td style=""><?php  echo $row["idproducts"];?></td>
 
                                                     </tr>
                                                 <?php  } }?>
@@ -773,6 +779,12 @@ if (mysqli_num_rows($result) > 0) {
 <script src="../date_time_picker/bootstrap-datetimepicker.min.js"></script>
 <script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
 
+<script src="../js/date_timePicker_custom.js"></script>
+
+<script src="../js/switch_btn.js"></script>
+
+<script src="../js/submit_sale_data.js"></script>
+
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
@@ -786,98 +798,8 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-    /*Radio and Checkbox START*/
-    .checkbox label:after,
-    .radio label:after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-
-    .checkbox .cr,
-    .radio .cr {
-        position: relative;
-        display: inline-block;
-        border: 1px solid #a9a9a9;
-        border-radius: .25em;
-        width: 1.3em;
-        height: 1.3em;
-        float: left;
-        margin-right: .5em;
-    }
-
-    .radio .cr {
-        border-radius: 50%;
-    }
-
-    .checkbox .cr .cr-icon,
-    .radio .cr .cr-icon {
-        position: absolute;
-        font-size: .8em;
-        line-height: 0;
-        top: 50%;
-        left: 20%;
-    }
-
-    .checkbox label input[type="checkbox"],
-    .radio label input[type="radio"] {
-        display: none;
-    }
-
-    .checkbox label input[type="checkbox"] + .cr > .cr-icon,
-    .radio label input[type="radio"] + .cr > .cr-icon {
-        transform: scale(3) rotateZ(-20deg);
-        opacity: 0;
-        transition: all .3s ease-in;
-    }
-
-    .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
-    .radio label input[type="radio"]:checked + .cr > .cr-icon {
-        transform: scale(1) rotateZ(0deg);
-        opacity: 1;
-    }
-
-    .checkbox label input[type="checkbox"]:disabled + .cr,
-    .radio label input[type="radio"]:disabled + .cr {
-        opacity: .5;
-    }
-    /*Radio and Checkbox END*/
 </style>
 <script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        format: "dd MM yyyy - hh:ii",
-        language:  'ar',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        showMeridian: 1,
-        linkField: "mirror_field",
-        linkFormat: "yyyy-mm-dd hh:ii"
-    });
-    $('.form_date').datetimepicker({
-        language:  'ar',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
-    });
-    $('.form_time').datetimepicker({
-        language:  'ar',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 1,
-        minView: 0,
-        maxView: 1,
-        forceParse: 0
-    });
 
 
 </script>
