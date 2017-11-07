@@ -240,7 +240,7 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td>
                                                             <div class="checkbox radio-margin">
                                                                 <label>
-                                                                    <input type="checkbox" value="<?php  echo $row["name_produts"];?>,<?php echo  $row["unite_price"];  ?>,<?php echo  $row["buying_price"];  ?>,<?php echo  $row["number_products"];  ?>">
+                                                                    <input type="checkbox" value="<?php  echo $row["name_produts"];?>,<?php echo  $row["unite_price"];  ?>,<?php echo  $row["buying_price"];  ?>,<?php echo  $row["number_products"];  ?>,<?php echo  $row["idproducts"];  ?>">
                                                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                                 </label>
                                                             </div>
@@ -261,7 +261,7 @@ if (mysqli_num_rows($result) > 0) {
                                                             <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
 
                                                         </td>
-                                                        <td style=""><?php  echo $row["idproducts"];?></td>
+                                                        <td ><?php  echo $row["idproducts"];?></td>
 
                                                     </tr>
                                                 <?php  } }?>
@@ -398,8 +398,22 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="panel " style="margin-bottom: 0px;">
-                                    <div class="panel-heading ">
-                                        <h3>المجموع <span class="label label-info">  300000 آوقية  </span></h3>
+                                    <div class="panel-heading " >
+                                        <div class="row">
+                                          <div class="col-lg-6" id="total_pro">
+                                            <h2>المجموع <span class="label label-info">  0  آوقية </span></h2>
+
+                                          </div>
+                                           <div class="col-lg-6">
+                                            <h2>
+                                                <button class="btn btn-info btn-xs  pull-right" id="change_total"  onclick="sale_change_total()">
+                                                <span class="material-icon">تغيير مجموع  </span>
+                                                </button>
+                                            </h2>
+                                           </div>
+                                        </div>
+
+
                                     </div>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
@@ -412,6 +426,8 @@ if (mysqli_num_rows($result) > 0) {
                                                     <th>pro_bying_p</th>
                                                     <th>pro_number</th>
                                                     <th>change_bying_p</th>
+                                                    <th style="">id_pro</th>
+
 
 
 
@@ -440,9 +456,9 @@ if (mysqli_num_rows($result) > 0) {
                                               </div>
                                           </div>
                                           <div class="col-lg-3 pull-right">
-                                              <button class=""  id="sale_btn">
+                                              <a class="c-btn c-datepicker-btn"  id="sale_btn">
                                                   <span class="material-icon">حفظ</span>
-                                              </button>
+                                              </a>
                                           </div>
                                       </div>
                                     </div>
@@ -783,7 +799,11 @@ if (mysqli_num_rows($result) > 0) {
 
 <script src="../js/switch_btn.js"></script>
 
+
+
 <script src="../js/submit_sale_data.js"></script>
+
+<script src="../js/change_total_sales.js"></script>
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->

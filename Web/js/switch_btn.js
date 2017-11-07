@@ -21,3 +21,9 @@ function toggle_btn(btn,input) {
     }
 
 }//toggle btn
+
+
+
+
+//saleTB.rows().every(function (rowIdx, tableLoop, rowLoop) { console.log(saleTB.cell({row:rowIdx,column:4}).nodes().to$().find('input').val());
+//});

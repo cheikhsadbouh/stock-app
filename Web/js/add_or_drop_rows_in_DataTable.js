@@ -8,7 +8,9 @@ $(document).ready( function() {
     setTimeout(function () {
         if (!$.fn.DataTable.isDataTable('#dataTables-sale')) {
             saleTB = $('#dataTables-sale').DataTable({
-
+                "columnDefs": [
+                    { "aTargets": [5], "sClass": "invisible"}// here is the tricky part
+                ]                ,
                 responsive: true,
                 "autoWidth": false,
                 "bFilter": false,
@@ -20,35 +22,32 @@ $(document).ready( function() {
                     "sInfoEmpty": ""
                 }
             });
+
+            //saleTB.columns(5).visible( false );
+            //saleTB.width("100%");
+            saleTB.columns.adjust().draw(); // adjust column sizing and redraw
         }
     }, 2000);
 });
 $(document).ready( function() {
+    if (!$.fn.DataTable.isDataTable('#dataTables-example')) {
 
+    stockTB = $('#dataTables-example').DataTable({
 
-    stockTB =  $('#dataTables-example').DataTable( {
-        "columnDefs": [
-            {
-                "targets": [9],
-                "visible": false,
-                "searchable": false
-            }
-        ],
         responsive: true,
         "language": {
-            "lengthMenu": 'Display <select  class="form-control input-sm" >'+
-            '<option selected="selected"   value="5">5</option>'+
-            '<option selected="selected" value="10">10</option>'+
-            '<option value="20">20</option>'+
-            '<option value="30">30</option>'+
-            '<option value="40">40</option>'+
-            '<option value="50">50</option>'+
-            '<option value="-1">All</option>'+
+            "lengthMenu": 'Display <select  class="form-control input-sm" >' +
+            '<option selected="selected"   value="5">5</option>' +
+            '<option selected="selected" value="10">10</option>' +
+            '<option value="20">20</option>' +
+            '<option value="30">30</option>' +
+            '<option value="40">40</option>' +
+            '<option value="50">50</option>' +
+            '<option value="-1">All</option>' +
             '</select> records',
             "paginate": {
                 "next": "ch",
                 "previous": "hhhh"
-
 
 
             },
@@ -62,10 +61,9 @@ $(document).ready( function() {
         "bSort": false
 
 
+    });
 
-            } );
-
-
+}
 
 
 
@@ -84,25 +82,110 @@ $('table.colorchange input[type=checkbox]').click(
         if (!this.checked) {
             var data = $(this).val();
             var tb = data.split(',');
-
+            var incr=1;
             console.log("is  NOT checked : " + $(this).val());
-
+            var totals = 0;
             saleTB.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                var data = this.data();
+                var datas = this.data();
+
+
+                if (datas[5] == tb[4]) {
+
+                    //------------caculate -------------------//
+
+                    var inm=saleTB.cell({row:rowIdx,column:4}).nodes().to$().find('input');
+                  var  id_in= parseInt(inm.attr('id'))-200;
+
+                    console.log("incr  : "+incr);
+                    console.log("name_p  : "+datas[0]);
+                    console.log("price_p : "+datas[1]);
+                    console.log("bying_p   : "+datas[2]);
+                    console.log("selected item:   "+$('#select'+id_in).find(":selected").attr('value'));
+
+                    console.log("prodect_number"+$('#select'+id_in).find('option').last().text());
+                    console.log( "new price  : "+$('#'+(id_in+200)).val());
+                    //incr++;
+                    console.log("-------------END----------------");
+
+
+                    var isDisabled = $('#'+(id_in+200)).is(':disabled');
+                    if(isDisabled){
+
+                        console.log(" is disable");
+                        console.log('datas[5] :' + datas[5]+"     tb[4]  :"+tb[4] +" incr : "+incr);
+
+                        console.log(" total before new_P "+$('#total_pro span').html());
+                        console.log(" total before operation "+totals);
+
+                          var  string_total=$('#total_pro span').html();
+                           var total_int=string_total.split('آوقية');
+                           totals=parseInt(total_int);
+                        console.log("total_int "+total_int);
+                        var seld=$('#select'+id_in).find(":selected").attr('value');
+                        console.log("total selected item  before parse :"+seld);
+                         var resultat = (parseInt(datas[2])*parseInt(seld));
+                        console.log("result befor op   :"+resultat);
+
+                        console.log("totale befor op  :"+totals);
+
+                        if( resultat > totals){ totals =  resultat - totals ;}else if( resultat < totals){totals = totals -  resultat; }else{totals=0;}
+                        //totals= totals -  resultat;
+                       // totals = totals * (-1);
+                        console.log("total selected item after parse  :"+seld);
+
+                        console.log("total  byin_p :"+parseInt(datas[2]));
+                        console.log("total  after new _P :"+totals);
+                        $('#total_pro span').html(totals+" آوقية ");
+                        console.log("total :"+totals);
+
+
+                    }else {
+
+                        console.log(" is enable");
+if($('#'+(id_in+200)).val() == ""){
+    console.log("input empty ----------------");
+    $('#'+(id_in+200)).val(datas[2]);
+}
+                        console.log(" total before new_P "+$('#total_pro span').html());
+
+                        var  string_total=$('#total_pro span').html();
+                        var total_int=string_total.split('آوقية');
+                        totals=parseInt(total_int);
+                        console.log("total_int "+totals);
+                        var seld=$('#select'+id_in).find(":selected").attr('value');
+                        console.log("total selected item  before parse :"+seld);
+                        var resultat = (parseInt($('#'+(id_in+200)).val())*parseInt(seld));
+                        if( resultat > totals){ totals =  resultat - totals ;}else if( resultat < totals){totals = totals -  resultat; }else{totals=0;}
+
+                        console.log("total selected item after parse  :"+seld);
+
+                        console.log("input val   byin_p :"+parseInt($('#'+(id_in+200)).val()));
+                        console.log("total  after new _P :"+totals);
+                        $('#total_pro span').html(totals+" آوقية ");
+                        console.log("total :"+totals);
+
+                        //console.log('datas[5] :' + datas[5]+"     tb[4]  :"+tb[4] +" incr : "+incr);
+
+                    }
 
 
 
 
-                if (data[0] == tb[0]) {
+                    //-----------end calculate ---------------//
+
                     console.log("index_row value before : "+index_row);
                     index_row=rowIdx;
                     console.log("index_row value after  :"+index_row);
+
+
                 } else {
                     // i=1;
+                    console.log("is not index to delete ");
                 }
-
+                incr++;
                 // ... do something with data(), or this.node(), etc
             });
+            incr=1;
 
             if(index_row != "none"){
                 console.log("index_row is   :"+index_row);
@@ -110,6 +193,7 @@ $('table.colorchange input[type=checkbox]').click(
                     .remove()
                     .draw();
                 index_row="none";
+
             }else{
                 console.log("index_row is null :"+index_row );
             }
@@ -118,6 +202,7 @@ $('table.colorchange input[type=checkbox]').click(
             console.log("is checked :" + $(this).val());
             var data = $(this).val();
             var tb = data.split(',');
+            console.log("data :"+data);
 
             if (!$.fn.DataTable.isDataTable('#dataTables-sale')) {
                 saleTB = $('#dataTables-sale').DataTable({
@@ -131,16 +216,19 @@ $('table.colorchange input[type=checkbox]').click(
 
             }
             saleTB.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                var data = this.data();
+                var data_sale = this.data();
 
                 //var after_split=data.split(',');
-                if (data[0] == tb[0]) {
-                    i = 0;
-
+                if (data_sale[5] == tb[4]) {
+                    ii = 0;
+                    console.log('data_sale[5] :' + data_sale[5]+"     tb[4]  :"+tb[4] +" i : "+i);
+console.log("exit recored !");
                 }else{
                     // i=1;
+                    console.log("new  recored !");
+                    console.log('data_sale[5] :' + data_sale[5]+"     tb[4]  :"+tb[4] +" i : "+i);
+
                 }
-                console.log('data[0] :' + data[0]+"     tb[0]  :"+tb[0] +" i : "+i);
                 // ... do something with data(), or this.node(), etc
             });
             //  var row = $('#MyDataTable').dataTable().fnGetNodes(rowIndex);
@@ -148,18 +236,25 @@ $('table.colorchange input[type=checkbox]').click(
 
             if (ii == 1) {
 
+
                 console.log('new row  added');
                 console.log('id_btn'+id_btn);
+               // console.log('data[5] :' + data_sale[5]+"     tb[4]  :"+tb[4] +" i : "+i);
 
-                var list='<select  class="form-control input-sm" >'+
-                '<option selected="selected"   value="5">5</option>'+
-                '<option selected="selected" value="10">10</option>'+
-                '<option value="20">20</option>'+
-                '<option value="30">30</option>'+
-                '<option value="40">40</option>'+
-                '<option value="50">50</option>'+
-                '<option value="-1">All</option>'+
-                '</select> records';
+
+    console.log(" total second "+$('#total_pro span').html());
+    var total =$('#total_pro span').html();
+
+    var e= total.split('آوقية');
+    total=parseInt(e[0]);
+    total= total +(tb[2]*1);
+    $('#total_pro span').html(total+"آوقية");
+
+    console.log(" e "+e[0]);
+    console.log("total :"+total);
+
+
+
                 var select = $('<select   class="form-control input-sm ww"  id="select'+id_btn+'"></select>');
 
                 for(i=1;i<=tb[3];i++){
@@ -195,8 +290,8 @@ $('table.colorchange input[type=checkbox]').click(
                     '<div class="form-group"> ' +
 
                     '<input class="form-control col-sm-12 as"  id="'+(id_btn+200)+'" type=text placeholder="اكتب السعر الجديد"  oninput="this.value = this.value.replace(/[^0-9]/g, \'\'); this.value = this.value.replace(/(\\..*)\\./g, \'$1\');" disabled/>' +
-                    '</div> '
-
+                    ' </div> '
+                    ,tb[4]
 
 
 
