@@ -58,7 +58,8 @@ $(document).ready( function() {
             "sInfoFiltered": "(fil from _MAX_ total entries)",
             "sInfoEmpty": "rt3 0 to 0 of 0 entries"
         },
-        "bSort": false
+        "bSort": false,
+        "iDisplayLength": 5
 
 
     });

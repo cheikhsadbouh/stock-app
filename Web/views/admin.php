@@ -134,7 +134,7 @@ $stock_table= Metier_get_all_products();
                         </div>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> مخزون
+                        <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> مخزون
                         </a>
                     </li>
                     <li>
@@ -153,7 +153,7 @@ $stock_table= Metier_get_all_products();
                         <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i>sales</a>
                     </li>
 
 
@@ -179,7 +179,7 @@ $stock_table= Metier_get_all_products();
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active pull-right"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
                         <li role="presentation" class="pull-right"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation" class="pull-right"><a href="#sale" aria-controls="sale" role="tab" data-toggle="tab" >بيع</a></li>
+                        <li role="presentation" class="pull-right"><a href="#sale" aria-controls="sale" role="tab" data-toggle="tab" style="color: black;" >بيع</a></li>
 
                     </ul>
 
@@ -252,7 +252,7 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td><?php echo  $row["buying_price"];  ?></td>
                                                         <td><?php echo  $row["unite_benefit"];  ?></td>
                                                         <td><?php echo  $row["total_benefit"];  ?></td>
-                                                        <td><?php echo  $row["number_products"];  ?></td>
+                                                        <td><?php echo  $row["rest_products_number"];  ?></td>
 
 
                                                         <td align="center" >

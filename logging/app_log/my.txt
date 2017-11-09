@@ -1,0 +1,5 @@
+2017-11-08T16:48:09+00:00 [INFO] myLogger: id_cmd : 9  id_produt :  13 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 79)
+2017-11-08T16:48:09+00:00 [INFO] myLogger: id_cmd : 9  id_produt :  14 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 79)
+2017-11-08T16:48:09+00:00 [INFO] myLogger: id_cmd : 9  id_produt :  15 (at /home/cheikhna/IdeaProjects/stock-app/Dao/Dao_new_cmd.php line 79)
+2017-11-08T16:48:09+00:00 [INFO] myLogger: test from Metier2017-11-24 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 38)
+2017-11-08T16:48:09+00:00 [INFO] myLogger: last_id_cmd is  ---> 9 (at /home/cheikhna/IdeaProjects/stock-app/Metier/Metier_new_cmd.php line 56)

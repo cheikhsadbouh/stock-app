@@ -22,4 +22,7 @@ $log->info("new_p  : ".$_POST['new_p']);
 $log->info("id_p  : ".$_POST['id_p']);
 $log->info("date_operation  : ".$_POST['date_operation']);
 
-
+function Metier_add_sales(){
+    Dao_add_sale($_POST['name_p'],$_POST['price_p'],$_POST['bying_p'],$_POST['selected_item'],$_POST['new_p'],$_POST['date_operation'],$_POST['id_p'],$_POST['total_item']);
+}
+Metier_add_sales();

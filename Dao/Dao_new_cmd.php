@@ -69,9 +69,9 @@ $total_benefit= $unite_benefit * $product_numbers ;
         $log->info("price : " .$product_unite_price." * ".$product_numbers."= ".$price);
         $log->info("total_benefit : " .$unite_benefit." * ".$product_numbers."= ".$total_benefit);*/
 
-   $sql = "INSERT INTO products (name_produts,unite_price,buying_price,number_products,price,unite_benefit,total_benefit)
+   $sql = "INSERT INTO products (name_produts,unite_price,buying_price,number_products,price,unite_benefit,total_benefit,rest_products_number)
 
-   VALUES ('$product_name','$product_unite_price','$product_buying_price','$product_numbers','$price','$unite_benefit','$total_benefit')";
+   VALUES ('$product_name','$product_unite_price','$product_buying_price','$product_numbers','$price','$unite_benefit','$total_benefit','$product_numbers')";
 
                 if (mysqli_query($conn, $sql)) {
 
