@@ -29,42 +29,51 @@ $(document).ready( function() {
         }
     }, 2000);
 });
-$(document).ready( function() {
-    if (!$.fn.DataTable.isDataTable('#dataTables-example')) {
 
-    stockTB = $('#dataTables-example').DataTable({
+$(function() {
+    $("body").css("background-color","#eef1ea");
+    $("#loading").fadeOut(500, function() {
+      // $("body").css("background-color","#eef1ea");
+        $("#wrapper").fadeIn(1000);
+        $("body").css("background-color","#607d8b");
+        if (!$.fn.DataTable.isDataTable('#dataTables-example')) {
+            stockTB = $('#dataTables-example').DataTable({
 
-        responsive: true,
-        "language": {
-            "lengthMenu": 'Display <select  class="form-control input-sm" >' +
-            '<option selected="selected"   value="5">5</option>' +
-            '<option selected="selected" value="10">10</option>' +
-            '<option value="20">20</option>' +
-            '<option value="30">30</option>' +
-            '<option value="40">40</option>' +
-            '<option value="50">50</option>' +
-            '<option value="-1">All</option>' +
-            '</select> records',
-            "paginate": {
-                "next": "ch",
-                "previous": "hhhh"
-
-
-            },
-            "search": "Apply",
-            "zeroRecords": "mahwnshi ",
-            "emptyTable": "No data available in table",
-            "info": "deuja _START_ to _END_ of _TOTAL_ mtrsh",
-            "sInfoFiltered": "(fil from _MAX_ total entries)",
-            "sInfoEmpty": "rt3 0 to 0 of 0 entries"
-        },
-        "bSort": false,
-        "iDisplayLength": 5
+                responsive: true,
+                "language": {
+                    "lengthMenu": 'Display <select  class="form-control input-sm" >' +
+                    '<option selected="selected"   value="5">5</option>' +
+                    '<option selected="selected" value="10">10</option>' +
+                    '<option value="20">20</option>' +
+                    '<option value="30">30</option>' +
+                    '<option value="40">40</option>' +
+                    '<option value="50">50</option>' +
+                    '<option value="-1">All</option>' +
+                    '</select> records',
+                    "paginate": {
+                        "next": "ch",
+                        "previous": "hhhh"
 
 
+                    },
+                    "search": "Apply",
+                    "zeroRecords": "mahwnshi ",
+                    "emptyTable": "No data available in table",
+                    "info": "deuja _START_ to _END_ of _TOTAL_ mtrsh",
+                    "sInfoFiltered": "(fil from _MAX_ total entries)",
+                    "sInfoEmpty": "rt3 0 to 0 of 0 entries"
+                },
+                "bSort": false,
+                "iDisplayLength": 5
+
+
+            });
+
+        }
     });
-
-}
+});
+$(document).ready( function() {
+   //table
 
 
 

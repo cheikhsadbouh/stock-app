@@ -26,6 +26,7 @@ ini_set('display_errors', 1);
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <link href="../css/loading.css" rel="stylesheet">
 
 
     <!-- Custom model-header  CSS -->
@@ -72,7 +73,7 @@ ini_set('display_errors', 1);
 
 </head>
 
-<body>
+<body >
 
 <?php
 
@@ -82,7 +83,7 @@ ini_set('display_errors', 1);
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_products.php');
 $stock_table= Metier_get_all_products();
 ?>
-<div id="wrapper">
+<div id="wrapper" style="display:none;"  >
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -164,7 +165,7 @@ $stock_table= Metier_get_all_products();
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" >
         <br>
         <div class="row">
             <div class="col-lg-12">
@@ -256,7 +257,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                                                         <td align="center" >
-                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
+                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["rest_products_number"];  ?>');"><em class="fa fa-pencil"></em></button>
 
                                                             <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
 
@@ -748,11 +749,26 @@ if (mysqli_num_rows($result) > 0) {
 </div><!-- /.modal -->
 <!-- Modal -->
 
+
+<div class="loading-bro" id="loading">
+    <h1>Loading</h1>
+    <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+        <circle id="loading-inner" cx="75" cy="75" r="60"/>
+    </svg>
+</div>
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap.min.js"></script>
+
+
+<!-- DataTables JavaScript -->
+<script src="../vendor/datatables/js/jquery.dataTables.js"></script>
+<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src=""></script>
+<script src="../js/add_or_drop_rows_in_DataTable.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
@@ -762,12 +778,7 @@ if (mysqli_num_rows($result) > 0) {
 <script src="../vendor/morrisjs/morris.min.js"></script>
 <script src="../vendor/data/morris-data.js"></script>-->
 
-<!-- DataTables JavaScript -->
-<script src="../vendor/datatables/js/jquery.dataTables.js"></script>
-<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script src=""></script>
-<script src="../js/add_or_drop_rows_in_DataTable.js"></script>
+
 
 
 

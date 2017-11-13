@@ -60,7 +60,16 @@ $("#form_modify_product").submit(function(e){
 $('#info').on('hidden.bs.modal', function () {
 
     console.log('hidden event fired!');
-    $('body').load("/stock-app/Web/views/admin.php");
+    //$("body").css("background-color","#eef1ea");
+   // $('body').load("/stock-app/Web/views/admin.php");
+   // $("body").css("background-color","#eef1ea");
+   // $('body').load("/stock-app/Web/views/admin.php");
+   // $("body").css("background-color","#607d8b");
+    //$("body").css("background-color","#eef1ea");
+
+
+location.href="admin.php";
+
 
 });
 

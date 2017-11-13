@@ -2,7 +2,7 @@
 
 
 $(function() {
-    $("#loading").fadeOut(1000, function() {
+    $("#loading").fadeOut(500, function() {
         $("#wrapper").fadeIn(1000);
         $("body").css("background-color","#607d8b");
         if (!$.fn.DataTable.isDataTable('#display_sale')) {
@@ -48,3 +48,5 @@ $(document).ready( function() {
 
 
 });
+
+

@@ -1,3 +1,12 @@
+
+
+<?php
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -30,6 +39,7 @@
     <link href="../css/custom-table.css" rel="stylesheet">
     <link href="../css/loading.css" rel="stylesheet">
 
+    <link href="../date_time_picker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
 
@@ -54,7 +64,9 @@
 //echo "  is --->  ".   dirname( dirname(dirname(__FILE__)))."/Metier/Metier_get_all_products.php";
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_sales.php');
+require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_info_all_sales.php');
 $sale_table= Metier_get_all_sales();
+$info_all_sales= Metier_get_info_all_sales();
 ?>
 <body>
 <div id="wrapper" style="display:none;">
@@ -213,30 +225,62 @@ $sale_table= Metier_get_all_sales();
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-<br>
+
                         <div class="list-group">
+                            <a href="#" class="list-group-item ">
+
+                               <span class="label label-info " style="font-size: 109%;">
+
+                                    <?php echo  $info_all_sales["items"];?>
+
+                               </span>
+
+                                <span class="pull-right ">
+                                  item
+                                    </span>
+
+
+                            </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                 <span class="label label-info " style="font-size: 109%;">
+
+                                <?php echo  $info_all_sales["total_purchase_price"];?>
+                                 </span>
+                                <span class="pull-right ">
+                                    total_purchase_price
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                <?php echo  $info_all_sales["total_bying_price"];?>
+                                <span class="pull-right ">
+                                    total_bying_price
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                <?php  echo $info_all_sales["total_real_bying_price"];?>
+                                <span class="pull-right ">
+                                    total_real_bying_price
                                     </span>
                             </a>
+                            <a href="#" class="list-group-item">
+                               <code><?php  echo $info_all_sales["total_benefit_total"];?></code>
+                                <span class="pull-right ">
+                                    total_benefit_total
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <?php  echo $info_all_sales["total_plus_benefit"];?>
+                                <span class="pull-right ">
+                                   total_plus_benefit
+                                    </span>
+                            </a>
+
                         </div>
                         <!-- /.list-group -->
                     </div>
                     <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
+                <!-- /.panel info total sales  -->
 <br/>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -244,29 +288,52 @@ $sale_table= Metier_get_all_sales();
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
+                        <!-- Split button -->
+                    <!--    <div class="btn-group dropup">
+                            <button type="button" class="btn btn-info">fhhhhhhhhhhhhhhhhhhhhhh</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Another action</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>-->
+
+                        <div class="form-group ">
+                            <div class="input-group date form_datetime col-lg-12" >
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            <input type="hidden" id="mirror_field" value="" readonly /><br/>
+                        </div>
+
                         <div class="list-group">
+                            <?php
+                            $sale= Metier_get_all_sales();
+                            if (mysqli_num_rows($sale) > 0) {
+                            while($row = mysqli_fetch_assoc($sale)) {
+                            ?>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                              230000
+                                <span class="pull-right text-muted small">
+                                      <i class="fa fa-comment fa-fw"></i> New Comment
                                     </span>
                             </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                            </a>
+                            <?php  } }?>
                         </div>
                         <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                     </div>
                     <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
+                <!-- /.panel info one days  -->
 
             </div>
             <!--  end info stock -->
@@ -326,6 +393,10 @@ $sale_table= Metier_get_all_sales();
 
 <!-- Custom Theme JavaScript -->
 <script src="../js/sb-admin-2.js"></script>
+
+<script src="../date_time_picker/bootstrap-datetimepicker.min.js"></script>
+<script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
+<script src="../js/custom_date_salepage.js"></script>
 
 
 
