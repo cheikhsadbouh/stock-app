@@ -258,7 +258,7 @@ console.log("exit recored !");
     var e= total.split('آوقية');
     total=parseInt(e[0]);
     total= total +(tb[2]*1);
-    $('#total_pro span').html(total+"آوقية");
+    $('#total_pro span').html(total+" آوقية ");
 
     console.log(" e "+e[0]);
     console.log("total :"+total);

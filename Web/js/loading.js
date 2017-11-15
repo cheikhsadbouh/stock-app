@@ -1,12 +1,12 @@
 
 
-
+var sale_TB ="";
 $(function() {
     $("#loading").fadeOut(500, function() {
         $("#wrapper").fadeIn(1000);
         $("body").css("background-color","#607d8b");
         if (!$.fn.DataTable.isDataTable('#display_sale')) {
-            stockTB = $('#display_sale').DataTable({
+            sale_TB = $('#display_sale').DataTable({
 
                 responsive: true,
                 "language": {
@@ -38,6 +38,16 @@ $(function() {
 
 
             });
+          var t =  sale_TB.row(':first').data();
+         var first= t[0].split(" ");
+           $("#in_put_date").val(first[0]);
+            $('#date_info_sale').datetimepicker('setStartDate', first[0]);
+            var e =  sale_TB.row(':last').data();
+            var last= e[0].split(" ");
+            $('#date_info_sale').datetimepicker('setEndDate', last[0]);
+          console.log(first[0]);
+            get_selected_day_sales(first[0]);
+
         }
     });
 });

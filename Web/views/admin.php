@@ -81,89 +81,13 @@ ini_set('display_errors', 1);
 //echo "  is --->  ".   dirname( dirname(dirname(__FILE__)))."/Metier/Metier_get_all_products.php";
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_products.php');
+include(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_check_session.php');
 $stock_table= Metier_get_all_products();
+$info_user=Metier_check_session();
 ?>
 <div id="wrapper" style="display:none;"  >
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">متجري</a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
-
-            <li class="dropdown  " style="background-color: #607d8b;">
-                <a class="dropdown-toggle  " data-toggle="dropdown" href="#" >
-                    <i class="fa fa-user-circle-o "></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user pull-right ">
-                    <li><a href="#"  class="text-right" ><i class=" fa fa-sign-out fa-fw "></i> الخروج</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-
-        <div class="navbar-default sidebar  " role="navigation" style="    position: fixed;
-    overflow: visible;">
-            <div class="sidebar-nav navbar-collapse ">
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <img  class="img-responsive img-circle" src="../img/users-profil.png"/>
-<!--                                <div class="status online hidden-xs"> </div>-->
-                            </div>
-                            <div class="col-xs-4 col-xs-pull-1">
-                                <p class=" text-justify " style="color: #FFFFFF;">
-                                    Username
-                                </p>
-                                <span> <i class="fa fa-circle   text-success"><span style="color:white;">مدير</span></i> </span>
-                            </div>
-                             <div class="clearfix"></div><br>
-                            <div class=" col-xs-12 divider"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> مخزون
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i>sales</a>
-                    </li>
-
-
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+   <?php  include(dirname( dirname(dirname(__FILE__))).'/Web/views/header.php'); ?>
 
     <div id="page-wrapper" >
         <br>
@@ -179,7 +103,9 @@ $stock_table= Metier_get_all_products();
                 <div class="card">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active pull-right"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                        <?php if($info_user[1]=="admin"){ ?>
                         <li role="presentation" class="pull-right"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                        <?php }?>
                         <li role="presentation" class="pull-right"><a href="#sale" aria-controls="sale" role="tab" data-toggle="tab" style="color: black;" >بيع</a></li>
 
                     </ul>
@@ -280,6 +206,7 @@ if (mysqli_num_rows($result) > 0) {
                             <!-- /.row stock tables  -->
                         </div>
                         <!-- end  tabs stock table-->
+                        <?php if($info_user[1]=="admin" ){ ?>
                         <div role="tabpanel" class="tab-pane" id="profile">
                          <div class="row">
                              <div class="col-lg-12">
@@ -394,6 +321,7 @@ if (mysqli_num_rows($result) > 0) {
                              </div>
                          </div>
                         </div>
+                        <?php } ?>
                         <!-- end  tabs create new item  in stock table-->
                         <div role="tabpanel" class="tab-pane  fade in" id="sale">
                         <div class="row">

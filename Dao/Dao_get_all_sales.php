@@ -23,7 +23,7 @@ function Dao_get_all_sales(){
 
     }
 
-    $sql = "SELECT * FROM sales ";
+    $sql = "SELECT * FROM sales ORDER BY date_of_sales asc ";
     if (mysqli_query($conn, $sql)) {
 
 

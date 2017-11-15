@@ -1,4 +1,6 @@
-$('.form_datetime').datetimepicker({
+
+
+$('#date_info_sale').datetimepicker({
     format: "dd-MM-yyyy ",
     language:  'ar',
     weekStart: 1,
@@ -13,11 +15,77 @@ $('.form_datetime').datetimepicker({
 
 });
 
-$('.form_datetime').datetimepicker('setStartDate', '2012-01-01');
-$('.form_datetime').datetimepicker('setEndDate', '2013-01-01');
 
-$('.form_datetime')
+
+$('#date_info_sale')
     .datetimepicker()
     .on('changeDate', function(ev){
-       alert("change date");
+        console.log("change date");
+
+
+        console.log("vla date :"+$("#mirror_field").val()) ;
+        get_selected_day_sales($("#mirror_field").val());
+
     });
+
+
+function get_selected_day_sales(date) {
+    /*
+    * date_of_sales	0
+    * name_p 1
+    * price_p 2
+    * bying_p	 3
+    * selected_item 4
+    * new_p 5
+    * total_benefit:  6
+    plus_total_benefit: 7
+    total_bying:  8
+    * */
+    var items=0;
+    var total_purchase_price=0;
+    var total_bying_price=0;
+    var total_real_bying_price=0;
+    var total_benefit_total=0;
+    var total_plus_benefit=0;
+    console.log("date to fetch is :"+date);
+    sale_TB.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        //  var inm=saleTB.cell({row:rowIdx,column:4}).nodes().to$().find('input');
+        var data = this.data();
+        var date_only = data[0].split(" ");
+        console.log(" current date  is :"+date_only[0]);
+
+        if(date_only[0] == date){
+            items = items +parseInt(data[4])  ;
+            total_purchase_price = (total_purchase_price +  (parseInt(data[2])*  parseInt(data[4]))) ;
+            total_bying_price = (total_bying_price+  (parseInt(data[3] )*  parseInt(data[4]))) ;
+            if(data[5] == '0'){
+                total_real_bying_price = (total_real_bying_price +  (parseInt(data[3] )*  parseInt(data[4]))) ;
+
+            }else{
+                total_real_bying_price = (total_real_bying_price +  (parseInt(data[5]) *  parseInt(data[4]))) ;
+            }
+
+
+
+        }
+
+
+    });
+
+
+    total_benefit_total = total_real_bying_price -total_purchase_price ;
+    total_plus_benefit = total_bying_price - total_real_bying_price ;
+    if(total_plus_benefit <0){
+        total_plus_benefit = total_plus_benefit * (-1);
+    }
+
+
+
+    $("#items").text(items);
+    $("#total_purchase_price").text(total_purchase_price);
+    $("#total_bying_price").text(total_bying_price);
+    $("#total_real_bying_price").text(total_real_bying_price);
+    $("#total_benefit_total").text(total_benefit_total);
+    $("#total_plus_benefit").text(total_plus_benefit);
+
+}

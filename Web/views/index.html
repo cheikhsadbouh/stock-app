@@ -185,7 +185,8 @@
 <script src="../vendor/popper/popper.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../js/scroll.js"></script>
-<script src="../js/login-form.js"></script>
+<script src="../js/rippel-effect.js"></script>
+<script src="../js/login.js"></script>
 
 
 
@@ -201,23 +202,24 @@
 
 
 
-            <form>
+            <form id="login-form" onsubmit="return false" method="post" action="">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                 <img src="../img/logo.png" class="img-responsive"/>
                 <div class="group">
-                    <input type="text"><span class="highlight"></span><span class="bar"></span>
+                    <input type="text" name="user" id="user"><span class="highlight"></span><span class="bar"></span>
                     <label>اسم المستخدم</label>
                 </div>
                 <div class="group">
-                    <input type="email"><span class="highlight"></span><span class="bar"></span>
+                    <input type="password" name="pass" id="pass"><span class="highlight"></span><span class="bar"></span>
                     <label>كلمه السر</label>
                 </div>
-                <button type="button" class="button buttonBlue "><h4>تسجيل الدخول
-                </h4>
-                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                <button type="button" class="button buttonBlue " >
+                    <h4>تسجيل الدخول</h4>
+                    <div class="ripples buttonRipples" onclick="login()"><span class="ripplesCircle"></span></div>
                 </button>
             </form>
+        <div class="alert alert-danger" role="alert" style="display:none;" id="alert"></div>
 
     </div>
 </div><!--end model-->

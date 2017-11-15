@@ -42,7 +42,8 @@ ini_set('display_errors', 1);
     <link href="../date_time_picker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
-
+    <!-- Custom model-header  CSS -->
+    <link href="../css/model-header.css" rel="stylesheet">
 
 
 
@@ -65,91 +66,18 @@ ini_set('display_errors', 1);
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_sales.php');
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_info_all_sales.php');
+include(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_check_session.php');
 $sale_table= Metier_get_all_sales();
+
+
 $info_all_sales= Metier_get_info_all_sales();
+$info_user=Metier_check_session();
 ?>
 <body>
 <div id="wrapper" style="display:none;">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">متجري</a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
-
-            <li class="dropdown  " style="background-color: #607d8b;">
-                <a class="dropdown-toggle  " data-toggle="dropdown" href="#" >
-                    <i class="fa fa-user-circle-o "></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user pull-right ">
-                    <li><a href="#"  class="text-right" ><i class=" fa fa-sign-out fa-fw "></i> الخروج</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-
-        <div class="navbar-default sidebar  " role="navigation" style="    position: fixed;
-    overflow: visible;">
-            <div class="sidebar-nav navbar-collapse ">
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <img  class="img-responsive img-circle" src="../img/users-profil.png"/>
-                                <!--                                <div class="status online hidden-xs"> </div>-->
-                            </div>
-                            <div class="col-xs-4 col-xs-pull-1">
-                                <p class=" text-justify " style="color: #FFFFFF;">
-                                    Username
-                                </p>
-                                <span> <i class="fa fa-circle   text-success"><span style="color:white;">مدير</span></i> </span>
-                            </div>
-                            <div class="clearfix"></div><br>
-                            <div class=" col-xs-12 divider"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> مخزون
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i>sales</a>
-                    </li>
-
-
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+    <?php  include(dirname( dirname(dirname(__FILE__))).'/Web/views/header.php'); ?>
 
     <div id="page-wrapper">
         <br>
@@ -180,7 +108,8 @@ $info_all_sales= Metier_get_info_all_sales();
                                   <th>total_benefit</th>
                                   <th>plus_total_benefit</th>
                                   <th>total_bying</th>
-                                  <th>modifiy</th>
+                                  <th>setting</th>
+                                  <th>user</th>
 
                               </tr>
                               </thead>
@@ -188,7 +117,7 @@ $info_all_sales= Metier_get_info_all_sales();
                               <?php
 
                               if (mysqli_num_rows($sale_table) > 0) {
-                               while($row = mysqli_fetch_assoc($sale_table)) {
+                               while($row = mysqli_fetch_assoc($sale_table )) {
                                ?>
                                <tr>
                                    <td><?php  echo $row["date_of_sales"];?></td>
@@ -201,9 +130,12 @@ $info_all_sales= Metier_get_info_all_sales();
                                    <td><?php  echo $row["plus_total_benefit"];?></td>
                                    <td><?php  echo $row["total_bying"];?></td>
                                    <td align="center" >
-                                       <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
+                                       <button class="btn btn-default " onclick="modify_sale('<?php  echo $row["date_of_sales"];?>','<?php  echo $row["id_prodcut"];?>','<?php echo  $row["selected_item"];  ?>','<?php echo  $row["new_p"];  ?>','<?php  echo $row["price_p"];?>','<?php  echo $row["bying_p"];?>');"><em class="fa fa-pencil"></em></button>
+
+                                       <button class="btn btn-danger"  onclick="delete_sale('<?php echo  $row["idsales"];  ?>');"><em class="fa fa-trash"></em></button>
 
                                    </td>
+                                   <td><?php  echo $row["user"];?></td>
 
                                </tr>
                                <?php  } }?>
@@ -221,7 +153,7 @@ $info_all_sales= Metier_get_info_all_sales();
             <div class="col-lg-4 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        <i class="fa fa-bell fa-fw"></i> info_all_sales
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -244,32 +176,44 @@ $info_all_sales= Metier_get_info_all_sales();
                             <a href="#" class="list-group-item">
                                  <span class="label label-info " style="font-size: 109%;">
 
-                                <?php echo  $info_all_sales["total_purchase_price"];?>
+
+                                   <?php echo  $info_all_sales["total_purchase_price"];?>
+
                                  </span>
+                                <small>
                                 <span class="pull-right ">
                                     total_purchase_price
                                     </span>
+                                </small>
                             </a>
                             <a href="#" class="list-group-item">
+                                <span class="label label-info " style="font-size: 109%;">
                                 <?php echo  $info_all_sales["total_bying_price"];?>
+                                </span>
                                 <span class="pull-right ">
                                     total_bying_price
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
+                                <span class="label label-info " style="font-size: 109%;">
                                 <?php  echo $info_all_sales["total_real_bying_price"];?>
+                                </span>
                                 <span class="pull-right ">
                                     total_real_bying_price
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                               <code><?php  echo $info_all_sales["total_benefit_total"];?></code>
+                                <span class="label label-info " style="font-size: 109%;">
+                               <?php  echo $info_all_sales["total_benefit_total"];?>
+                                </span>
                                 <span class="pull-right ">
                                     total_benefit_total
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
+                                <span class="label label-info " style="font-size: 109%;">
                                 <?php  echo $info_all_sales["total_plus_benefit"];?>
+                                </span>
                                 <span class="pull-right ">
                                    total_plus_benefit
                                     </span>
@@ -284,50 +228,75 @@ $info_all_sales= Metier_get_info_all_sales();
 <br/>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        <i class="fa fa-bell fa-fw"></i> info_sale_sepcial_day
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <!-- Split button -->
-                    <!--    <div class="btn-group dropup">
-                            <button type="button" class="btn btn-info">fhhhhhhhhhhhhhhhhhhhhhh</button>
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Another action</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </div>-->
-
                         <div class="form-group ">
-                            <div class="input-group date form_datetime col-lg-12" >
-                                <input class="form-control" size="16" type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <div class="input-group date form_datetime col-lg-12" id="date_info_sale" >
+                                <input class="form-control" size="16" type="text" value="" readonly id="in_put_date">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                             <input type="hidden" id="mirror_field" value="" readonly /><br/>
                         </div>
 
                         <div class="list-group">
-                            <?php
-                            $sale= Metier_get_all_sales();
-                            if (mysqli_num_rows($sale) > 0) {
-                            while($row = mysqli_fetch_assoc($sale)) {
-                            ?>
+                            <a href="#" class="list-group-item ">
+
+                               <span id="items" class="label label-info " style="font-size: 109%;">
+
+                               </span>
+
+                                <span class="pull-right ">
+                                  items
+                                    </span>
+
+
+                            </a>
                             <a href="#" class="list-group-item">
-                              230000
-                                <span class="pull-right text-muted small">
-                                      <i class="fa fa-comment fa-fw"></i> New Comment
+                                 <span  id="total_purchase_price" class="label label-info " style="font-size: 109%;">
+
+                                 </span>
+                                <small>
+                                <span class="pull-right ">
+                                    total_purchase_price
+                                    </span>
+                                </small>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <span  id="total_bying_price" class="label label-info " style="font-size: 109%;">
+
+                                 </span>
+                                <span   class="pull-right ">
+                                    total_bying_price
                                     </span>
                             </a>
-                            <?php  } }?>
+                            <a href="#" class="list-group-item">
+
+                                <span  id="total_real_bying_price" class="label label-info " style="font-size: 109%;">
+
+                                 </span>
+                                <span class="pull-right ">
+                                    total_real_bying_price
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <span  id="total_benefit_total" class="label label-info " style="font-size: 109%;">
+
+                                 </span>
+                                <span class="pull-right ">
+                                    total_benefit_total
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <span  id="total_plus_benefit" class="label label-info " style="font-size: 109%;">
+
+                                 </span>
+                                <span class="pull-right ">
+                                   total_plus_benefit
+                                    </span>
+                            </a>
+
                         </div>
                         <!-- /.list-group -->
                     </div>
@@ -397,6 +366,7 @@ $info_all_sales= Metier_get_info_all_sales();
 <script src="../date_time_picker/bootstrap-datetimepicker.min.js"></script>
 <script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
 <script src="../js/custom_date_salepage.js"></script>
+<script src="../js/modify_sale.js"></script>
 
 
 
@@ -413,5 +383,83 @@ $info_all_sales= Metier_get_info_all_sales();
 
 </script>
 
+<!-- Modal modify product  -->
+<div class="modal fade" id="model_modify_sale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+            </div>
+            <div class="modal-body">
 
+                <form class="form-horizontal" id="form_modify_sale" onsubmit="return false" method="post" action="">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >date:</label>
+                        <div class="col-sm-10">
+
+                            <div class="input-append input-group  date form_datetime">
+                                <input class="form-control" size="16" type="text" value="" readonly id="up1" name="up1">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+                            </div>
+                            <input type="hidden" id="mirror_fieldss" name="mirror_fieldss" value="" readonly /><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">selected item:</label>
+                        <div class="col-sm-10" id="add_select">
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >new_price:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="up3" id="up3"  value="none3">
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button"  onclick="submit_sale_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        language:  'ar',
+        linkField: "mirror_fieldss",
+        linkFormat: "yyyy-mm-dd"
+    });
+</script>
+
+
+
+<!-- Modal submit form success -->
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> تمت العملية بنجاح </h1>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button  class="btn btn-default pull-left" data-dismiss="modal">أغلق
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
 </html>
