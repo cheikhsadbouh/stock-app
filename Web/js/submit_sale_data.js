@@ -16,6 +16,7 @@ var incr=1;
         console.log( "new price  : "+$('#'+(id_in+200)).val());
         console.log( "id_product : "+data[5]);
         console.log( "date  : "+$('#mirror_field').val());
+        console.log( "user   : "+$('#user_did_it').val());
 
         console.log("-------------END----------------");
 
@@ -25,7 +26,7 @@ var incr=1;
             data:  { name_p : data[0],price_p : data[1],bying_p : data[2],
                 selected_item : $('#select'+id_in+' option:selected').val(),
                 total_item : $('#select'+id_in).find('option').last().text(),
-                new_p : $('#'+(id_in+200)).val(),id_p : data[5],date_operation : $('#mirror_field').val()},
+                new_p : $('#'+(id_in+200)).val(),id_p : data[5],date_operation : $('#mirror_field').val(),'user':$('#user_did_it').val()},
            url : '/stock-app/Metier/Metier_add_new_sale.php',
 
             success : function(data){

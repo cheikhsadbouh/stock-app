@@ -13,7 +13,7 @@ require(dirname(dirname(dirname(__FILE__))).'/stock-app/Dao/cnxn.php');
 
 
 
-function  Dao_modify_sale($date,$new_items,$new_p,$id_sale,$selected_item,$total_items,$price_p,$bying_p){
+function  Dao_modify_sale($date,$new_items,$new_p,$id_sale,$selected_item,$total_items,$price_p,$bying_p,$ids){
 
 
 
@@ -47,8 +47,9 @@ function  Dao_modify_sale($date,$new_items,$new_p,$id_sale,$selected_item,$total
 //$s=($selected_item - $new_items);
 //if($s < 0){ ($s= $s * (-1));}
 //$p=$total_items -$new_items ;
-$stock= 0;
 
+$stock= 0;
+        $sqls="";
 if($new_items > $selected_item){
     $value= $new_items - $selected_item ;
     if($value < 0){ ($value= $value * (-1));}
@@ -63,15 +64,30 @@ if($new_items > $selected_item){
     $stock = $total_items + $value ;
 
 }else if($new_items == $selected_item){
-
+    $log->info("new item == selected ");
+if($total_items == '0'){
+    $log->info("total iems==0");
+    $stock= 0;
+    $sqls="select * from products ";
+    //request mahi mohim 2la ba6
+}else{
     $stock= $total_items ;
-    
+    $price= $price_p * $stock;
+
+    $unite_benefit= $bying_p - $price_p;
+
+    $total_benefits= $unite_benefit * $stock ;
+
+    $sqls = "update  products  set rest_products_number='$stock' ,price='$price', unite_benefit='$unite_benefit' , total_benefit='$total_benefits' where idproducts='$id_sale'";
+
 }
 
-        $sql = "update  products  set rest_products_number='$stock' where idproducts='$id_sale'";
 
 
-        if (mysqli_query($conn, $sql)) {
+}
+
+
+        if (mysqli_query($conn, $sqls)) {
             $benetif_total =0;
             $plus_benefit=0;
             $sales_money=0;
@@ -98,7 +114,7 @@ if($new_items > $selected_item){
             }
 
 
-            $sql = "update  sales  set selected_item='$new_items' , new_p='$new_p',  date_of_sales='$date' ,  plus_total_benefit='$plus_benefit', total_benefit='$benetif_total', total_bying='$sales_money' where id_prodcut='$id_sale'";
+            $sql = "update  sales  set selected_item='$new_items' , new_p='$new_p',  date_of_sales='$date' ,  plus_total_benefit='$plus_benefit', total_benefit='$benetif_total', total_bying='$sales_money' where idsales='$ids'";
             if (mysqli_query($conn, $sql)) {
 
             } else {
@@ -108,7 +124,7 @@ if($new_items > $selected_item){
 
         } else {
 
-            $log->error("Error while  update  product from  table  products  " . $sql . "\n" . mysqli_error($conn));
+            $log->error("Error while  update  product from  table  products  " . $sqls . "\n" . mysqli_error($conn));
         }
 
 

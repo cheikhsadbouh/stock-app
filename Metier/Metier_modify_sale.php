@@ -19,13 +19,14 @@ $log->info($_GET["selected_item"]);
 $log->info($_GET["total_items"]);
 $log->info($_GET["price_p"]);
 $log->info($_GET["bying_p"]);
+$log->info($_GET["ids"]);
 
 
 
 function Metier_modify_sale(){
 
 
-    Dao_modify_sale($_POST["mirror_fieldss"],$_POST["up2"],$_POST["up3"],$_GET["id_sale_to_modify"],$_GET["selected_item"],$_GET["total_items"],$_GET["price_p"],$_GET["bying_p"]);
+    Dao_modify_sale($_POST["mirror_fieldss"],$_POST["up2"],$_POST["up3"],$_GET["id_sale_to_modify"],$_GET["selected_item"],$_GET["total_items"],$_GET["price_p"],$_GET["bying_p"],$_GET["ids"]);
 }
 
 

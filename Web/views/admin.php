@@ -81,9 +81,22 @@ ini_set('display_errors', 1);
 //echo "  is --->  ".   dirname( dirname(dirname(__FILE__)))."/Metier/Metier_get_all_products.php";
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_products.php');
-include(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_check_session.php');
+require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_check_session.php');
+require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_info_single_cmd.php');
 $stock_table= Metier_get_all_products();
 $info_user=Metier_check_session();
+$info_single_cmd = Metier_info_single_cmd();
+
+$total_price=0;
+$total_item=0;
+$total_cmd=0;
+$total_plus_benefit=0;
+$total_normale_benefit=0;
+$total_normale_buying=0;
+$total_real_buying=0;
+$total_real_benefit=0;
+$buy_items=0;
+$unbuy_items=0;
 ?>
 <div id="wrapper" style="display:none;"  >
 
@@ -167,7 +180,7 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td>
                                                             <div class="checkbox radio-margin">
                                                                 <label>
-                                                                    <input type="checkbox" value="<?php  echo $row["name_produts"];?>,<?php echo  $row["unite_price"];  ?>,<?php echo  $row["buying_price"];  ?>,<?php echo  $row["number_products"];  ?>,<?php echo  $row["idproducts"];  ?>">
+                                                                    <input type="checkbox" value="<?php  echo $row["name_produts"];?>,<?php echo  $row["unite_price"];  ?>,<?php echo  $row["buying_price"];  ?>,<?php echo  $row["rest_products_number"];  ?>,<?php echo  $row["idproducts"];  ?>">
                                                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                                 </label>
                                                             </div>
@@ -388,6 +401,9 @@ if (mysqli_num_rows($result) > 0) {
                                               <a class="c-btn c-datepicker-btn"  id="sale_btn">
                                                   <span class="material-icon">حفظ</span>
                                               </a>
+                                              <!--  user how did it -->
+                                              <input type="hidden"  id="user_did_it"  value=" <?php echo $info_user[0] ; ?>" name="user_did_it" >
+
                                           </div>
                                       </div>
                                     </div>
@@ -413,68 +429,56 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-lg-8">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Bordered Table</h3>
+                        <h3 class="box-title">CMD_info</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                     <!--   <table class="table table-bordered">
-                            <tbody><tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
+                        <table width="100%" class="  table table-striped table-bordered table-hover" id="dataTables_info_cmd">
+                            <thead>
                             <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-red">55%</span></td>
+                                <th>id_cmd </th>
+                                <th>date</th>
+                                <th>total_items</th>
+                                <th>total_price</th>
+                                <th>total_normale_buying</th>
+                                <th>total_normale_benefit</th>
+                                <th>total_real_buying</th>
+                                <th>total_real_benefit</th>
+                                <th>total_plus_benefit</th>
+                                <th>buy_item</th>
+                                <th>unbuy_item</th>
                             </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-yellow">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-light-blue">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-green">90%</span></td>
-                            </tr>
-                            </tbody></table>-->
+                            </thead>
+                            <tbody>
+                            <?php
+
+
+
+
+                            for($i = 0; $i < count($info_single_cmd); $i++) {
+
+
+                            ?>
+<tr>
+                                <td><?php  $total_cmd=$total_cmd+1; echo $info_single_cmd[$i]['idcmd'];?></td>
+                                <td><?php  echo $info_single_cmd[$i]['date_cmd'];?></td>
+                                <td><?php  $total_item= $total_item + $info_single_cmd[$i]['total_items'] ;echo $info_single_cmd[$i]['total_items'];?></td>
+                                <td><?php   $total_price= $total_price +  $info_single_cmd[$i]['total_price']; echo $info_single_cmd[$i]['total_price'];?></td>
+                                <td><?php   $total_normale_buying = $total_normale_buying +$info_single_cmd[$i]['total_normale_buying']; echo $info_single_cmd[$i]['total_normale_buying'];?></td>
+                                <td><?php  $total_normale_benefit = $total_normale_benefit +$info_single_cmd[$i]["total_normale_benefit"]; echo $info_single_cmd[$i]["total_normale_benefit"];?></td>
+                                <td><?php  $total_real_buying=$total_real_buying +$info_single_cmd[$i]["total_real_buying"]; echo $info_single_cmd[$i]["total_real_buying"];?></td>
+                                <td><?php  $total_real_benefit = $total_real_benefit + $info_single_cmd[$i]["total_real_benefit"];echo $info_single_cmd[$i]["total_real_benefit"];?></td>
+                                <td><?php $total_plus_benefit=$total_plus_benefit + $info_single_cmd[$i]["total_plus_benefit"]; echo $info_single_cmd[$i]["total_plus_benefit"];?></td>
+                                <td><?php  $buy_items= $buy_items +$info_single_cmd[$i]["buy_items"]; echo $info_single_cmd[$i]["buy_items"];?></td>
+                                <td><?php $unbuy_items= $unbuy_items+$info_single_cmd[$i]["unbuy_items"]; echo $info_single_cmd[$i]["unbuy_items"];?></td>
+</tr>
+                            <?php   }  ?>
+                            </tbody>
+
+
+                        </table>
 
                     </div><!-- /.box-body -->
-                    <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
-                    </div>
+
                 </div><!-- /.box -->
 
 
@@ -483,63 +487,115 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-lg-4 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        <i class="fa fa-bell fa-fw"></i> info_all_sales
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
+
                         <div class="list-group">
+                            <a href="#" class="list-group-item ">
+
+                               <span class="label label-info " style="font-size: 109%;">
+
+                                    <?php echo $total_cmd ;?>
+
+                               </span>
+
+                                <span class="pull-right ">
+                                  total_cmd
+                                    </span>
+
+
+                            </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                 <span class="label label-info " style="font-size: 109%;">
+
+
+                                   <?php echo  $total_item;?>
+
+                                 </span>
+                                <small>
+                                <span class="pull-right ">
+                                    total_item
+                                    </span>
+                                </small>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php echo  $total_price;?>
+                                </span>
+                                <span class="pull-right ">
+                                    total_price
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $total_normale_buying;?>
+                                </span>
+                                <span class="pull-right ">
+                                   total_normale_buying
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                               <?php  echo $total_normale_benefit;?>
+                                </span>
+                                <span class="pull-right ">
+                                    total_normale_benefit
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $total_real_buying;?>
+                                </span>
+                                <span class="pull-right ">
+                                   total_real_buying
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $total_real_benefit;?>
+                                </span>
+                                <span class="pull-right ">
+                                   total_real_benefit
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $total_plus_benefit;?>
+                                </span>
+                                <span class="pull-right ">
+                                   total_plus_benefit
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $buy_items;?>
+                                </span>
+                                <span class="pull-right ">
+                                   buy_items
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                <span class="label label-info " style="font-size: 109%;">
+                                <?php  echo $unbuy_items;?>
+                                </span>
+                                <span class="pull-right ">
+                                   unbuy_items
                                     </span>
                             </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-money fa-fw"></i> Payment Received
-                                <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                            </a>
+
                         </div>
                         <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                     </div>
                     <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
+                <!-- /.panel info total sales  -->
+
+
+            </div>
+
+            <!-- /.panel -->
 
             </div>
             <!--  end info stock -->
@@ -743,6 +799,8 @@ if (mysqli_num_rows($result) > 0) {
 <script src="../js/submit_sale_data.js"></script>
 
 <script src="../js/change_total_sales.js"></script>
+
+<script src="../js/cmd_info.js"></script>
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->

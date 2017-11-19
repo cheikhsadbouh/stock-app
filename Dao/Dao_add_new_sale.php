@@ -11,7 +11,7 @@ require(dirname( dirname(dirname(__FILE__))).'/stock-app/Dao/cnxn.php');
 
 
 
-function   Dao_add_sale($name_p,$price_p,$bying_p,$selected_item,$new_p,$date_of_sales,$id_prodcut,$total_item){
+function   Dao_add_sale($name_p,$price_p,$bying_p,$selected_item,$new_p,$date_of_sales,$id_prodcut,$total_item,$user){
 
     $conn = open_cnxn();
     global $log;
@@ -51,10 +51,11 @@ if($new_p == ""){
 
 }
 if($date_of_sales == ""){ $date_of_sales="0000-00-00 00:00";}
-
+$log->info("totl_item : ".$total_item."selected item :".$selected_item);
 $rest= $total_item - $selected_item ;
+$log->info("rest :".$rest);
 
-        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money')";
+        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying,user) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money','$user')";
 
         if (mysqli_query($conn, $sql)) {
             $log->info("add new sale done ! : ");

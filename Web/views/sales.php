@@ -130,9 +130,9 @@ $info_user=Metier_check_session();
                                    <td><?php  echo $row["plus_total_benefit"];?></td>
                                    <td><?php  echo $row["total_bying"];?></td>
                                    <td align="center" >
-                                       <button class="btn btn-default " onclick="modify_sale('<?php  echo $row["date_of_sales"];?>','<?php  echo $row["id_prodcut"];?>','<?php echo  $row["selected_item"];  ?>','<?php echo  $row["new_p"];  ?>','<?php  echo $row["price_p"];?>','<?php  echo $row["bying_p"];?>');"><em class="fa fa-pencil"></em></button>
+                                       <button class="btn btn-default " onclick="modify_sale('<?php  echo $row["date_of_sales"];?>','<?php  echo $row["id_prodcut"];?>','<?php echo  $row["selected_item"];  ?>','<?php echo  $row["new_p"];  ?>','<?php  echo $row["price_p"];?>','<?php  echo $row["bying_p"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-pencil"></em></button>
 
-                                       <button class="btn btn-danger"  onclick="delete_sale('<?php echo  $row["idsales"];  ?>');"><em class="fa fa-trash"></em></button>
+                                       <button class="btn btn-danger"  onclick="delete_sale('<?php echo  $row["id_prodcut"];  ?>','<?php  echo $row["selected_item"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-trash"></em></button>
 
                                    </td>
                                    <td><?php  echo $row["user"];?></td>
@@ -367,6 +367,7 @@ $info_user=Metier_check_session();
 <script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
 <script src="../js/custom_date_salepage.js"></script>
 <script src="../js/modify_sale.js"></script>
+<script src="../js/delete_sale.js"></script>
 
 
 
@@ -404,6 +405,7 @@ $info_user=Metier_check_session();
 
                             </div>
                             <input type="hidden" id="mirror_fieldss" name="mirror_fieldss" value="" readonly /><br/>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -457,6 +459,43 @@ $info_user=Metier_check_session();
             <div class="modal-footer">
                 <button  class="btn btn-default pull-left" data-dismiss="modal">أغلق
                 </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+
+
+
+
+<!-- Modal delete -->
+<div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-question-circle-o" aria-hidden="true"></i>هل أنت متأكد   </h1>
+            </div>
+            <div class="modal-body">
+                <form  class="form-horizontal" id="delele_product_form"  action="#" method="#">
+                    <input type="hidden"  value="78" name="id_product_to_delete" id="id_product_to_delete">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="">
+                    <div class="clo-xs-5 pull-left" >
+                        <button  class="btn btn-info "  data-dismiss="modal">لا</button>
+
+                    </div>
+                    <div class="clo-xs-5 pull-right">
+                        <button  class="btn btn-danger " id="delete_sale" data-dismiss="modal">نعم</button>
+
+                    </div>
+
+                </div>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

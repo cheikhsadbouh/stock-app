@@ -76,7 +76,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                    <a href="consomation.php"><i class="fa fa-table fa-fw"></i> consomation</a>
                 </li>
                 <li>
                     <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i>sales</a>

@@ -1,17 +1,18 @@
 
-var id_sale_to_modify = 0;
+var id_pro_to_modify = 0;
 var selected_items = 0;
 var total_items = 0;
 var pr_p = 0;
 var by_p = 0;
+var ids = 0;
 
 
 
 
-function modify_sale(date_of_sales,id_prodcut,selected_item,new_p,price_p,bying_p){
+function modify_sale(date_of_sales,id_prodcut,selected_item,new_p,price_p,bying_p,id){
 
-
-    id_sale_to_modify=id_prodcut;
+ids=id;
+    id_pro_to_modify=id_prodcut;
     selected_items=selected_item;
     pr_p=price_p;
     by_p=bying_p;
@@ -36,20 +37,30 @@ function modify_sale(date_of_sales,id_prodcut,selected_item,new_p,price_p,bying_
               console.log(data);
             var select = $('<select   class="form-control input-sm ww" name="up2" id="select_item"></select>');
             items=parseInt(data);
-total_items=items;
-            for(i=1;i<=items;i++){
-                var option ;
-                if(i==selected_item){
-                    option = $('<option  selected></option>');
-                }else{
-                    option = $('<option></option>');
-                }
+           total_items=items;
+           if(items == '0'){
+               var option ;
+               option = $('<option  selected></option>');
+               option.attr('value', selected_item);
+               option.text(selected_item);
+               select.append(option);
+           }else{
+               for(i=1;i<=items;i++){
+                   var option ;
+                   if(i==selected_item){
+                       option = $('<option  selected></option>');
+                   }else{
+                       option = $('<option></option>');
+                   }
 
-                option.attr('value', i);
-                option.text(i);
-                select.append(option);
+                   option.attr('value', i);
+                   option.text(i);
+                   select.append(option);
+
+               }
 
             }
+
             var jelm = $(select);//convert to jQuery Element
             var htmlElm = jelm[0]//convert to HTML Element
             $("#add_select").append(htmlElm.outerHTML);
@@ -84,7 +95,7 @@ function begin_submit(){
     $.ajax({
         type : 'POST',
         data: $("#form_modify_sale").serialize(),
-        url : '/stock-app/Metier/Metier_modify_sale.php?id_sale_to_modify='+id_sale_to_modify+'&selected_item='+selected_items+'&total_items='+total_items+'&price_p='+pr_p+'&bying_p='+by_p,
+        url : '/stock-app/Metier/Metier_modify_sale.php?id_sale_to_modify='+id_pro_to_modify+'&selected_item='+selected_items+'&total_items='+total_items+'&price_p='+pr_p+'&bying_p='+by_p+'&ids='+ids,
 
         success : function(data){
             console.log('submit success.');
