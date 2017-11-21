@@ -20,16 +20,16 @@
     color: rgb(255, 255, 255);
     cursor: default;
     display: block;
-    line-height: 48px;
-    padding: 2px 0 1px 16px;
+    line-height: 30px;
+    padding: 0px 170px 0px 0px;
     position: relative;
-    text-align: left;
+    text-align: center;
     text-shadow: none;
     width: 100%;
     z-index: 1;
     outline: none;
     overflow: hidden;
-    font-size: 27px;
+    font-size: 25px;
 }
 .md-select [type="button"]:focus, .md-select [type="button"]:hover {
     background: rgb(91, 192, 222);

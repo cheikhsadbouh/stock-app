@@ -135,7 +135,7 @@ $debt=Metier_get_debt();
                                         <div class="col-lg-6 ">
                                             <div class="md-select" >
 
-                                                <label for="ul-id"><button type="button" class="ng-binding  btn"> دين </button></label>
+                                                <label for="ul-id"><button type="button" class="ng-binding  btn   c-btn c-datepicker-btn"> دين </button></label>
                                                 <ul role="listbox" id="ul-id" class="md-whiteframe-z1" aria-activedescendant="state2_AK" name="ul-id">
                                                     <li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">دين علي</li>
                                                     <li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">دين لي</li>
@@ -214,9 +214,9 @@ $debt=Metier_get_debt();
 
 
                                             <td align="center" >
-                                                <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["namess"];?>','<?php  echo $row["pass"];?>','<?php  echo $row["role"];?>','<?php  echo $row["idusers"];?>');"><em class="fa fa-usd"></em></button>
+                                                <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
-                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["pass"];?>','<?php  echo $row["role"];?>','<?php  echo $row["idusers"];?>');"><em class="fa fa-pencil"></em></button>
+                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
 
 
                                             </td>
@@ -277,13 +277,14 @@ $debt=Metier_get_debt();
                                             <td><?php  echo $row["unpayed"];?></td>
 
 
-                                            <td align="center" >
-                                                <button class="btn btn-default " onclick="modify_user('<?php  echo $row["namess"];?>','<?php  echo $row["pass"];?>','<?php  echo $row["role"];?>','<?php  echo $row["idusers"];?>');"><em class="fa fa-pencil"></em></button>
 
-                                                <button class="btn btn-danger"  onclick="delete_user('<?php echo  $row["idusers"];  ?>');"><em class="fa fa-trash"></em></button>
+                                            <td align="center" >
+                                                <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
+
+                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
+
 
                                             </td>
-
 
                                         </tr>
                                     <?php  } }}?>
@@ -380,10 +381,11 @@ $debt=Metier_get_debt();
 <script src="../js/select-tag.js"></script>
 
 
-<script src="../js/modify_user.js"></script>
+<script src="../js/modify_debt.js"></script>
 
 
-<script src="../js/delete_user.js"></script>
+
+<script src="../js/pay_debt.js"></script>
 
 
 
@@ -402,7 +404,7 @@ $debt=Metier_get_debt();
 </script>
 
 <!-- Modal modify product  -->
-<div class="modal fade" id="model_modify_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="model_modify_debt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-info">
@@ -411,7 +413,7 @@ $debt=Metier_get_debt();
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal" id="form_modify_user" onsubmit="return false" method="post" action="">
+                <form class="form-horizontal" id="form_modify_debt" onsubmit="return false" method="post" action="">
                     <div class="form-group">
                         <label class="control-label col-sm-2" >name:</label>
                         <div class="col-sm-10">
@@ -421,15 +423,22 @@ $debt=Metier_get_debt();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >pass:</label>
+                        <label class="control-label col-sm-2" >tel:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control"  name="m_pass" id="m_pass"  value="none3">
+                            <input type="text" class="form-control"  name="m_tel" id="m_tel"  value="none3">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">role:</label>
+                        <label class="control-label col-sm-2">amount:</label>
                         <div class="col-sm-10" id="">
-                            <select   class="form-control input-sm ww" name="m_role" id="m_role"></select>
+                            <input type="text" class="form-control"  name="m_amount" id="m_amount"  value="none3">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">reason:</label>
+                        <div class="col-sm-10" id="">
+                            <input type="text" class="form-control"  name="m_reason" id="m_reason"  value="none3">
 
                         </div>
                     </div>
@@ -440,7 +449,7 @@ $debt=Metier_get_debt();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_user_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button"  onclick="submit_debt_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
 
             </div>
         </div><!-- /.modal-content -->
@@ -503,6 +512,69 @@ $debt=Metier_get_debt();
                     </div>
 
                 </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+
+
+
+
+
+<!-- Modal payed debt -->
+<div class="modal fade" id="model_pay_debt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" id="form_pay_debt" onsubmit="return false" method="post" action="">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >amount:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="p_amount" id="p_amount"  oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >unpayed:</label>
+                        <div class="col-sm-10">
+                            <input  readonly type="text" class="form-control"  name="unpayed" id="unpayed"   value="none3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-6">
+                            <a class="c-btn c-datepicker-btn" onclick="calcul()">
+                                <span class="material-icon">calculat</span>
+                            </a>
+                        </label>
+                        <div class="col-sm-6" id="">
+                                  <h2>
+                                      result :
+                               <span class="label label-info" id="p_result">
+0
+
+                            </span>
+                            </h2>
+
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button"  onclick="submit_paydebt_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
 
             </div>
         </div><!-- /.modal-content -->

@@ -23,7 +23,7 @@ function Dao_add_debt($name,$tel,$amount,$reason,$type_debt){
 
     if ($conn) {
 
-        $sql = "INSERT INTO debt (namess,tel,reason,amount,debt_type) VALUES ('$name','$tel','$reason','$amount','$type_debt')";
+        $sql = "INSERT INTO debt (namess,tel,reason,amount,debt_type,unpayed) VALUES ('$name','$tel','$reason','$amount','$type_debt','$amount')";
 
         if (mysqli_query($conn, $sql))
         {
