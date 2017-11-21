@@ -8,38 +8,41 @@ $(document).ready(function() {
     var check = true;
 
 
-    if($("#amounts").val()!=""){
-        $("#amounts").style.borderColor= "#d9534f" ;
+    if($("#amounts").val()==""){
 
-
-    }else {
-        $("#amounts").style.borderColor="#5bc0de" ;
+        $("#amounts").css({"border-color":"#d9534f"});
         check = false;
+    }else {
+        $("#amounts").css({"border-color":"#5bc0de"});
+
+
     }
 
 //-------------------------------------------------
 
-    if($("#comment").val()!=""){
-        $("#comment").style.borderColor= "#d9534f" ;
+    if($("#comment").val()==""){
+        $("#comment").css({"border-color":"#d9534f"});
+        check = false;
 
 
     }else {
-        $("#comment").style.borderColor="#5bc0de" ;
-        check = false;
+        $("#comment").css({"border-color":"#5bc0de"});
+
     }
 
 //-------------------------------------------------
-    if($("#time").val()!=""){
-        $("#time").style.borderColor= "#d9534f" ;
+    if($("#time").val()==""){
+        $("#time").css({"border-color":"#d9534f"});
 
+        check = false;
 
     }else {
-        $("#time").style.borderColor="#5bc0de" ;
-        check = false;
+        $("#time").css({"border-color":"#5bc0de"});
+
     }
 
-    if(check){
-
+    if(check == true){
+        $("#form-consumation").submit();
     }
 
     check = true;
@@ -52,12 +55,16 @@ $("#form-consumation").submit(function(e){
     $.ajax({
         type : 'POST',
         data: $("#form-consumation").serialize(),
-        url : '/stock-app/Metier/Metier_new_cmd.php',
+        url : '/stock-app/Metier/Metier_add_new_consomation.php?user='+$("#user").text(),
         // url : '/stock-app/Metier/test_file.php',
 
         success : function(data){
             console.log('submit success.');
-           // $("#info").modal("show");
+
+            $("#info").modal("show");
+            $("#amounts").val("");
+            $("#comment").val("");
+            $("#time").val("");
 
         },
         error: function (data) {

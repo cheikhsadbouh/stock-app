@@ -67,8 +67,10 @@ ini_set('display_errors', 1);
 require(dirname( dirname(dirname(__FILE__))).'/Dao/logging.php');
 require(dirname( dirname(dirname(__FILE__))).'/Dao/cnxn.php');
 include(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_check_session.php');
+include(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_all_consomation.php');
 
 $info_user=Metier_check_session();
+$consomation=Metier_get_all_consomation();
 ?>
 <body>
 <div id="wrapper" style="display:none;">
@@ -90,13 +92,14 @@ $info_user=Metier_check_session();
             <div class="col-lg-4 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> info_all_sales
+                        <i class="fa fa-bell fa-fw"></i> add_new_consomation
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-
+                  <form  class="form-horizontal"  id="form-consumation">
                         <div class="list-group">
-                            <div class="list-group-item" id="form-consumation">
+                            <div class="list-group-item" >
+
                                 <div class="input-group">
                                     <input id="amounts" type="text" class="form-control"  name="amount" placeholder="amounts ">
                                     <span class="input-group-addon ">amount</span>
@@ -104,7 +107,7 @@ $info_user=Metier_check_session();
                                 </div>
                                 <div class="form-group">
                                     <label for="comment" class="control-label pull-right ">Comment:</label>
-                                    <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                                    <textarea  class="form-control" rows="5" id="comment" name="comment"></textarea>
 
                                 </div>
                                 <div class="input-group row ">
@@ -123,26 +126,25 @@ $info_user=Metier_check_session();
 
                                     </div>
                                 </div><br>
-<div class="input-group row ">
+                                <div class="input-group row ">
 
-    <div class="col-lg-12">
+                                 <div class="col-lg-12">
 
-            <a class="c-btn c-datepicker-btn" id="con-sub" href="#" >
+                                  <a class="c-btn c-datepicker-btn" id="con-sub" href="#" >
                 <i class="fa fa-plus-circle  fa-2x">
                     <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
 
                 </i>
             </a>
+                                 </div>
+                                 <div class="col-lg-4">
+
 
     </div>
-    <div class="col-lg-4">
 
-
-    </div>
-
-</div>
+                                </div>
                             </div>
-                            </form>
+                  </form>
 
 
 
@@ -163,34 +165,48 @@ $info_user=Metier_check_session();
                         <h3 class="box-title">Bordered Table</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered" id="display_sale" cellspacing="0"  width="100%">
+                        <table class="table table-bordered" id="display_con" cellspacing="0"  width="100%">
                             <thead>
                             <tr>
 
-                                <th>date_of_sales</th>
-                                <th>name_p</th>
-                                <th>price_p</th>
-                                <th>bying_p</th>
+                                <th>amounts</th>
+                                <th>reason</th>
+                                <th>date</th>
+                                <th>settings</th>
+                                <th>user</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
 
-                            if (mysqli_num_rows($sale_table) > 0) {
-                                while($row = mysqli_fetch_assoc($sale_table )) {
+                            if (mysqli_num_rows($consomation) > 0) {
+                                while($row = mysqli_fetch_assoc($consomation )) {
                                     ?>
                                     <tr>
-                                        <td><?php  echo $row["date_of_sales"];?></td>
-                                        <td><?php  echo $row["name_p"];?></td>
+                                        <td><?php  echo $row["amount"];?></td>
+                                        <td>
 
-                                        <td align="center" >
-                                            <button class="btn btn-default " onclick="modify_sale('<?php  echo $row["date_of_sales"];?>','<?php  echo $row["id_prodcut"];?>','<?php echo  $row["selected_item"];  ?>','<?php echo  $row["new_p"];  ?>','<?php  echo $row["price_p"];?>','<?php  echo $row["bying_p"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-pencil"></em></button>
+                                            <div class="form-group">
+                                                <textarea  class="form-control" rows="2" cols="30"  readonly><?php  echo $row["reason"];?>
+                                                </textarea>
 
-                                            <button class="btn btn-danger"  onclick="delete_sale('<?php echo  $row["id_prodcut"];  ?>','<?php  echo $row["selected_item"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-trash"></em></button>
+                                            </div>
+
+
 
                                         </td>
-                                        <td><?php  echo $row["user"];?></td>
+
+                                        <td><?php  echo $row["dates"];?></td>
+
+
+                                        <td align="center" >
+                                            <button class="btn btn-default " onclick="modify_consomation('<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["dates"];?>','<?php  echo $row["id"];?>');"><em class="fa fa-pencil"></em></button>
+
+                                            <button class="btn btn-danger"  onclick="delete_consomation('<?php echo  $row["id"];  ?>');"><em class="fa fa-trash"></em></button>
+
+                                        </td>
+                                        <td><?php  echo $row["users"];?></td>
 
                                     </tr>
                                 <?php  } }?>
@@ -218,6 +234,13 @@ $info_user=Metier_check_session();
                 <h1 class="page-header"></h1>
             </div><br>
         </div>
+
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"></h1>
+        </div><br>
+    </div>
         <!-- /.row footer  -->
         <!-- /#page-wrapper -->
     </div>
@@ -244,7 +267,7 @@ $info_user=Metier_check_session();
 <script src="../vendor/bootstrap.min.js"></script>
 
 
-<script src="../js/loading.js"></script>
+<script src="../js/datatable-consomation.js"></script>
 
 
 <!-- Metis Menu Plugin JavaScript -->
@@ -266,6 +289,9 @@ $info_user=Metier_check_session();
 
 
 <script src="../js/custom_date_consumation.js"></script>
+<script src="../js/consomation-submit.js"></script>
+<script src="../js/modify_consomation.js"></script>
+<script src="../js/delete_consomation.js"></script>
 
 
 
@@ -282,7 +308,7 @@ $info_user=Metier_check_session();
 </script>
 
 <!-- Modal modify product  -->
-<div class="modal fade" id="model_modify_sale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="model_modify_con" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-info">
@@ -291,13 +317,13 @@ $info_user=Metier_check_session();
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal" id="form_modify_sale" onsubmit="return false" method="post" action="">
+                <form class="form-horizontal" id="form_modify_con" onsubmit="return false" method="post" action="">
                     <div class="form-group">
                         <label class="control-label col-sm-2" >date:</label>
                         <div class="col-sm-10">
 
                             <div class="input-append input-group  date form_datetime">
-                                <input class="form-control" size="16" type="text" value="" readonly id="up1" name="up1">
+                                <input class="form-control" size="16" type="text" value="" readonly id="m_date" name="m_date">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 
                             </div>
@@ -306,7 +332,9 @@ $info_user=Metier_check_session();
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">selected item:</label>
-                        <div class="col-sm-10" id="add_select">
+                        <div class="col-sm-10" id="">
+                            <label for="comment" class="control-label pull-right ">Comment:</label>
+                            <textarea  class="form-control" rows="5" id="m_comment" name="m_comment"></textarea>
 
 
                         </div>
@@ -314,7 +342,7 @@ $info_user=Metier_check_session();
                     <div class="form-group">
                         <label class="control-label col-sm-2" >new_price:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control"  name="up3" id="up3"  value="none3">
+                            <input type="text" class="form-control"  name="m_amount" id="m_amount"  value="none3">
                         </div>
                     </div>
 
@@ -323,7 +351,7 @@ $info_user=Metier_check_session();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_sale_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button"  onclick="submit_con_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
 
             </div>
         </div><!-- /.modal-content -->
@@ -386,7 +414,7 @@ $info_user=Metier_check_session();
 
                     </div>
                     <div class="clo-xs-5 pull-right">
-                        <button  class="btn btn-danger " id="delete_sale" data-dismiss="modal">نعم</button>
+                        <button  class="btn btn-danger " id="delete_con" data-dismiss="modal">نعم</button>
 
                     </div>
 

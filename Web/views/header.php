@@ -50,8 +50,7 @@
                             <!--                                <div class="status online hidden-xs"> </div>-->
                         </div>
                         <div class="col-xs-4 col-xs-pull-1">
-                            <p class=" text-justify " style="color: #FFFFFF;">
-                                <?php echo $info_user[0]; ?>
+                            <p class="text-justify " style="color: #FFFFFF;" id="user"><?php echo $info_user[0]; ?>
                             </p>
                             <span> <i class="fa fa-circle   text-success"><span style="color:white;"> <?php echo $info_user[1]; ?></span></i> </span>
                         </div>
@@ -79,7 +78,13 @@
                     <a href="consomation.php"><i class="fa fa-table fa-fw"></i> consomation</a>
                 </li>
                 <li>
-                    <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i>sales</a>
+                    <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i> sales</a>
+                </li>
+                <li>
+                    <a href="users.php" id="load-sale"><i class="fa fa-user-circle fa-fw"></i> users</a>
+                </li>
+                <li>
+                    <a href="debt.php" id="load-sale"><i class="fa fa-bicycle fa-fw"></i> debt</a>
                 </li>
 
 
