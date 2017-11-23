@@ -4,7 +4,7 @@ var sale_TB ="";
 $(function() {
     $("#loading").fadeOut(500, function() {
         $("#wrapper").fadeIn(1000);
-        $("body").css("background-color","#607d8b");
+        //$("body").css("background-color","#2f3c4b");
         if (!$.fn.DataTable.isDataTable('#display_sale')) {
             sale_TB = $('#display_sale').DataTable({
 

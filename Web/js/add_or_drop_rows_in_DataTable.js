@@ -35,7 +35,7 @@ $(function() {
     $("#loading").fadeOut(500, function() {
       // $("body").css("background-color","#eef1ea");
         $("#wrapper").fadeIn(1000);
-        $("body").css("background-color","#607d8b");
+      //  $("body").css("background-color","#2f3c4b");
         if (!$.fn.DataTable.isDataTable('#dataTables-example')) {
             stockTB = $('#dataTables-example').DataTable({
 

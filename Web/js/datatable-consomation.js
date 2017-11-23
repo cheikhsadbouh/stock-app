@@ -4,7 +4,7 @@ var con_TB ="";
 $(function() {
     $("#loading").fadeOut(500, function() {
         $("#wrapper").fadeIn(1000);
-        $("body").css("background-color","#607d8b");
+       // $("body").css("background-color","rgb(3,169,244)");
         if (!$.fn.DataTable.isDataTable('#display_con')) {
             con_TB = $('#display_con').DataTable({
 

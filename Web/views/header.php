@@ -25,7 +25,7 @@
 
     <ul class="nav navbar-top-links navbar-right">
 
-        <li class="dropdown  " style="background-color: #607d8b;">
+        <li class="dropdown  " style="background-color: rgb(3, 169, 244)!important;       background-image: url(../img/slide.png);">
             <a class="dropdown-toggle  " data-toggle="dropdown" href="#" >
                 <i class="fa fa-user-circle-o "></i> <i class="fa fa-caret-down"></i>
             </a>

@@ -28,8 +28,9 @@
 
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-  background-color: #607d8b;
-   border-color: #b6b2b7;
+  background-color: rgb(3, 169, 244)!important;
+  border-color: #ffffff;
+  background-image: url(../img/slide.png);
 }
 
 
@@ -54,7 +55,12 @@ a {
 }
 #side-menu{
 
-background-color: #607d8b;
+/*background-color: #2f3c4b;*/
+
+
+  background-color: rgb(3, 169, 244)!important;
+  background-image: url(../img/slide.png);
+  height: 700px;
 }
 .navbar-brand {
   float: left;
