@@ -15,6 +15,7 @@ ini_set('display_errors', 1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../Web/img/favicon.ico" />
 
@@ -60,7 +61,11 @@ ini_set('display_errors', 1);
 
     <link href="../date_time_picker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
+    <link href="../css/datepicker.css" rel="stylesheet">
 
+    <link href="../css/coustomcard.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -131,6 +136,7 @@ $unbuy_items=0;
                                     <div class="panel " id="mypanel">
                                         <div class="panel-heading">
                                             DataTables Advanced Tables
+                                            <p class="pull-right"><button>PDF</button></p>
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
@@ -481,6 +487,150 @@ if (mysqli_num_rows($result) > 0) {
 
                 </div><!-- /.box -->
 
+<!-- end table info cmd  -->
+
+                <div class="row">
+
+                    <div class="col-lg-5">
+                        <div class="input-group">
+                            <input class="form-control" id="dateto" type="text"  placeholder="to">
+
+                            <span class="input-group-addon">
+                                <span class="">to</span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <a class="c-btn c-datepicker-btn" id="add-new-item" href="javascript:void(0);" onclick="get_result();" style="    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 43px;
+    border-top-left-radius: 43px;
+    border-top-right-radius: 0px;
+    line-height: 47px;
+    font-size: 15px;">
+                            <i class="fa fa-calculator fa-2x">
+
+                            </i>
+                        </a>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="input-group">
+                        <input class="form-control" id="datefrom" type="text" placeholder="from">
+                            <span class="input-group-addon">
+                                <span class="">from</span>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end date section  --><br>
+                <div class="row ">
+
+                    <div class="col-lg-6">
+                        <div class="">
+                            <div class="thumbnail" style="height: 361px;">
+                                <div class="caption">
+                                    <div class='col-lg-12'>
+                                        <span class="glyphicon glyphicon-credit-card"></span>
+                                        <span class="glyphicon glyphicon-exclamation-sign pull-right text-info"></span>
+                                    </div>
+                                    <div class='col-lg-12 well well-add-card'>
+                                        <h4>John Deo Mobilel</h4>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_cmd</p><br>
+                                        <p class=" pull-left col-lg-6">
+                                            <span id="0"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_item</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="1"class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_price</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="2"class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_normale_buying</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="3"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_normale_benefit</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="4"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="">
+                            <div class="thumbnail" style="height: 361px;">
+                                <div class="caption">
+                                    <div class='col-lg-12'>
+                                        <span class="glyphicon glyphicon-credit-card"></span>
+                                        <span class="glyphicon glyphicon-exclamation-sign pull-right text-info"></span>
+                                    </div>
+                                    <div class='col-lg-12 well well-add-card'>
+                                        <h4>John Deo Mobilel</h4>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_real_buying</p><br>
+                                        <p class=" pull-left col-lg-6">
+                                            <span id="5" class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_real_benefit</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="6"  class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">total_plus_benefit</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="7" class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">buy_items</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="8"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6">unbuy_items</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="9"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
             <!--end info table  -->
@@ -802,24 +952,68 @@ if (mysqli_num_rows($result) > 0) {
 
 <script src="../js/cmd_info.js"></script>
 
+<script src="../js/calculator-from-to.js"></script>
+
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
 
 
 
+
+
+<script type="text/javascript" src="../js/jy.min.js"></script>
+<script type="text/javascript" src="../js/datepicker.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../js/pdfmake.min.js"></script>
+
+
+<script type="text/javascript" src="../js/vfs_font.js"></script>
+<script type="text/javascript" src="../js/buttons.html5.min.js"></script>
+
+
+
+
+
+
 <style>
-
-
-
-
-
+    ul.dt-button-collection{
+        background-color: #e5e5e5;
+        border: 1px solid #c0c0c0;
+    }
+    li.dt-button a:hover{
+        background-color: transparent;
+        color: #115094;
+        font-weight: bold;
+    }
+    li.dt-button.active a,
+    li.dt-button.active a:hover,
+    li.dt-button.active a:focus{
+        color: #337ab6;
+        background-color: transparent;
+        font-weight: bold;
+    }
+    li.dt-button.active a::before{
+        content: '✔ ';
+    }
+    .dataTables_info {
+        font-size: 0.8em;
+        margin-top: -12px;
+        text-align: right;
+    }
+    .previous a,
+    .next a
+    {
+        font-weight: bold;
+    }
 
 </style>
-<script type="text/javascript">
 
-
-</script>
 </body>
 
 </html>
