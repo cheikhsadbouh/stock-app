@@ -92,24 +92,33 @@ $info_user=Metier_check_session();
             <div class="col-lg-8">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Bordered Table</h3>
+                        <h3 class="box-title">جدول المبيعات
+                        </h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                           <table class="table table-bordered" id="display_sale" cellspacing="0"  width="100%">
                               <thead>
                               <tr>
 
-                                  <th>date_of_sales</th>
-                                  <th>name_p</th>
-                                  <th>price_p</th>
-                                  <th>bying_p</th>
-                                  <th>selected_item</th>
-                                  <th>new_p</th>
-                                  <th>total_benefit</th>
-                                  <th>plus_total_benefit</th>
-                                  <th>total_bying</th>
-                                  <th>setting</th>
-                                  <th>user</th>
+                                  <th>تاريخ البيع
+                                  </th>
+                                  <th> إسم  المنتج </th>
+                                  <th>السعر   الإجمالي   </th>
+                                  <th>سعر  الفرد </th>
+                                  <th>العدد المنتج</th>
+                                  <th>سعر جديد
+                                  </th>
+                                  <th>الربح   الإجمالي</th>
+                                  <th>ما زاد على الربح
+                                  </th>
+                                  <th>مجموع ما بيع منها</th>
+
+                                  <th><i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
+
+                                  <th>
+                                      من قبل المستخدم
+
+</th>
 
                               </tr>
                               </thead>
@@ -151,9 +160,10 @@ $info_user=Metier_check_session();
             </div>
             <!--end info table  -->
             <div class="col-lg-4 ">
-                <div class="panel panel-default">
+                <div class="panel panel-default boled">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> info_all_sales
+                        <i class="fa fa-bell fa-fw"></i> معلومات عن المبيعات
+
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -167,8 +177,9 @@ $info_user=Metier_check_session();
 
                                </span>
 
-                                <span class="pull-right ">
-                                  item
+                                <span class="pull-right  boled ">
+                               مجموع العناصر
+
                                     </span>
 
 
@@ -181,8 +192,9 @@ $info_user=Metier_check_session();
 
                                  </span>
                                 <small>
-                                <span class="pull-right ">
-                                    total_purchase_price
+                                <span class="pull-right boled ">
+                                   مجموع الشراء الإجمالي
+
                                     </span>
                                 </small>
                             </a>
@@ -190,32 +202,35 @@ $info_user=Metier_check_session();
                                 <span class="label label-info " style="font-size: 109%;">
                                 <?php echo  $info_all_sales["total_bying_price"];?>
                                 </span>
-                                <span class="pull-right ">
-                                    total_bying_price
+                                <span class="pull-right boled ">
+                                   مجموع البيع
+
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="label label-info " style="font-size: 109%;">
                                 <?php  echo $info_all_sales["total_real_bying_price"];?>
                                 </span>
-                                <span class="pull-right ">
-                                    total_real_bying_price
+                                <span class="pull-right  boled">
+                                   مجموع ما بيع منها
+
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="label label-info " style="font-size: 109%;">
                                <?php  echo $info_all_sales["total_benefit_total"];?>
                                 </span>
-                                <span class="pull-right ">
-                                    total_benefit_total
+                                <span class="pull-right  boled">مجموع الربح
+
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="label label-info " style="font-size: 109%;">
                                 <?php  echo $info_all_sales["total_plus_benefit"];?>
                                 </span>
-                                <span class="pull-right ">
-                                   total_plus_benefit
+                                <span class="pull-right boled ">
+                                   ما زاد على الربح
+
                                     </span>
                             </a>
 
@@ -227,8 +242,8 @@ $info_user=Metier_check_session();
                 <!-- /.panel info total sales  -->
 <br/>
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> info_sale_sepcial_day
+                    <div class="panel-heading boled">
+                        <i class="fa fa-bell fa-fw"></i> معلومات عن  يوم محدد
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -247,8 +262,9 @@ $info_user=Metier_check_session();
 
                                </span>
 
-                                <span class="pull-right ">
-                                  items
+                                <span class="pull-right boled ">
+                                                             مجموع العناصر
+
                                     </span>
 
 
@@ -258,8 +274,9 @@ $info_user=Metier_check_session();
 
                                  </span>
                                 <small>
-                                <span class="pull-right ">
-                                    total_purchase_price
+                                <span class="pull-right boled">
+                                                                       مجموع الشراء الإجمالي
+
                                     </span>
                                 </small>
                             </a>
@@ -267,8 +284,8 @@ $info_user=Metier_check_session();
                                 <span  id="total_bying_price" class="label label-info " style="font-size: 109%;">
 
                                  </span>
-                                <span   class="pull-right ">
-                                    total_bying_price
+                                <span   class="pull-right  boled">
+                                  مجموع البيع
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
@@ -276,24 +293,25 @@ $info_user=Metier_check_session();
                                 <span  id="total_real_bying_price" class="label label-info " style="font-size: 109%;">
 
                                  </span>
-                                <span class="pull-right ">
-                                    total_real_bying_price
+                                <span class="pull-right boled ">
+                                                                     مجموع ما بيع منها
+
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
                                 <span  id="total_benefit_total" class="label label-info " style="font-size: 109%;">
 
                                  </span>
-                                <span class="pull-right ">
-                                    total_benefit_total
+                                <span class="pull-right boled ">
+                                    مجموع الربح
                                     </span>
                             </a>
                             <a href="#" class="list-group-item">
                                 <span  id="total_plus_benefit" class="label label-info " style="font-size: 109%;">
 
                                  </span>
-                                <span class="pull-right ">
-                                   total_plus_benefit
+                                <span class="pull-right boled ">
+                                  ما زاد على الربح
                                     </span>
                             </a>
 
@@ -326,7 +344,7 @@ $info_user=Metier_check_session();
 </div>
 <!-- /#wrapper -->
 <div class="loading-bro" id="loading">
-    <h1>Loading</h1>
+    <h1>جار التحميل </h1>
     <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
         <circle id="loading-inner" cx="75" cy="75" r="60"/>
     </svg>
@@ -359,6 +377,7 @@ $info_user=Metier_check_session();
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 
+<script type="text/javascript" src="../js/jy.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="../js/sb-admin-2.js"></script>
@@ -369,20 +388,13 @@ $info_user=Metier_check_session();
 <script src="../js/modify_sale.js"></script>
 <script src="../js/delete_sale.js"></script>
 
+<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../js/pdfmake.min.js"></script>
 
 
-
-<script>
-
-
-
-
-
-
-
-
-
-</script>
+<script type="text/javascript" src="../js/vfs_font.js"></script>
+<script type="text/javascript" src="../js/jszip.min.js"></script>
+<script type="text/javascript" src="../js/buttons.html5.min.js"></script>
 
 <!-- Modal modify product  -->
 <div class="modal fade" id="model_modify_sale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -390,13 +402,13 @@ $info_user=Metier_check_session();
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> تغيير المعلومات</h1>
             </div>
             <div class="modal-body">
 
                 <form class="form-horizontal" id="form_modify_sale" onsubmit="return false" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >date:</label>
+                        <label class="control-label col-sm-2" >تاريخ </label>
                         <div class="col-sm-10">
 
                             <div class="input-append input-group  date form_datetime">
@@ -409,14 +421,14 @@ $info_user=Metier_check_session();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">selected item:</label>
+                        <label class="control-label col-sm-2">العناصر</label>
                         <div class="col-sm-10" id="add_select">
 
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >new_price:</label>
+                        <label class="control-label col-sm-2" >الثمن الجديد</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="up3" id="up3"  value="none3">
                         </div>
@@ -426,8 +438,8 @@ $info_user=Metier_check_session();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_sale_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_sale_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ التغييرات</button>
 
             </div>
         </div><!-- /.modal-content -->
@@ -440,7 +452,7 @@ $info_user=Metier_check_session();
         format: "dd MM yyyy - hh:ii",
         language:  'ar',
         linkField: "mirror_fieldss",
-        linkFormat: "yyyy-mm-dd"
+        linkFormat: "yyyy-mm-dd hh:ii"
     });
 </script>
 
@@ -501,4 +513,18 @@ $info_user=Metier_check_session();
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- Modal -->
+
+
+<style>
+
+
+    .boled {
+        font-weight: bold;
+
+    }
+
+</style>
+
+
+
 </html>

@@ -97,7 +97,8 @@ $users=Metier_get_users();
             <div class="col-lg-4 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> add_new_user
+                        <i class="fa fa-bell fa-fw"></i>إضافة مستخدم جديد
+
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -106,12 +107,14 @@ $users=Metier_get_users();
                                 <div class="list-group-item" >
 
                                     <div class="input-group">
-                                        <input id="name" type="text" class="form-control"  name="name" placeholder="name">
+                                        <input id="name" type="text" class="form-control"  name="name" placeholder="الإسم
+">
                                         <span class="input-group-addon ">  <i class="fa fa-user-circle  fa-1x"></i></span>
 
                                     </div><br>
                                     <div class="input-group">
-                                        <input id="pass" type="text" class="form-control"  name="pass" placeholder="pass ">
+                                        <input id="pass" type="text" class="form-control"  name="pass" placeholder="كلمة السر
+ ">
                                         <span class="input-group-addon "><i class="fa fa-lock  fa-1x"></i></span>
 
                                     </div>
@@ -123,7 +126,8 @@ $users=Metier_get_users();
                                             <div class="md-select" style="    margin: -1px 0 -54px 0;" >
 
                                                 <label for="ul-id"><button type="button" class="ng-binding  btn"  style="    padding: 0px 22px 0px 0px;
-">  وظيفة </button></label>
+">  الوظيفة
+                                                    </button></label>
                                                 <ul role="listbox" id="ul-id" class="md-whiteframe-z1" aria-activedescendant="state2_AK" name="ul-id">
                                                     <li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">مدير</li>
                                                     <li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">المستخدم</li>
@@ -140,7 +144,8 @@ $users=Metier_get_users();
 <br>
                                     <a class="c-btn c-datepicker-btn" id="user-sub" href="#" >
                                         <i class="fa fa-plus-circle  fa-2x">
-                                            <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
+                                            <span id="newitem " class="hidden-xs hidden-sm "> إضافة
+</span>
 
                                         </i>
                                     </a>
@@ -165,17 +170,19 @@ $users=Metier_get_users();
         <div class="col-lg-8">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Bordered Table</h3>
+                    <h3 class="box-title">جدول المستخدمين
+                    </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered" id="display_user" cellspacing="0"  width="100%">
                         <thead>
                         <tr>
 
-                            <th>username</th>
-                            <th>pass</th>
-                            <th>role</th>
-                            <th>settings</th>
+                            <th>الإسم</th>
+                            <th>كلمة السر
+                            </th>
+                            <th>الصلاحيات</th>
+                            <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
 
 
                         </tr>
@@ -248,7 +255,7 @@ $users=Metier_get_users();
 </div>
 <!-- /#wrapper -->
 <div class="loading-bro" id="loading">
-    <h1>Loading</h1>
+    <h1>جار التحميل</h1>
     <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
         <circle id="loading-inner" cx="75" cy="75" r="60"/>
     </svg>
@@ -301,7 +308,13 @@ $users=Metier_get_users();
 
 
 
+<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../js/pdfmake.min.js"></script>
 
+
+<script type="text/javascript" src="../js/vfs_font.js"></script>
+<script type="text/javascript" src="../js/jszip.min.js"></script>
+<script type="text/javascript" src="../js/buttons.html5.min.js"></script>
 
 <script>
 
@@ -321,13 +334,13 @@ $users=Metier_get_users();
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  تغيير المعلومات</h1>
             </div>
             <div class="modal-body">
 
                 <form class="form-horizontal" id="form_modify_user" onsubmit="return false" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >name:</label>
+                        <label class="control-label col-sm-2" >الإسم</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="m_name" id="m_name"  value="none3">
 
@@ -335,13 +348,13 @@ $users=Metier_get_users();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >pass:</label>
+                        <label class="control-label col-sm-2" >كلمة السر</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="m_pass" id="m_pass"  value="none3">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">role:</label>
+                        <label class="control-label col-sm-2">الصلاحيات</label>
                         <div class="col-sm-10" id="">
                             <select   class="form-control input-sm ww" name="m_role" id="m_role"></select>
 
@@ -353,8 +366,8 @@ $users=Metier_get_users();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_user_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_user_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ التغييرات</button>
 
             </div>
         </div><!-- /.modal-content -->

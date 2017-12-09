@@ -1,7 +1,7 @@
 
 
 $('#date_info_sale').datetimepicker({
-    format: "dd-MM-yyyy ",
+    format: "yyyy-mm-dd ",
     language:  'ar',
     weekStart: 1,
     todayBtn:  0,
@@ -14,8 +14,74 @@ $('#date_info_sale').datetimepicker({
     linkFormat: "yyyy-mm-dd"
 
 });
+/*$(document).ready(function() {
+    $('#date_info_sale').datepicker({
+
+        // Days' name of the week.
+
+        days: ["الأحد",
+            "الاثنين",
+            "الثلاثاء",
+            "الأربعاء",
+            "الخميس",
+            "الجمعة",
+            "السبت"],
+// Shorter days' name
+
+        daysShort: ["الأحد",
+            "الاثنين",
+            "الثلاثاء",
+            "الأربعاء",
+            "الخميس",
+            "الجمعة",
+            "السبت"],
 
 
+// Shortest days' name
+
+        daysMin: ["ح",
+            "ن",
+            "ث",
+            "ر",
+            "خ",
+            "ج",
+            "س"],
+
+
+// Months' name
+
+        months: ["يناير",
+            "فبراير",
+            "مارس",
+            "أبريل",
+            "مايو",
+            "يونيو",
+            "يوليو",
+            "أغسطس",
+            "سبتمبر",
+            "أكتوبر",
+            "نوفمبر",
+            "ديسمبر"],
+
+
+// Shorter months' name
+
+        monthsShort: ["يناير",
+            "فبراير",
+            "مارس",
+            "أبريل",
+            "مايو",
+            "يونيو",
+            "يوليو",
+            "أغسطس",
+            "سبتمبر",
+            "أكتوبر",
+            "نوفمبر",
+            "ديسمبر"]
+
+
+    });
+});*/
 
 $('#date_info_sale')
     .datetimepicker()
@@ -47,7 +113,7 @@ function get_selected_day_sales(date) {
     var total_real_bying_price=0;
     var total_benefit_total=0;
     var total_plus_benefit=0;
-    console.log("date to fetch is :"+date);
+    console.log("date in get_seletecd date is :"+date);
     sale_TB.rows().every(function (rowIdx, tableLoop, rowLoop) {
         //  var inm=saleTB.cell({row:rowIdx,column:4}).nodes().to$().find('input');
         var data = this.data();

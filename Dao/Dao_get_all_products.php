@@ -24,7 +24,7 @@ function Dao_get_all_products(){
 
     }
 
-      $sql = "SELECT * FROM products WHERE rest_products_number != '0'";
+      $sql = "SELECT * FROM products WHERE rest_products_number != '0' ORDER BY idproducts DESC";
     if (mysqli_query($conn, $sql)) {
 
 

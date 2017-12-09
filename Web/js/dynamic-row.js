@@ -20,14 +20,14 @@ function add_new_item() {
         '                                                       <td>\n' +
         '                                                           <div class="form-group">\n' +
         '                                                               <div class="col-xs-12">\n' +
-        '                                                                   <input type="email" class="form-control" id="product-buying-price'+i+'" name="product-buying-price'+i+'" placeholder=" أدخل سعر البيع">\n' +
+        '                                                                   <input type="email" class="form-control" id="product-buying-price'+i+'" name="product-buying-price'+i+'" placeholder=" أدخل سعر البيع الفرد">\n' +
         '                                                               </div>\n' +
         '                                                           </div>\n' +
         '                                                       </td>\n' +
         '                                                       <td>\n' +
         '                                                           <div class="form-group">\n' +
         '                                                               <div class="col-xs-12">\n' +
-        '                                                                   <input type="email" class="form-control" id="product-unite-price'+i+'" name="product-unite-price'+i+'" placeholder=" أدخل سعر الوحدة ">\n' +
+        '                                                                   <input type="email" class="form-control" id="product-unite-price'+i+'" name="product-unite-price'+i+'" placeholder="أدخل سعر الفرد ">\n' +
         '                                                               </div>\n' +
         '                                                           </div>\n' +
         '                                                       </td>\n' +

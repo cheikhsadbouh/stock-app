@@ -50,44 +50,42 @@
                             <!--                                <div class="status online hidden-xs"> </div>-->
                         </div>
                         <div class="col-xs-4 col-xs-pull-1">
-                            <p class="text-justify " style="color: #FFFFFF;" id="user"><?php echo $info_user[0]; ?>
+                            <p class="text-justify " style="color: #FFFFFF; font-weight: bolder;
+    font-size: 18px;" id="user"><?php echo $info_user[0]; ?>
                             </p>
-                            <span> <i class="fa fa-circle   text-success"><span style="color:white;"> <?php echo $info_user[1]; ?></span></i> </span>
+                            <span> <i class="fa fa-circle   text-success"><span style="color:white;"> <?php if($info_user[1]=="admin"){echo "مشرف
+";}else{echo "موظف";}  ?></span></i> </span>
                         </div>
                         <div class="clearfix"></div><br>
                         <div class=" col-xs-12 divider"></div>
                     </div>
                 </li>
-                <li>
+                <li style="    font-weight: bolder;
+    font-size: 18px;">
                     <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> مخزون
                     </a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="flot.html">Flot Charts</a>
-                        </li>
-                        <li>
-                            <a href="morris.html">Morris.js Charts</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+
+                <li style="    font-weight: bolder;
+    font-size: 18px;">
+                    <a href="consomation.php"><i class="fa fa-table fa-fw"></i> الإستهلاك
+                    </a>
                 </li>
-                <li>
-                    <a href="consomation.php"><i class="fa fa-table fa-fw"></i> consomation</a>
+                <?php if($info_user[1]=="admin"){ ?>
+                <li style="    font-weight: bolder;
+    font-size: 18px;">
+                    <a href="sales.php" id="load-sale"><i class="fa fa-bar-chart-o fa-fw"></i> المبيعات</a>
                 </li>
-                <li>
-                    <a href="sales.php" id="load-sale"><i class="fa fa-edit fa-fw"></i> sales</a>
+                <li style="    font-weight: bolder;
+    font-size: 18px;">
+                    <a href="users.php" id="load-sale"><i class="fa fa-user-circle fa-fw"></i> المستخدمين</a>
                 </li>
-                <li>
-                    <a href="users.php" id="load-sale"><i class="fa fa-user-circle fa-fw"></i> users</a>
-                </li>
-                <li>
-                    <a href="debt.php" id="load-sale"><i class="fa fa-bicycle fa-fw"></i> debt</a>
+                <li style="    font-weight: bolder;
+    font-size: 18px;">
+                    <a href="debt.php" id="load-sale"><i class="fa fa-dollar fa-fw"></i> الديون</a>
                 </li>
 
-
+                <?php }?>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

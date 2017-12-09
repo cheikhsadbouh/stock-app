@@ -10,31 +10,49 @@ $(function() {
 
                 responsive: true,
                 "language": {
-                    "lengthMenu": 'Display <select  class="form-control input-sm" >' +
-                    '<option selected="selected"   value="5">5</option>' +
+                    "lengthMenu": 'أظهر'+' <select  class="form-control input-sm" >' +
+                    '<option selected="selected"   value="3">3</option>' +
                     '<option selected="selected" value="10">10</option>' +
                     '<option value="20">20</option>' +
                     '<option value="30">30</option>' +
                     '<option value="40">40</option>' +
                     '<option value="50">50</option>' +
                     '<option value="-1">All</option>' +
-                    '</select> records',
+                    '</select> مدخلات',
                     "paginate": {
-                        "next": "ch",
-                        "previous": "hhhh"
+                        "next": "❯",
+                        "previous": "❮"
 
 
                     },
-                    "search": "Apply",
-                    "zeroRecords": "mahwnshi ",
-                    "emptyTable": "No data available in table",
-                    "info": "deuja _START_ to _END_ of _TOTAL_ mtrsh",
-                    "sInfoFiltered": "(fil from _MAX_ total entries)",
-                    "sInfoEmpty": "rt3 0 to 0 of 0 entries"
+                    "search": "ابحث",
+                    "zeroRecords": "لم يعثر على أية سجلات",
+                    "emptyTable": "لا تتوفر بيانات في الجدول\n",
+                    "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoFiltered": "منتقاة من مجموع _MAX_ مُدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل"
                 },
                 "bSort": false,
-                "aLengthMenu": [[5, 10, 25, -1], [25, 50, 75, "All"]],
-                "iDisplayLength": 5
+                "iDisplayLength": 3,
+                "dom": "<'row'<'col-sm-4'B><'col-sm-2'l><'col-sm-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12'pi>>",
+
+                "paging": true,
+                "autoWidth": true,
+                "buttons": [
+                    { // default PDF and customized PDF
+                        extend: 'excelHtml5',
+                        title: 'جدول المستخدمين\n', // report header/title
+                        text: 'حفظ\n' +
+                        'المستخدمين ',
+                        filename: 'حفظ\n' +
+                        '__المستخدمين',
+                        message: 'cheikne',
+                        className:'btn btn-info boled'
+
+
+                    }
+
+                ]
 
 
             });

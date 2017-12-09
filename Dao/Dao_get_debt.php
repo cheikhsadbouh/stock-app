@@ -25,7 +25,7 @@ function Dao_get_debt(){
 
     }
 
-    $sql = "SELECT * FROM debt ";
+    $sql = "SELECT * FROM debt ORDER BY iddebt DESC ";
     if (mysqli_query($conn, $sql)) {
 
 

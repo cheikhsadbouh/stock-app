@@ -20,7 +20,7 @@ function Dao_get_all_consomation(){
 
     }
 
-    $sql = "SELECT * FROM consomation ";
+    $sql = "SELECT * FROM consomation ORDER BY id DESC ";
     if (mysqli_query($conn, $sql)) {
 
 

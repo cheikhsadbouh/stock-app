@@ -92,7 +92,7 @@ $consomation=Metier_get_all_consomation();
             <div class="col-lg-4 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> add_new_consomation
+                        <i class="fa fa-bell fa-fw btn-info"></i>  إضافة إستهلاك جديد
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -101,12 +101,14 @@ $consomation=Metier_get_all_consomation();
                             <div class="list-group-item" >
 
                                 <div class="input-group">
-                                    <input id="amounts" type="text" class="form-control"  name="amount" placeholder="amounts ">
-                                    <span class="input-group-addon ">amount</span>
+                                    <input id="amounts" type="text" class="form-control"  name="amount" placeholder="المبلغ ">
+                                    <span class="input-group-addon ">المبلغ
+</span>
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="comment" class="control-label pull-right ">Comment:</label>
+                                    <label for="comment" class="control-label pull-right ">السبب
+                                    </label>
                                     <textarea  class="form-control" rows="5" id="comment" name="comment"></textarea>
 
                                 </div>
@@ -153,6 +155,23 @@ $consomation=Metier_get_all_consomation();
                         <!-- /.list-group -->
                     </div>
                     <!-- /.panel-body -->
+                <?php if($info_user[1]=="admin"){ ?>
+                <div class="col-lg-12">
+                    <br>
+                    <div class="panel panel-default" style="    height: 45px;
+    text-align: center;     padding-top: 10px;     padding-left: 10px;">
+
+                        <span class="col-lg-3 pull-left" style="    font-size: 13px;
+    font-weight: bold;">آوقية</span>
+<span  id="totl_cons"class="label label-info col-lg-4 " style="font-size: 109%;">
+  0
+</span>
+                        <span class="col-lg-5 pull-right" style="    font-size: 13px;
+    font-weight: bold;">مجموع الإستهلاك</span>
+
+                    </div>
+                </div>
+                <?php } ?>
                 </div>
                 <!-- /.panel info total sales  -->
 
@@ -162,19 +181,21 @@ $consomation=Metier_get_all_consomation();
             <div class="col-lg-8">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Bordered Table</h3>
+                        <h3 class="box-title">جدول الإستهلاك</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered" id="display_con" cellspacing="0"  width="100%">
+                        <table class="table table-bordered " id="display_con" cellspacing="0"  width="100%">
                             <thead>
                             <tr>
 
-                                <th>amounts</th>
-                                <th>reason</th>
-                                <th>date</th>
-                                <th>settings</th>
-                                <th>user</th>
-
+                                <th>المبلغ
+                                </th>
+                                <th>السبب</th>
+                                <th>تاريخ</th>
+                                <?php if($info_user[1]=="admin"){ ?>
+                                <th style="width: 77px;"><i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1" aria-hidden="true"></i></th>
+                                <th> من قبل المستخدم</th>
+                                <?php }?>
                             </tr>
                             </thead>
                             <tbody>
@@ -199,7 +220,7 @@ $consomation=Metier_get_all_consomation();
 
                                         <td><?php  echo $row["dates"];?></td>
 
-
+                                    <?php if($info_user[1]=="admin"){ ?>
                                         <td align="center" >
                                             <button class="btn btn-default " onclick="modify_consomation('<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["dates"];?>','<?php  echo $row["id"];?>');"><em class="fa fa-pencil"></em></button>
 
@@ -207,12 +228,15 @@ $consomation=Metier_get_all_consomation();
 
                                         </td>
                                         <td><?php  echo $row["users"];?></td>
-
+                                    <?php }?>
                                     </tr>
                                 <?php  } }?>
                             <!-- idsales-->
                             </tbody>
+
+
                         </table>
+
 
                     </div><!-- /.box-body -->
 
@@ -247,7 +271,7 @@ $consomation=Metier_get_all_consomation();
 </div>
 <!-- /#wrapper -->
 <div class="loading-bro" id="loading">
-    <h1>Loading</h1>
+    <h1>جار التحميل</h1>
     <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
         <circle id="loading-inner" cx="75" cy="75" r="60"/>
     </svg>
@@ -313,13 +337,13 @@ $consomation=Metier_get_all_consomation();
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  تغيير المعلومات</h1>
             </div>
             <div class="modal-body">
 
                 <form class="form-horizontal" id="form_modify_con" onsubmit="return false" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >date:</label>
+                        <label class="control-label col-sm-2" >تاريخ</label>
                         <div class="col-sm-10">
 
                             <div class="input-append input-group  date form_datetime">
@@ -331,16 +355,16 @@ $consomation=Metier_get_all_consomation();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">selected item:</label>
+                        <label class="control-label col-sm-2">السبب</label>
                         <div class="col-sm-10" id="">
-                            <label for="comment" class="control-label pull-right ">Comment:</label>
+
                             <textarea  class="form-control" rows="5" id="m_comment" name="m_comment"></textarea>
 
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >new_price:</label>
+                        <label class="control-label col-sm-2" >المبلغ</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="m_amount" id="m_amount"  value="none3">
                         </div>
@@ -350,8 +374,8 @@ $consomation=Metier_get_all_consomation();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_con_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_con_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ التغييرات</button>
 
             </div>
         </div><!-- /.modal-content -->
@@ -425,4 +449,19 @@ $consomation=Metier_get_all_consomation();
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- Modal -->
+<?php if($info_user[1]=="admin"){ ?>
+<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<?php }?>
+<script type="text/javascript" src="../js/pdfmake.min.js"></script>
+
+
+<script type="text/javascript" src="../js/vfs_font.js"></script>
+<script type="text/javascript" src="../js/jszip.min.js"></script>
+<script type="text/javascript" src="../js/buttons.html5.min.js"></script>
+
+<style>
+    .boled{
+        font-weight: bold;
+        font-size: 16px;}
+</style>
 </html>

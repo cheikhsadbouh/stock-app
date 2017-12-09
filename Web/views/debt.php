@@ -97,7 +97,8 @@ $debt=Metier_get_debt();
             <div class="col-lg-12 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> add_new_user
+                        <i class="fa fa-bell fa-fw"></i> إضافة دين جديد
+
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -107,25 +108,26 @@ $debt=Metier_get_debt();
                                     <div class="row">
                                     <div class="col-lg-6">
                                         <div class="input-group">
-                                            <input id="name" type="text" class="form-control"  name="name" placeholder="name">
-                                            <span class="input-group-addon ">  name</span>
+                                            <input id="name" type="text" class="form-control"  name="name" placeholder="الإسم">
+                                            <span class="input-group-addon ">  الإسم</span>
 
                                         </div><br>
                                         <div class="input-group">
-                                            <input id="tel" type="text" class="form-control"  name="tel" placeholder="pass ">
-                                            <span class="input-group-addon ">tel</span>
+                                            <input id="tel" type="text" class="form-control"  name="tel" placeholder="رقم الهاتف">
+                                            <span class="input-group-addon ">رقم الهاتف
+</span>
 
                                         </div><br>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-group">
-                                            <input id="amount" type="text" class="form-control"  name="amount" placeholder="name">
-                                            <span class="input-group-addon ">  amount</span>
+                                            <input id="amount" type="text" class="form-control"  name="amount" placeholder="المبلغ">
+                                            <span class="input-group-addon ">  المبلغ</span>
 
                                         </div><br>
                                         <div class="input-group">
-                                            <input id="reason" type="text" class="form-control"  name="reason" placeholder="pass ">
-                                            <span class="input-group-addon ">resaon</span>
+                                            <input id="reason" type="text" class="form-control"  name="reason" placeholder="السبب ">
+                                            <span class="input-group-addon ">السبب</span>
 
                                         </div>
                                     </div>
@@ -135,7 +137,7 @@ $debt=Metier_get_debt();
                                         <div class="col-lg-6 ">
                                             <div class="md-select" >
 
-                                                <label for="ul-id"><button type="button" class="ng-binding  btn   c-btn c-datepicker-btn"> دين </button></label>
+                                                <label for="ul-id"><button type="button" class="ng-binding  btn   c-btn c-datepicker-btn"> نوع الدين </button></label>
                                                 <ul role="listbox" id="ul-id" class="md-whiteframe-z1" aria-activedescendant="state2_AK" name="ul-id">
                                                     <li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">دين علي</li>
                                                     <li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">دين لي</li>
@@ -148,7 +150,8 @@ $debt=Metier_get_debt();
                                         <div class="col-lg-6">
                                             <a class="c-btn c-datepicker-btn" id="debt-sub" href="#" >
                                                 <i class="fa fa-plus-circle  fa-2x">
-                                                    <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
+                                                    <span id="newitem " class="hidden-xs hidden-sm "> إضافة
+</span>
 
                                                 </i>
                                             </a>
@@ -186,13 +189,14 @@ $debt=Metier_get_debt();
                                 <thead>
                                 <tr>
 
-                                    <th>name</th>
-                                    <th>tel</th>
-                                    <th>amount</th>
-                                    <th>reason</th>
-                                    <th>payed</th>
-                                    <th>unpayed</th>
-                                    <th>settings</th>
+                                    <th>الإسم</th>
+                                    <th>رقم الهاتف
+                                    </th>
+                                    <th>المبلغ</th>
+                                    <th>السبب</th>
+                                    <th>المدفوع</th>
+                                    <th>الباقي</th>
+                                    <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
 
 
                                 </tr>
@@ -227,7 +231,21 @@ $debt=Metier_get_debt();
                                 <!-- idsales-->
                                 </tbody>
                             </table>
+                            <div class="col-lg-12">
+                                <br>
+                                <div class="panel panel-default" style="    height: 45px;
+    text-align: center;     padding-top: 10px;     padding-left: 10px;">
 
+                        <span class="col-lg-3 pull-left" style="    font-size: 13px;
+    font-weight: bold;">آوقية</span>
+                                    <span  id="totl_debt2"class="label label-info col-lg-4 " style="font-size: 109%;">
+  0
+</span>
+                                    <span class="col-lg-5 pull-right" style="    font-size: 13px;
+    font-weight: bold;">مجموع دين لي</span>
+
+                                </div>
+                            </div>
                         </div><!-- /.box-body -->
 
                     </div><!-- /.box -->
@@ -250,13 +268,15 @@ $debt=Metier_get_debt();
                                 <thead>
                                 <tr>
 
-                                    <th>name</th>
-                                    <th>tel</th>
-                                    <th>amount</th>
-                                    <th>reason</th>
-                                    <th>payed</th>
-                                    <th>unpayed</th>
-                                    <th>settings</th>
+                                    <th>الإسم</th>
+                                    <th>رقم الهاتف
+                                    </th>
+                                    <th>المبلغ</th>
+                                    <th>السبب</th>
+                                    <th>المدفوع</th>
+                                    <th>الباقي</th>
+                                    <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
+
 
 
                                 </tr>
@@ -291,7 +311,21 @@ $debt=Metier_get_debt();
                                 <!-- idsales-->
                                 </tbody>
                             </table>
+                            <div class="col-lg-12">
+                                <br>
+                                <div class="panel panel-default" style="    height: 45px;
+    text-align: center;     padding-top: 10px;     padding-left: 10px;">
 
+                        <span class="col-lg-3 pull-left" style="    font-size: 13px;
+    font-weight: bold;">آوقية</span>
+                                    <span  id="totl_debt1"class="label label-info col-lg-4 " style="font-size: 109%;">
+  0
+</span>
+                                    <span class="col-lg-5 pull-right" style="    font-size: 13px;
+    font-weight: bold;">مجموع دين علي</span>
+
+                                </div>
+                            </div>
                         </div><!-- /.box-body -->
 
                     </div><!-- /.box -->
@@ -335,7 +369,7 @@ $debt=Metier_get_debt();
 </div>
 <!-- /#wrapper -->
 <div class="loading-bro" id="loading">
-    <h1>Loading</h1>
+    <h1>جار التحميل</h1>
     <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
         <circle id="loading-inner" cx="75" cy="75" r="60"/>
     </svg>
@@ -390,6 +424,15 @@ $debt=Metier_get_debt();
 
 
 
+<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../js/pdfmake.min.js"></script>
+
+
+<script type="text/javascript" src="../js/vfs_font.js"></script>
+<script type="text/javascript" src="../js/jszip.min.js"></script>
+<script type="text/javascript" src="../js/buttons.html5.min.js"></script>
+
+
 
 <script>
 
@@ -409,13 +452,14 @@ $debt=Metier_get_debt();
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> تغيير المعلومات</h1>
             </div>
             <div class="modal-body">
 
                 <form class="form-horizontal" id="form_modify_debt" onsubmit="return false" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >name:</label>
+                        <label class="control-label col-sm-2" >الإسم
+                        </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="m_name" id="m_name"  value="none3">
 
@@ -423,20 +467,21 @@ $debt=Metier_get_debt();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >tel:</label>
+                        <label class="control-label col-sm-2" >رقم الهاتف
+                        </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="m_tel" id="m_tel"  value="none3">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">amount:</label>
+                        <label class="control-label col-sm-2">المبلغ</label>
                         <div class="col-sm-10" id="">
                             <input type="text" class="form-control"  name="m_amount" id="m_amount"  value="none3">
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">reason:</label>
+                        <label class="control-label col-sm-2">السبب</label>
                         <div class="col-sm-10" id="">
                             <input type="text" class="form-control"  name="m_reason" id="m_reason"  value="none3">
 
@@ -448,8 +493,8 @@ $debt=Metier_get_debt();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_debt_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_debt_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ التغييرات</button>
 
             </div>
         </div><!-- /.modal-content -->
@@ -530,13 +575,13 @@ $debt=Metier_get_debt();
         <div class="modal-content">
             <div class="modal-header modal-header-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Info Modal</h1>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i>دفع الديون</h1>
             </div>
             <div class="modal-body">
 
                 <form class="form-horizontal" id="form_pay_debt" onsubmit="return false" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >amount:</label>
+                        <label class="control-label col-sm-2" >المبلغ</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="p_amount" id="p_amount"  oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
 
@@ -544,7 +589,7 @@ $debt=Metier_get_debt();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >unpayed:</label>
+                        <label class="control-label col-sm-2" >الباقي</label>
                         <div class="col-sm-10">
                             <input  readonly type="text" class="form-control"  name="unpayed" id="unpayed"   value="none3">
                         </div>
@@ -552,12 +597,12 @@ $debt=Metier_get_debt();
                     <div class="form-group">
                         <label class="control-label col-sm-6">
                             <a class="c-btn c-datepicker-btn" onclick="calcul()">
-                                <span class="material-icon">calculat</span>
+                                <span class="material-icon">حساب</span>
                             </a>
                         </label>
                         <div class="col-sm-6" id="">
                                   <h2>
-                                      result :
+                                      النتائج :
                                <span class="label label-info" id="p_result">
 0
 
@@ -573,12 +618,19 @@ $debt=Metier_get_debt();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button"  onclick="submit_paydebt_form()" class="btn btn-info pull-right" data-dismiss="modal">submit</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_paydebt_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ التغييرات</button>
 
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- Modal -->
+
+
+<style>
+.boled{
+    font-weight: bold;
+    font-size: 16px;}
+</style>
 </html>

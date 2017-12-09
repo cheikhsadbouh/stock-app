@@ -29,7 +29,7 @@ function Dao_get_users(){
 
     }
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM users ORDER by idusers DESC";
     if (mysqli_query($conn, $sql)) {
 
 
