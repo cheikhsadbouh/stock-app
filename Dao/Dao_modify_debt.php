@@ -26,7 +26,7 @@ function Dao_modify_debt($name,$tel,$amount,$reason,$id){
 
     if ($conn) {
 
-        $sql = "update  debt  set namess='$name'  , tel='$tel' , amount='$amount', reason='$reason' where iddebt='$id';";
+        $sql = "update  debt  set namess='$name'  , tel='$tel' , amount='$amount', unpayed='$amount',reason='$reason' where iddebt='$id';";
 
 
         if (mysqli_query($conn, $sql)) {

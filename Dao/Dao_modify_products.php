@@ -35,7 +35,7 @@ function Dao_modify_products($product_id,$product_name,$unite_price,$bying_price
 
         $total_benefit= $unite_benefit * $produt_number ;
 
-        $sql = "update  products  set total_benefit='$total_benefit'  , unite_benefit='$unite_benefit', price='$price', name_produts='$product_name',unite_price='$unite_price',buying_price='$bying_price',number_products='$produt_number'  where idproducts='$product_id';";
+        $sql = "update  products  set total_benefit='$total_benefit'  , unite_benefit='$unite_benefit', price='$price', name_produts='$product_name',unite_price='$unite_price',buying_price='$bying_price',number_products='$produt_number', rest_products_number='$produt_number'  where idproducts='$product_id';";
 
 
 

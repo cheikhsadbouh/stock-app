@@ -67,6 +67,13 @@ $i=0;
                                 if($row["rest_products_number"] != "0"){
                                     $array[$i]["buy_items"]= $array[$i]["buy_items"]+($row["number_products"] - $row["rest_products_number"]);
                                     $array[$i]["unbuy_items"]=$array[$i]["unbuy_items"] + $row["rest_products_number"];
+                                    $log->info("!= 0  i=  ".$i);
+
+                                }else{
+                                    $array[$i]["buy_items"]= $array[$i]["buy_items"]+($row["number_products"]);
+                                    $array[$i]["unbuy_items"]=$array[$i]["unbuy_items"] + $row["rest_products_number"];
+                                    $log->info("0  i=  ".$i);
+
                                 }
 
                                $idproducts=$row["idproducts"];
@@ -103,6 +110,7 @@ $i=0;
 $i = $i + 1 ;
                     $log->info("i  after incr :".$i);
 
+
                 }//end while each cmd  ddd
 
 
@@ -118,13 +126,20 @@ $i = $i + 1 ;
 
         $log->error("Error cnxn " . mysqli_error($conn));
     }
-
     return $array ;
 
 }
 
-//echo Dao_info_single_cmd();
 
+
+
+
+/*$info_single_cmd=array_reverse( Dao_info_single_cmd());
+
+for($i = 0; $i < count($info_single_cmd); $i++) {
+
+echo $info_single_cmd[$i]["buy_items"];
+}*/
 /*
  *   $array = array();
 

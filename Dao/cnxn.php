@@ -26,6 +26,7 @@ function open_cnxn()
 
         mysqli_query($conn, "SET NAMES 'utf8'");
         mysqli_query($conn, 'SET CHARACTER SET utf8');
+        mysqli_query($conn, 'ALTER DATABASE stock CHARACTER SET utf8 COLLATE utf8_general_ci;');
 
 
     }

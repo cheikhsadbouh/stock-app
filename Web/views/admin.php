@@ -207,7 +207,7 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td style="width: 200px;"><?php  echo $row["idproducts"];?></td>
                                                     <?php if($info_user[1]=="admin"){ ?>
                                                         <td align="center" style="width: 200px;" >
-                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["rest_products_number"];  ?>');"><em class="fa fa-pencil"></em></button>
+                                                            <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
 
                                                             <button class="btn btn-danger"  onclick="delete_product('<?php echo  $row["idproducts"];  ?>');"><em class="fa fa-trash"></em></button>
 
@@ -246,7 +246,7 @@ if (mysqli_num_rows($result) > 0) {
                                             <div class="col-xs-3  col-xs-pull-1 col-md-pull-0">
                                                 <a class="c-btn c-datepicker-btn" id="add-new-item" href="#" onclick="add_new_item();">
                                                 <i class="fa fa-plus-circle  fa-2x">
-                                                    <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
+                                                    <span id="newitem " class="hidden-xs hidden-sm ">إضافة </span>
 
                                                 </i>
                                                 </a>
@@ -261,8 +261,8 @@ if (mysqli_num_rows($result) > 0) {
                                                <table class="table   " id="mytable">
                                                    <thead >
                                                    <tr>
-                                                       <th class="text-center">أعداد</th>
-                                                       <th class="text-center">  سعر البيع   الفرد</th>
+                                                       <th class="text-center">العدد </th>
+                                                       <th class="text-center">  سعر بيع   الفرد</th>
                                                        <th class="text-center">سعر  الفرد</th>
                                                        <th class="text-center">إسم المنتج</th>
                                                        <th >   <i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
@@ -273,14 +273,14 @@ if (mysqli_num_rows($result) > 0) {
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="product-numbers0"  name="product-numbers0" placeholder=" أدخل أعداد">
+                                                                   <input type="email" class="form-control" id="product-numbers0"  name="product-numbers0" placeholder=" أدخل العدد ">
                                                                </div>
                                                            </div>
                                                        </td>
                                                        <td>
                                                            <div class="form-group">
                                                                <div class="col-xs-12">
-                                                                   <input type="email" class="form-control" id="product-buying-price0" name="product-buying-price0" placeholder="   أدخل سعر البيع  الفرد">
+                                                                   <input type="email" class="form-control" id="product-buying-price0" name="product-buying-price0" placeholder="   أدخل سعر بيع  الفرد">
                                                                </div>
                                                            </div>
                                                        </td>
@@ -325,7 +325,7 @@ if (mysqli_num_rows($result) > 0) {
                                          <div class="row">
                                              <div class="col-xs-4">
 
-                                                 <label for="dateofbirth">إختر تاريخ</label>
+                                                 <label for="dateofbirth">إختر التاريخ</label>
 
                                                  <input class="form-control" id="cmd-date"  name="real-date-cmd-creation" type="text" placeholder="from">
 
@@ -361,7 +361,7 @@ if (mysqli_num_rows($result) > 0) {
                                            <div class="col-lg-6">
                                             <h2>
                                                 <button class="btn btn-info btn-xs  pull-right" id="change_total"  onclick="sale_change_total()">
-                                                <span class="material-icon">تغيير مجموع  </span>
+                                                <span class="material-icon">تغيير المجموع  </span>
                                                 </button>
                                             </h2>
                                            </div>
@@ -488,7 +488,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <td><?php  $total_real_buying=$total_real_buying +$info_single_cmd[$i]["total_real_buying"]; echo $info_single_cmd[$i]["total_real_buying"];?></td>
                                 <td><?php  $total_real_benefit = $total_real_benefit + $info_single_cmd[$i]["total_real_benefit"];echo $info_single_cmd[$i]["total_real_benefit"];?></td>
                                 <td><?php $total_plus_benefit=$total_plus_benefit + $info_single_cmd[$i]["total_plus_benefit"]; echo $info_single_cmd[$i]["total_plus_benefit"];?></td>
-                                <td><?php  $buy_items= $buy_items +$info_single_cmd[$i]["buy_items"]; echo $info_single_cmd[$i]["buy_items"];?></td>
+                                <td><?php  $buy_items= $buy_items +$info_single_cmd[$i]["buy_items"];  echo $info_single_cmd[$i]["buy_items"];?></td>
                                 <td><?php $unbuy_items= $unbuy_items+$info_single_cmd[$i]["unbuy_items"]; echo $info_single_cmd[$i]["unbuy_items"];?></td>
 </tr>
                             <?php   }  ?>
@@ -748,7 +748,15 @@ if (mysqli_num_rows($result) > 0) {
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="label label-info " style="font-size: 109%;">
-                                <?php  echo $buy_items;?>
+                                <?php
+
+                               /* if($buy_items<0){
+                                    echo 0;
+                                }else{
+                                    echo $buy_items;
+                                }*/
+                                echo $buy_items;
+                                ?>
                                 </span>
                                 <span class="pull-right  boled">
                                    العناصر التي بيعت

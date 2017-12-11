@@ -49,6 +49,9 @@ function  Dao_modify_sale($date,$new_items,$new_p,$id_sale,$selected_item,$total
 //$p=$total_items -$new_items ;
 
 $stock= 0;
+        $price=0;
+        $unite_benefit=0;
+        $total_benefits=0;
         $sqls="";
 if($new_items > $selected_item){
     $value= $new_items - $selected_item ;
@@ -72,19 +75,21 @@ if($total_items == '0'){
     //request mahi mohim 2la ba6
 }else{
     $stock= $total_items ;
-    $price= $price_p * $stock;
+  /*  $price= $price_p * $stock;
 
     $unite_benefit= $bying_p - $price_p;
 
     $total_benefits= $unite_benefit * $stock ;
-
-    $sqls = "update  products  set rest_products_number='$stock' ,price='$price', unite_benefit='$unite_benefit' , total_benefit='$total_benefits' where idproducts='$id_sale'";
-
-}
-
-
+    $log->info(" stock". $stock);
+    $log->info(" price". $price);
+    $log->info("unite_benefi".$unite_benefit);*/
 
 }
+
+
+
+}
+        $sqls = "update  products  set rest_products_number='$stock'  where idproducts='$id_sale'";
 
 
         if (mysqli_query($conn, $sqls)) {

@@ -134,7 +134,7 @@ $consomation=Metier_get_all_consomation();
 
                                   <a class="c-btn c-datepicker-btn" id="con-sub" href="#" >
                 <i class="fa fa-plus-circle  fa-2x">
-                    <span id="newitem " class="hidden-xs hidden-sm "> إضافت</span>
+                    <span id="newitem " class="hidden-xs hidden-sm "> إضافة</span>
 
                 </i>
             </a>

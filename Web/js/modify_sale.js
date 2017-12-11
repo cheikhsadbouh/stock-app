@@ -126,7 +126,7 @@ $('#info').on('hidden.bs.modal', function () {
     //$("body").css("background-color","#eef1ea");
 
 
-    location.href="admin.php";
+    location.href="sales.php";
 
 
 });
