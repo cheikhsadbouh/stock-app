@@ -312,6 +312,7 @@ Main components
         /* Force Hardware Acceleration in WebKit */
         -webkit-transform: translateZ(0);
         -webkit-backface-visibility: hidden;
+        text-align: center;
     }
     .cssanimations .cd-timeline-img.is-hidden {
         visibility: hidden;
