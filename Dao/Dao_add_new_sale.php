@@ -10,11 +10,58 @@ require(dirname( dirname(dirname(__FILE__))).'/stock-app/Dao/logging.php');
 require(dirname( dirname(dirname(__FILE__))).'/stock-app/Dao/cnxn.php');
 
 
+function first(){
 
-function   Dao_add_sale($name_p,$price_p,$bying_p,$selected_item,$new_p,$date_of_sales,$id_prodcut,$total_item,$user){
+
+}
+
+function last(){
+
+}
+function   Dao_add_sale($name_p,$price_p,$bying_p,$selected_item,$new_p,$date_of_sales,$id_prodcut,$total_item,$user,$first){
+   $receipt="";
+
+
 
     $conn = open_cnxn();
+
     global $log;
+    if($first == 1){
+
+        $sql1 = "SELECT idsales FROM sales ORDER BY idsales DESC LIMIT 1";
+        $result=mysqli_query($conn, $sql1);
+// $log->info("receipt ! : ".$result);
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $idsale = $row["idsales"];
+                $r = "receipt" . "" . $idsale;
+                if ($row["idsales"] == " ") {
+                    $receipt = "first";
+                } else {
+                    $receipt = $r;
+                }
+
+                $log->info("receipt from firest  ! : " . $r . "   idsale" . $idsale);
+            }
+        }else{
+
+            $receipt = "first";
+        }
+        $log->info("---------------------------------------first---------------------------");
+    }else{
+        $log->info("---------------------------------------last---------------------------");
+        $sql12 = "SELECT * FROM sales ORDER BY idsales DESC LIMIT 1";
+        $result=mysqli_query($conn, $sql12);
+// $log->info("receipt ! : ".$result);
+
+        while($row = $result->fetch_assoc()) {
+            $receipts=$row["receipt"];
+
+            $receipt=$receipts;
+
+            $log->info("receipt from last  ! : ".$receipts);
+        }
+    }
 
     // Check connection
     if (!$conn) {
@@ -55,7 +102,10 @@ $log->info("totl_item : ".$total_item."selected item :".$selected_item);
 $rest= $total_item - $selected_item ;
 $log->info("rest :".$rest);
 
-        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying,user) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money','$user')";
+
+
+
+        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying,user,receipt) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money','$user','$receipt')";
 
         if (mysqli_query($conn, $sql)) {
             $log->info("add new sale done ! : ");

@@ -124,30 +124,44 @@ $info_user=Metier_check_session();
                               </thead>
                                <tbody>
                               <?php
-
+$i=0;
+$old="";
                               if (mysqli_num_rows($sale_table) > 0) {
                                while($row = mysqli_fetch_assoc($sale_table )) {
-                               ?>
-                               <tr>
-                                   <td><?php  echo $row["date_of_sales"];?></td>
-                                   <td><?php  echo $row["name_p"];?></td>
-                                   <td><?php  echo $row["price_p"];?></td>
-                                   <td><?php  echo $row["bying_p"];?></td>
-                                   <td><?php  echo $row["selected_item"];?></td>
-                                   <td><?php  echo $row["new_p"];?></td>
-                                   <td><?php  echo $row["total_benefit"];?></td>
-                                   <td><?php  echo $row["plus_total_benefit"];?></td>
-                                   <td><?php  echo $row["total_bying"];?></td>
+                                   ?>
+                                   <tr>
+                                   <td><?php echo $row["date_of_sales"]; ?></td>
+                                   <td><?php echo $row["name_p"]; ?></td>
+                                   <td><?php echo $row["price_p"]; ?></td>
+                                   <td><?php echo $row["bying_p"]; ?></td>
+                                   <td><?php echo $row["selected_item"]; ?></td>
+                                   <td><?php echo $row["new_p"]; ?></td>
+                                   <td><?php echo $row["total_benefit"]; ?></td>
+                                   <td><?php echo $row["plus_total_benefit"]; ?></td>
+                                   <td><?php echo $row["total_bying"]; ?></td>
                                    <td align="center" >
-                                       <button class="btn btn-default " onclick="modify_sale('<?php  echo $row["date_of_sales"];?>','<?php  echo $row["id_prodcut"];?>','<?php echo  $row["selected_item"];  ?>','<?php echo  $row["new_p"];  ?>','<?php  echo $row["price_p"];?>','<?php  echo $row["bying_p"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-pencil"></em></button>
+                                   <button class="btn btn-default "
+                                           onclick="modify_sale('<?php echo $row["date_of_sales"]; ?>','<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["new_p"]; ?>','<?php echo $row["price_p"]; ?>','<?php echo $row["bying_p"]; ?>','<?php echo $row["idsales"]; ?>');">
+                                       <em class="fa fa-pencil"></em></button>
 
-                                       <button class="btn btn-danger"  onclick="delete_sale('<?php echo  $row["id_prodcut"];  ?>','<?php  echo $row["selected_item"];?>','<?php  echo $row["idsales"];?>');"><em class="fa fa-trash"></em></button>
+                                   <button class="btn btn-danger"
+                                           onclick="delete_sale('<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["idsales"]; ?>');">
+                                       <em class="fa fa-trash"></em></button>
 
+                                   <?php if ($i==0 || $old <> $row["receipt"] ) { $old=$row["receipt"];?>
+                                       <button class="btn btn-danger"
+                                               onclick="printreceipt('<?php echo $row["receipt"]; ?>');">
+                                           df</button>
+                                   <?php }elseif( $old ==$row["receipt"] ){ ?>
+
+                                       <?php }?>
                                    </td>
+
+
                                    <td><?php  echo $row["user"];?></td>
 
                                </tr>
-                               <?php  } }?>
+                               <?php  $i++;} }?>
 <!-- idsales-->
                                </tbody>
                           </table>
@@ -396,6 +410,9 @@ $info_user=Metier_check_session();
 <script type="text/javascript" src="../js/jszip.min.js"></script>
 <script type="text/javascript" src="../js/buttons.html5.min.js"></script>
 
+
+<script type="text/javascript" src="../js/get_receipt.js"></script>
+
 <!-- Modal modify product  -->
 <div class="modal fade" id="model_modify_sale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -523,7 +540,190 @@ $info_user=Metier_check_session();
 
     }
 
+
+
+
+    .text-danger strong {
+        color: #9f181c;
+    }
+    .receipt-main {
+        background: #ffffff none repeat scroll 0 0;
+        border-bottom: 12px solid #333333;
+        border-top: 12px solid #9f181c;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 40px 30px !important;
+        position: relative;
+        box-shadow: 0 1px 21px #acacac;
+        color: #333333;
+        font-family: open sans;
+    }
+    .receipt-main p {
+        color: #333333;
+        font-family: open sans;
+        line-height: 1.42857;
+    }
+    .receipt-footer h1 {
+        font-size: 15px;
+        font-weight: 400 !important;
+        margin: 0 !important;
+    }
+    .receipt-main::after {
+        background: #414143 none repeat scroll 0 0;
+        content: "";
+        height: 5px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -13px;
+    }
+    .receipt-main thead {
+        background: #414143 none repeat scroll 0 0;
+    }
+    .receipt-main thead th {
+        color:#fff;
+    }
+    .receipt-right h5 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 7px 0;
+    }
+    .receipt-right p {
+        font-size: 12px;
+        margin: 0px;
+    }
+    .receipt-right p i {
+        text-align: center;
+        width: 18px;
+    }
+    .receipt-main td {
+        padding: 9px 20px !important;
+    }
+    .receipt-main th {
+        padding: 13px 20px !important;
+    }
+    .receipt-main td {
+        font-size: 13px;
+        font-weight: initial !important;
+    }
+    .receipt-main td p:last-child {
+        margin: 0;
+        padding: 0;
+    }
+    .receipt-main td h2 {
+        font-size: 20px;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+    }
+    .receipt-header-mid .receipt-left h1 {
+        font-weight: 100;
+        margin: 34px 0 0;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    .receipt-header-mid {
+        margin: 24px 0;
+        overflow: hidden;
+    }
+
+    #container {
+        background-color: #dcdcdc;
+    }
+
+    @media print {
+        *{
+            display: none !important;
+            font-size: 5rem;
+        }
+
+        #id_receipt {
+            display: block;
+            font-size: 5rem;
+        }
+    }
 </style>
+
+<div id="id_receipt"style="display:none;">
+    <div class="container">
+        <div class="row">
+
+            <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="receipt-header">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="receipt-left">
+                                <img class="img-responsive" alt="iamgurdeeposahan" src="../img/logo.png" style="width: 171px; border-radius: 43px;">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                            <div class="receipt-right">
+                                <h3><span id="shop_name"></span></h3>
+                                <h3> <p><span id="shop_phone"></span> <i class="fa fa-phone"></i></p>
+                                </h3>
+                               <h3>
+                                   <p>سوق نقطة ساخنة <i class="fa fa-location-arrow"></i></p>
+                               </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="receipt-header receipt-header-mid">
+                        <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                            <div class="receipt-right">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="receipt-left text-center">
+                                <h1 class="text-center">إيصال</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <table class="table table-bordered" id="tb-print">
+                        <thead>
+                        <tr>
+                            <th> <h3>وصف </h3></th>
+                            <th> <h3>مبلغ </h3></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="receipt-header receipt-header-mid receipt-footer">
+                        <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                            <div class="receipt-right">
+                               <h3> <p>تاريخ بيع     <br><span id="id_date"></span></p>
+                               </h3>
+                                <h3 style="color: rgb(140, 140, 140);">شكرا لك على عملك</h3>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="receipt-left">
+                                <h1>التوقيع</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
 
 
 

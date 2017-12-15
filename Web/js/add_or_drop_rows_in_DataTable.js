@@ -24,7 +24,7 @@ $(document).ready( function() {
                 "autoWidth": false,
                 "bFilter": false,
                 "bJQueryUI": true,
-                'iDisplayLength': 2,
+                'iDisplayLength': 1000,
                 'bLengthChange': false,
                 "language": {
 
