@@ -89,7 +89,11 @@ $info_user=Metier_check_session();
         <!-- /.row -->
 
         <div class="row">
+            <?php   if($info_user[1]=="admin"){?>
             <div class="col-lg-8">
+                <?php  }else{?>
+                <div class="col-lg-12">
+                <?php  }?>
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">جدول المبيعات
@@ -103,14 +107,18 @@ $info_user=Metier_check_session();
                                   <th>تاريخ البيع
                                   </th>
                                   <th> إسم  المنتج </th>
+                                  <?php   if($info_user[1]=="admin"){?>
                                   <th>السعر   الإجمالي   </th>
+                                  <?php  }?>
                                   <th>سعر  الفرد </th>
                                   <th>العدد المنتج</th>
                                   <th>سعر جديد
                                   </th>
+                                  <?php   if($info_user[1]=="admin"){?>
                                   <th>الربح   الإجمالي</th>
                                   <th>ما زاد على الربح
                                   </th>
+                                  <?php  }?>
                                   <th>مجموع ما بيع منها</th>
 
                                   <th><i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
@@ -127,31 +135,67 @@ $info_user=Metier_check_session();
 $i=0;
 $old="";
                               if (mysqli_num_rows($sale_table) > 0) {
+
+
                                while($row = mysqli_fetch_assoc($sale_table )) {
+                                   if($info_user[1]=="admin"){
+                                   ?>
+                                       <tr>
+                                           <td><?php echo $row["date_of_sales"]; ?></td>
+                                           <td><?php echo $row["name_p"]; ?></td>
+                                           <td><?php echo $row["price_p"]; ?></td>
+                                           <td><?php echo $row["bying_p"]; ?></td>
+                                           <td><?php echo $row["selected_item"]; ?></td>
+                                           <td><?php echo $row["new_p"]; ?></td>
+
+                                           <td><?php echo $row["total_benefit"]; ?></td>
+                                           <td><?php echo $row["plus_total_benefit"]; ?></td>
+
+                                           <td><?php echo $row["total_bying"]; ?></td>
+                                           <td align="center" >
+                                               <button class="btn btn-default "
+                                                       onclick="modify_sale('<?php echo $row["date_of_sales"]; ?>','<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["new_p"]; ?>','<?php echo $row["price_p"]; ?>','<?php echo $row["bying_p"]; ?>','<?php echo $row["idsales"]; ?>');">
+                                                   <em class="fa fa-pencil"></em></button>
+
+                                               <button class="btn btn-danger"
+                                                       onclick="delete_sale('<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["idsales"]; ?>');">
+                                                   <em class="fa fa-trash"></em></button>
+
+                                               <?php if ($i==0 || $old <> $row["receipt"] ) { $old=$row["receipt"];?>
+                                                   <button class="btn btn-info"
+                                                           onclick="printreceipt('<?php echo $row["receipt"]; ?>');">
+                                                       <i class="fa fa-print" aria-hidden="true"></i></button>
+                                               <?php }elseif( $old ==$row["receipt"] ){ ?>
+
+                                               <?php }?>
+                                           </td>
+
+
+                                           <td><?php  echo $row["user"];?></td>
+
+                                       </tr>
+                                   <?php }else{
+                                       if(trim($row["user"])==trim($info_user[0])){
                                    ?>
                                    <tr>
                                    <td><?php echo $row["date_of_sales"]; ?></td>
                                    <td><?php echo $row["name_p"]; ?></td>
+                                           <?php   if($info_user[1]=="admin"){?>
                                    <td><?php echo $row["price_p"]; ?></td>
+                                               <?php }?>
                                    <td><?php echo $row["bying_p"]; ?></td>
                                    <td><?php echo $row["selected_item"]; ?></td>
                                    <td><?php echo $row["new_p"]; ?></td>
+                                           <?php   if($info_user[1]=="admin"){?>
                                    <td><?php echo $row["total_benefit"]; ?></td>
                                    <td><?php echo $row["plus_total_benefit"]; ?></td>
+                                               <?php }?>
                                    <td><?php echo $row["total_bying"]; ?></td>
                                    <td align="center" >
-                                   <button class="btn btn-default "
-                                           onclick="modify_sale('<?php echo $row["date_of_sales"]; ?>','<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["new_p"]; ?>','<?php echo $row["price_p"]; ?>','<?php echo $row["bying_p"]; ?>','<?php echo $row["idsales"]; ?>');">
-                                       <em class="fa fa-pencil"></em></button>
-
-                                   <button class="btn btn-danger"
-                                           onclick="delete_sale('<?php echo $row["id_prodcut"]; ?>','<?php echo $row["selected_item"]; ?>','<?php echo $row["idsales"]; ?>');">
-                                       <em class="fa fa-trash"></em></button>
-
                                    <?php if ($i==0 || $old <> $row["receipt"] ) { $old=$row["receipt"];?>
-                                       <button class="btn btn-danger"
+                                       <button class="btn btn-info"
                                                onclick="printreceipt('<?php echo $row["receipt"]; ?>');">
-                                           df</button>
+                                           <i class="fa fa-print" aria-hidden="true"></i></button>
                                    <?php }elseif( $old ==$row["receipt"] ){ ?>
 
                                        <?php }?>
@@ -161,7 +205,11 @@ $old="";
                                    <td><?php  echo $row["user"];?></td>
 
                                </tr>
+                                   <?php }}?>
                                <?php  $i++;} }?>
+
+
+
 <!-- idsales-->
                                </tbody>
                           </table>
@@ -173,6 +221,7 @@ $old="";
 
             </div>
             <!--end info table  -->
+            <?php   if($info_user[1]=="admin"){?>
             <div class="col-lg-4 ">
                 <div class="panel panel-default boled">
                     <div class="panel-heading">
@@ -338,7 +387,7 @@ $old="";
 
             </div>
             <!--  end info stock -->
-
+<?php } ?>
 
 
         </div>
@@ -402,7 +451,9 @@ $old="";
 <script src="../js/modify_sale.js"></script>
 <script src="../js/delete_sale.js"></script>
 
-<script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<?php if($info_user[1]=="admin"){ ?>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+<?php }?>
 <script type="text/javascript" src="../js/pdfmake.min.js"></script>
 
 
@@ -632,19 +683,21 @@ $old="";
     }
 
     @media print {
-        *{
-            display: none !important;
-            font-size: 5rem;
-        }
+
 
         #id_receipt {
             display: block;
             font-size: 5rem;
         }
     }
+    @page
+    {
+        /* auto is the initial value */
+        margin: 0;  /* this affects the margin in the printer settings */
+    }
 </style>
 
-<div id="id_receipt"style="display:none;">
+<div id="id_receipt"style="display: none;">
     <div class="container">
         <div class="row">
 
@@ -658,12 +711,12 @@ $old="";
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                             <div class="receipt-right">
-                                <h3><span id="shop_name"></span></h3>
-                                <h3> <p><span id="shop_phone"></span> <i class="fa fa-phone"></i></p>
-                                </h3>
-                               <h3>
+                                <h2><span id="shop_name"></span></h2>
+                                <h4> <p><span id="shop_phone"></span> <i class="fa fa-phone"></i></p>
+                                </h4>
+                               <h4>
                                    <p>سوق نقطة ساخنة <i class="fa fa-location-arrow"></i></p>
-                               </h3>
+                               </h4>
                             </div>
                         </div>
                     </div>
@@ -685,11 +738,11 @@ $old="";
                 </div>
 
                 <div>
-                    <table class="table table-bordered" id="tb-print">
+                    <table class="table " id="tb-print" style="border: 5px solid #000;">
                         <thead>
                         <tr>
-                            <th> <h3>وصف </h3></th>
-                            <th> <h3>مبلغ </h3></th>
+                            <th style="border: 5px solid #000;"> <h3> المنتج </h3></th>
+                            <th style="border: 5px solid #000;"> <h3>مبلغ </h3></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -705,9 +758,9 @@ $old="";
                     <div class="receipt-header receipt-header-mid receipt-footer">
                         <div class="col-xs-8 col-sm-8 col-md-8 text-left">
                             <div class="receipt-right">
-                               <h3> <p>تاريخ بيع     <br><span id="id_date"></span></p>
+                               <h3> <p>تاريخ بيع     <br><br><span id="id_date"></span></p>
                                </h3>
-                                <h3 style="color: rgb(140, 140, 140);">شكرا لك على عملك</h3>
+                                <h3 style="color: rgb(140, 140, 140);">شكرا لكم على  ثقتكم بنا</h3>
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">

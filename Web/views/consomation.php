@@ -203,6 +203,7 @@ $consomation=Metier_get_all_consomation();
 
                             if (mysqli_num_rows($consomation) > 0) {
                                 while($row = mysqli_fetch_assoc($consomation )) {
+                                    if($info_user[1]=="admin"){
                                     ?>
                                     <tr>
                                         <td><?php  echo $row["amount"];?></td>
@@ -230,6 +231,36 @@ $consomation=Metier_get_all_consomation();
                                         <td><?php  echo $row["users"];?></td>
                                     <?php }?>
                                     </tr>
+                                    <?php }else{
+                                        if(trim($row["users"])==trim($info_user[0])){
+                                            ?>
+                                            <tr>
+                                                <td><?php  echo $row["amount"];?></td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                <textarea  class="form-control" rows="2" cols="30"  readonly><?php  echo $row["reason"];?>
+                                                </textarea>
+
+                                                    </div>
+
+
+
+                                                </td>
+
+                                                <td><?php  echo $row["dates"];?></td>
+
+                                                <?php if($info_user[1]=="admin"){ ?>
+                                                    <td align="center" >
+                                                        <button class="btn btn-default " onclick="modify_consomation('<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["dates"];?>','<?php  echo $row["id"];?>');"><em class="fa fa-pencil"></em></button>
+
+                                                        <button class="btn btn-danger"  onclick="delete_consomation('<?php echo  $row["id"];  ?>');"><em class="fa fa-trash"></em></button>
+
+                                                    </td>
+                                                    <td><?php  echo $row["users"];?></td>
+                                                <?php }?>
+                                            </tr>
+                                        <?php }}?>
                                 <?php  } }?>
                             <!-- idsales-->
                             </tbody>

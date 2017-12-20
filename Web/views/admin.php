@@ -145,14 +145,21 @@ $unbuy_items=0;
                                                 <tr>
                                                     <th>  </th>
                                                     <th> إسم  المنتج </th>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                     <th>السعر   الإجمالي   </th>
                                                     <th>سعر  الفرد </th>
+                                                    <?php  }?>
                                                     <th>  سعر   &nbsp;    بيع&nbsp;الفرد </th>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                     <th>الربح  &nbsp; من  &nbsp;&nbsp; الفرد</th>
                                                     <th>الربح   الإجمالي</th>
+                                                    <?php  }?>
                                                     <th>العدد   الحالي</th>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                     <th style="">العدد   الأصلي </th>
-                                                    <th style="">رقم   المنتج</th>
+                                                        <th style="">رقم   المنتج</th>
+                                                    <?php  }?>
+
                                                     <?php if($info_user[1]=="admin"){ ?>
                                                     <th><i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1"  aria-hidden="true"></i></th>
                                                     <?php }?>
@@ -196,15 +203,21 @@ if (mysqli_num_rows($result) > 0) {
                                                         </td>
 
                                                         <td style="width: 200px;"><?php  echo $row["name_produts"];?></td>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                         <td ><?php echo  $row["price"];  ?></td>
                                                         <td style="width: 200px;"><?php echo  $row["unite_price"];  ?></td>
+                                                        <?php }?>
                                                         <td ><?php echo  $row["buying_price"];  ?></td>
+                                                        <?php   if($info_user[1]=="admin"){?>
                                                         <td style="width: 200px;"><?php echo  $row["unite_benefit"];  ?></td>
                                                         <td ><?php echo  $row["total_benefit"];  ?></td>
+                                                        <?php }?>
                                                         <td style="width: 200px;"><?php echo  $row["rest_products_number"];  ?></td>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                         <td ><?php echo  $row["number_products"];  ?></td>
-
                                                         <td style="width: 200px;"><?php  echo $row["idproducts"];?></td>
+                                                    <?php }?>
+
                                                     <?php if($info_user[1]=="admin"){ ?>
                                                         <td align="center" style="width: 200px;" >
                                                             <button class="btn btn-default " onclick="modify_product('<?php echo  $row["idproducts"];  ?>','<?php  echo $row["name_produts"];?>','<?php echo  $row["unite_price"];  ?>','<?php echo  $row["buying_price"];  ?>','<?php echo  $row["number_products"];  ?>');"><em class="fa fa-pencil"></em></button>
@@ -376,12 +389,15 @@ if (mysqli_num_rows($result) > 0) {
                                                 <thead>
                                                 <tr>
                                                     <th> إسم  المنتج </th>
+
                                                     <th>سعر  الفرد </th>
+
                                                     <th>  سعر   &nbsp;    بيع&nbsp;الفرد </th>
                                                     <th>العدد   الحالي</th>
                                                     <th>تغيير سعر     بيع الفرد  </th>
+                                                    <?php   if($info_user[1]=="admin"){?>
                                                     <th style="">id_pro</th>
-
+                                                    <?php } ?>
 
 
 
@@ -538,62 +554,7 @@ if (mysqli_num_rows($result) > 0) {
                 </div><!-- end date section  --><br>
                 <div class="row ">
 
-                    <div class="col-lg-6">
-                        <div class="">
-                            <div class="thumbnail" style="height: 361px;">
-                                <div class="caption">
-                                    <div class='col-lg-12'>
-                                        <span class="glyphicon glyphicon-credit-card"></span>
-                                        <span class="glyphicon glyphicon-exclamation-sign pull-right text-info"></span>
-                                    </div>
-                                    <div class='col-lg-12 well well-add-card text-center'>
-                                        <h4>النتيجة</h4>
-                                    </div>
-                                    <div class='row'>
-                                        <p class="pull-right col-lg-6 boled">مجموع الطلبيات
-                                        </p><br>
-                                        <p class=" pull-left col-lg-6">
-                                            <span id="0"class="label label-info " style="font-size: 109%;">
-                                           0 </span>
-                                        </p>
-                                    </div>
-                                    <div class='row'>
-                                        <p class="pull-right col-lg-6 boled">مجموع العناصر</p><br>
-                                        <p class="pull-left col-lg-6">
-                                        <span id="1"class="label label-info " style="font-size: 109%;">
-                                          0 </span>
-                                        </p>
-                                    </div>
-                                    <div class='row'>
-                                        <p class="pull-right col-lg-6 boled">مجموع الشراء الإجمالي
-                                        </p><br>
-                                        <p class="pull-left col-lg-6">
-                                        <span id="2"class="label label-info " style="font-size: 109%;">
-                                          0 </span>
-                                        </p>
-                                    </div>
-                                    <div class='row'>
-                                        <p class="pull-right col-lg-6 boled">مجموع البيع الطبيعي
-                                        </p><br>
-                                        <p class="pull-left col-lg-6">
-                                        <span id="3"class="label label-info " style="font-size: 109%;">
-                                           0 </span>
-                                        </p>
-                                    </div>
-                                    <div class='row'>
-                                        <p class="pull-right col-lg-6 boled">مجموع الربح الطبيعي
-                                        </p><br>
-                                        <p class="pull-left col-lg-6">
-                                        <span id="4"class="label label-info " style="font-size: 109%;">
-                                           0 </span>
-                                        </p>
-                                    </div>
 
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-6">
                         <div class="">
                             <div class="thumbnail" style="height: 361px;">
@@ -650,7 +611,62 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="">
+                            <div class="thumbnail" style="height: 361px;">
+                                <div class="caption">
+                                    <div class='col-lg-12'>
+                                        <span class="glyphicon glyphicon-credit-card"></span>
+                                        <span class="glyphicon glyphicon-exclamation-sign pull-right text-info"></span>
+                                    </div>
+                                    <div class='col-lg-12 well well-add-card text-center'>
+                                        <h4>النتيجة</h4>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6 boled">مجموع الطلبيات
+                                        </p><br>
+                                        <p class=" pull-left col-lg-6">
+                                            <span id="0"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6 boled">مجموع العناصر</p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="1"class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6 boled">مجموع الشراء الإجمالي
+                                        </p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="2"class="label label-info " style="font-size: 109%;">
+                                          0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6 boled">مجموع البيع الطبيعي
+                                        </p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="3"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
+                                    <div class='row'>
+                                        <p class="pull-right col-lg-6 boled">مجموع الربح الطبيعي
+                                        </p><br>
+                                        <p class="pull-left col-lg-6">
+                                        <span id="4"class="label label-info " style="font-size: 109%;">
+                                           0 </span>
+                                        </p>
+                                    </div>
 
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 

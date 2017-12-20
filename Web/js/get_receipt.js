@@ -18,10 +18,10 @@ for (var i=0;i<array.length;i++){
     $("#shop_name").text(array[i][5]);
     $("#shop_phone").text(array[i][4]);
     $("#id_date").text(array[i][3]);
-       var content=" <tr>\n" +
-            "                           <td class=\"col-md-9\"> <h3>"+array[i][0]+" </h3></td>\n" +
-            "                            <td class=\"col-md-3\"> <h3>"+array[i][2]+"  X "+array[i][1]+" </h3></td>\n" +
-            "                        </tr>";
+       var content="<tr style=\"border: 5px solid #000;\">\n" +
+           "                                <td class=\"col-md-9\" style=\"border: 5px solid #000;\"> <h3>"+array[i][0]+" </h3></td>\n" +
+           "                                <td class=\"col-md-3\" style=\"border: 5px solid #000;\"> <h3>"+array[i][2]+"  X "+array[i][1]+" </h3></td>\n" +
+           "                            </tr>";
 stotal=stotal+(parseInt(array[i][2])*parseInt(array[i][1]));
     $('#tb-print tr:last').after(content);
 
@@ -48,7 +48,7 @@ var total=" <tr>\n" +
 }
 
 function get_receipt() {
- var restorepage = document.body.innerHTML;
+var restorepage = document.body.innerHTML;
     document.body.innerHTML = document.getElementById("id_receipt").innerHTML;
     $("body").hide();
     $("body").show();
@@ -63,19 +63,19 @@ function get_receipt() {
     window.frames["print_frame"].window.focus();
     window.frames["print_frame"].window.print();*/
 
-
-  /*var DocumentContainer = document.getElementById('id_receipt');
+/*
+  var DocumentContainer = document.getElementById('id_receipt');
     //document.body.innerHTML = document.querySelector("#id_receipt").innerHTML;
-    var Window = window.open('', 'PrintWindow', 'width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+    var Window = window.open('', 'PrintWindow', 'width=350,height=350,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
     var strHtml = "<html>\n<head>\n <link rel=\"stylesheet\" type=\"text/css\" href=\"test.css\">\n</head><body> gfgggggggggggg<div style=\"testStyle\">\n"+
 
         +"\n</div>\n</body>\n</html>";
-    Window.document.writeln(strHtml);
+    Window.document.write(strHtml);
     Window.document.close();
    Window.focus();
     Window.print();
-   Window.close();
+   Window.close();*/
 
-    return true;*/
+
 
 }

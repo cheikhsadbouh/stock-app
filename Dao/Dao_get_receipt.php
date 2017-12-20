@@ -34,7 +34,14 @@ function Dao_get_receipt($receipt){
                     $array[$i] = array();
                     $array[$i][0] = $row["name_p"];
                     $array[$i][1] = $row["selected_item"];
-                    $array[$i][2] = $row["bying_p"];
+
+                    if($row["new_p"] == "0"){
+                        $array[$i][2] = $row["bying_p"];
+
+                    }else{
+                        $array[$i][2] = $row["new_p"];
+                    }
+
                     $array[$i][3] = $row["date_of_sales"];
                     $array[$i][4] = $row["tel_shop"];
                     $array[$i][5] = $row["name_shop"];

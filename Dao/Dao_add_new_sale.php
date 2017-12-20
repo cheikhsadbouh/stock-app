@@ -102,10 +102,10 @@ $log->info("totl_item : ".$total_item."selected item :".$selected_item);
 $rest= $total_item - $selected_item ;
 $log->info("rest :".$rest);
 
+$space=trim($user);
 
 
-
-        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying,user,receipt) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money','$user','$receipt')";
+        $sql = "INSERT INTO sales (name_p,price_p,bying_p,selected_item,new_p,date_of_sales,id_prodcut,plus_total_benefit,total_benefit,total_bying,user,receipt) VALUES ('$name_p','$price_p','$bying_p','$selected_item','$new_p','$date_of_sales','$id_prodcut','$plus_benefit','$benetif_total','$sales_money','$space','$receipt')";
 
         if (mysqli_query($conn, $sql)) {
             $log->info("add new sale done ! : ");

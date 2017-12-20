@@ -16,33 +16,65 @@ $(document).ready( function() {
 
     setTimeout(function () {
         if (!$.fn.DataTable.isDataTable('#dataTables-sale')) {
-            saleTB = $('#dataTables-sale').DataTable({
-                "columnDefs": [
-                    { "aTargets": [5], "sClass": "invisible"}// here is the tricky part
-                ]                ,
-                responsive: true,
-                "autoWidth": false,
-                "bFilter": false,
-                "bJQueryUI": true,
-                'iDisplayLength': 1000,
-                'bLengthChange': false,
-                "language": {
-
-                    "paginate": {
-                        "next": "❯",
-                        "previous": "❮"
 
 
-                    },
-                    "search": "ابحث",
-                    "zeroRecords": "لم يعثر على أية سجلات",
-                    "emptyTable": "لا تتوفر بيانات في الجدول\n",
-                    "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-                    "sInfoFiltered": "منتقاة من مجموع _MAX_ مُدخل",
-                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل"
-                }
-            });
+            var us=$("#userrole").text();
+            if(us.trim() == "مشرف"){
+                saleTB = $('#dataTables-sale').DataTable({
+                    "columnDefs": [
+                        { "aTargets": [5], "sClass": "invisible"}// here is the tricky part
+                    ]                ,
+                    responsive: true,
+                    "autoWidth": false,
+                    "bFilter": false,
+                    "bJQueryUI": true,
+                    'iDisplayLength': 1000,
+                    'bLengthChange': false,
+                    "language": {
 
+                        "paginate": {
+                            "next": "❯",
+                            "previous": "❮"
+
+
+                        },
+                        "search": "ابحث",
+                        "zeroRecords": "لم يعثر على أية سجلات",
+                        "emptyTable": "لا تتوفر بيانات في الجدول\n",
+                        "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoFiltered": "منتقاة من مجموع _MAX_ مُدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل"
+                    }
+                });
+            }else{
+                saleTB = $('#dataTables-sale').DataTable({
+                    "columnDefs": [
+                        { "aTargets": [5,1], "sClass": "invisible"}// here is the tricky part
+                    ]                ,
+                    responsive: true,
+                    "autoWidth": false,
+                    "bFilter": false,
+                    "bJQueryUI": true,
+                    'iDisplayLength': 1000,
+                    'bLengthChange': false,
+                    "language": {
+
+                        "paginate": {
+                            "next": "❯",
+                            "previous": "❮"
+
+
+                        },
+                        "search": "ابحث",
+                        "zeroRecords": "لم يعثر على أية سجلات",
+                        "emptyTable": "لا تتوفر بيانات في الجدول\n",
+                        "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoFiltered": "منتقاة من مجموع _MAX_ مُدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل"
+                    }
+                });
+
+            }
             //saleTB.columns(5).visible( false );
             //saleTB.width("100%");
             saleTB.columns.adjust().draw(); // adjust column sizing and redraw
@@ -328,9 +360,9 @@ console.log("exit recored !");
 
                 saleTB.row.add([
 
-                   /* '<div class="form-group"> ' +
-                    '<input class="form-control col-sm-12" type=text value="'+tb[0]+'" />' +
-                    '</div>',*/
+                    /* '<div class="form-group"> ' +
+                     '<input class="form-control col-sm-12" type=text value="'+tb[0]+'" />' +
+                     '</div>',*/
                     tb[0],
                     tb[1],
                     tb[2],
@@ -338,7 +370,7 @@ console.log("exit recored !");
 
                     '<button type="button" id="'+id_btn+'" onclick="toggle_btn('+id_btn+','+(id_btn+200)+')" class="btn btn-lg btn-toggle " data-toggle="button" aria-pressed="false" autocomplete="off">'+
                     '<div class="handle"></div>'+
-                        '</button>'+
+                    '</button>'+
 
                     '<div class="form-group"> ' +
 

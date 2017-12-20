@@ -53,7 +53,7 @@
                             <p class="text-justify " style="color: #FFFFFF; font-weight: bolder;
     font-size: 18px;" id="user"><?php echo $info_user[0]; ?>
                             </p>
-                            <span> <i class="fa fa-circle   text-success"><span style="color:white;"> <?php if($info_user[1]=="admin"){echo "مشرف
+                            <span > <i class="fa fa-circle   text-success"><span style="color:white;" id="userrole"> <?php if($info_user[1]=="admin"){echo "مشرف
 ";}else{echo "موظف";}  ?></span></i> </span>
                         </div>
                         <div class="clearfix"></div><br>
@@ -71,11 +71,12 @@
                     <a href="consomation.php"><i class="fa fa-table fa-fw"></i> الإستهلاك
                     </a>
                 </li>
-                <?php if($info_user[1]=="admin"){ ?>
+
                 <li style="    font-weight: bolder;
     font-size: 18px;">
                     <a href="sales.php" id="load-sale"><i class="fa fa-bar-chart-o fa-fw"></i> المبيعات</a>
                 </li>
+                <?php if($info_user[1]=="admin"){ ?>
                 <li style="    font-weight: bolder;
     font-size: 18px;">
                     <a href="users.php" id="load-sale"><i class="fa fa-user-circle fa-fw"></i> المستخدمين</a>
