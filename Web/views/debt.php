@@ -211,6 +211,7 @@ $debt=Metier_get_debt();
                                     <th>المدفوع</th>
                                     <th>الباقي</th>
                                     <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
+                                    <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
 
 
                                 </tr>
@@ -230,11 +231,19 @@ $debt=Metier_get_debt();
                                             <td><?php  echo $row["unpayed"];?></td>
 
 
+
+
                                             <td align="center" >
+
                                                 <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
-                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
 
+                                            </td>
+                                            <td>
+
+                                                <button class="btn btn-primary " onclick="open_to_increase_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["amount"];?>');"><em class="fa fa-money"></em></button>
+
+                                                <button class="btn btn-success" onclick="show_history('<?php  echo $row["iddebt"];?>');"><em class="fa fa-history"></em></button>
 
                                             </td>
 
@@ -313,13 +322,12 @@ $debt=Metier_get_debt();
 
 
                                             <td align="center" >
-                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
+                                                <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
 
 
                                             </td>
                                                 <td>
-                                                    <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
                                                     <button class="btn btn-primary " onclick="open_to_increase_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["amount"];?>');"><em class="fa fa-money"></em></button>
 
@@ -715,6 +723,44 @@ $debt=Metier_get_debt();
         linkFormat: "yyyy-mm-dd hh:ii"
     });
 </script>
+
+<!-- history -->
+
+<div class="modal fade" id="history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> أرشيف الديون
+                </h1>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-bordered" id="history_debt" cellspacing="0"  width="100%">
+                    <thead>
+                    <tr>
+                        <th >تاريخ</th>
+                        <th >السبب</th>
+                        <th >المبلغ</th>
+                        <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <style>
 .boled{
     font-weight: bold;

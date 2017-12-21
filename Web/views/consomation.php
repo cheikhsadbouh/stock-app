@@ -191,7 +191,7 @@ $consomation=Metier_get_all_consomation();
                                 <th>المبلغ
                                 </th>
                                 <th>السبب</th>
-                                <th>تاريخ</th>
+                                <th>التاريخ</th>
                                 <?php if($info_user[1]=="admin"){ ?>
                                 <th style="width: 77px;"><i class="fa fa-cogs fa-align-center fa-2x col-xs-push-1" aria-hidden="true"></i></th>
                                 <th> من قبل المستخدم</th>

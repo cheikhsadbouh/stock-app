@@ -62,7 +62,7 @@
                 </li>
                 <li style="    font-weight: bolder;
     font-size: 18px;">
-                    <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> مخزون
+                    <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> المخزون
                     </a>
                 </li>
 

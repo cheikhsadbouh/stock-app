@@ -140,7 +140,14 @@ function get_selected_day_sales(date) {
 
 
     total_benefit_total = total_real_bying_price -total_purchase_price ;
-    total_plus_benefit = total_bying_price - total_real_bying_price ;
+    if(total_benefit_total< 0 ||total_benefit_total ==  0  ){
+        total_plus_benefit = 0 ;
+
+
+    }else{
+        total_plus_benefit = total_bying_price - total_real_bying_price ;
+
+    }
     if(total_plus_benefit <0){
         total_plus_benefit = total_plus_benefit * (-1);
     }

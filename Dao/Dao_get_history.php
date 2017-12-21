@@ -36,6 +36,7 @@ function Dao_get_history($id){
                 $array[$i][0] = $row["sub_amount"];
                 $array[$i][1] = $row["reason"];
                 $array[$i][2] = $row["date"];
+                $array[$i][3] = $row["id_history_bedt"];
 $i++;
             }
             echo json_encode($array);

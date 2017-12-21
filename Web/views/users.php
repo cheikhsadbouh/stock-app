@@ -130,7 +130,7 @@ $users=Metier_get_users();
                                                     </button></label>
                                                 <ul role="listbox" id="ul-id" class="md-whiteframe-z1" aria-activedescendant="state2_AK" name="ul-id">
                                                     <li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">مدير</li>
-                                                    <li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">المستخدم</li>
+                                                    <li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">مستخدم</li>
 
                                                 </ul>
 

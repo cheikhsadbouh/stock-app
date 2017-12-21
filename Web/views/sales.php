@@ -111,8 +111,8 @@ $info_user=Metier_check_session();
                                   <th>السعر   الإجمالي   </th>
                                   <?php  }?>
                                   <th>سعر  الفرد </th>
-                                  <th>العدد المنتج</th>
-                                  <th>سعر جديد
+                                  <th>عدد المنتج</th>
+                                  <th>السعر الجديد
                                   </th>
                                   <?php   if($info_user[1]=="admin"){?>
                                   <th>الربح   الإجمالي</th>

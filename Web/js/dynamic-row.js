@@ -9,8 +9,8 @@ function add_new_item() {
 
     }
 
-    var tr ='  <tr>\n' +
-        '                                                       <td>\n' +
+    var tr ='  <tr>' +
+        '                                                       <td >' +
         '                                                           <div class="form-group">\n' +
         '                                                               <div class="col-xs-12">\n' +
         '                                                                   <input type="email" class="form-control" id="product-numbers'+i+'"  name="product-numbers'+i+'"  placeholder=" أدخل أعداد">\n' +
