@@ -58,7 +58,7 @@ $(function() {
             });
 
             var value=0;
-            con_TB.columns(5).each(function () {
+            con_TB.columns(4).each(function () {
                 var data = this.data();
                 var tb = data[0];
                 for(var i=0 ; i<tb.length;i++){
@@ -135,7 +135,7 @@ $(document).ready( function() {
 
             });
             var value=0;
-            debt2_TB.columns(5).each(function () {
+            debt2_TB.columns(4).each(function () {
                 var data = this.data();
                 var tb = data[0];
                 for(var i=0 ; i<tb.length;i++){

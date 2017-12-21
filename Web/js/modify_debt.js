@@ -1,14 +1,14 @@
 
 var id_debt=0;
-function modify_debt(name,tel,amount,reason,id) {
+function modify_debt(name,tel,amount,id) {
 
 
     $("#m_name").val(name);
     $("#m_tel").val(tel);
     $("#m_amount").val(amount);
-    $("#m_reason").val(reason);
+   // $("#m_reason").val(reason);
 
-
+    console.log("id :"+id_debt);
     id_debt=id;
     $("#model_modify_debt").modal("show");
 
@@ -19,7 +19,7 @@ function modify_debt(name,tel,amount,reason,id) {
 
 
 function submit_debt_form() {
-
+    console.log("id:"+id_debt);
 
     $.ajax({
         type : 'POST',

@@ -145,9 +145,23 @@ $debt=Metier_get_debt();
                                                 </ul>
 
                                             </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="input-group date form_datetime col-md-7" data-date="2017-02-21T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p">
+                                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
+                                                    <input type="hidden" id="mirror_field"  name="date_debt" value="" readonly /><br/>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
 
                                         <div class="col-lg-6">
+
                                             <a class="c-btn c-datepicker-btn" id="debt-sub" href="#" >
                                                 <i class="fa fa-plus-circle  fa-2x">
                                                     <span id="newitem " class="hidden-xs hidden-sm "> إضافة
@@ -193,7 +207,7 @@ $debt=Metier_get_debt();
                                     <th>رقم الهاتف
                                     </th>
                                     <th>المبلغ</th>
-                                    <th>السبب</th>
+
                                     <th>المدفوع</th>
                                     <th>الباقي</th>
                                     <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
@@ -212,7 +226,6 @@ $debt=Metier_get_debt();
                                             <td><?php  echo $row["namess"];?></td>
                                             <td><?php  echo $row["tel"];?></td>
                                             <td><?php  echo $row["amount"];?></td>
-                                            <td><?php  echo $row["reason"];?></td>
                                             <td><?php  echo $row["payed"];?></td>
                                             <td><?php  echo $row["unpayed"];?></td>
 
@@ -220,7 +233,7 @@ $debt=Metier_get_debt();
                                             <td align="center" >
                                                 <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
-                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
+                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
 
 
                                             </td>
@@ -272,9 +285,10 @@ $debt=Metier_get_debt();
                                     <th>رقم الهاتف
                                     </th>
                                     <th>المبلغ</th>
-                                    <th>السبب</th>
+
                                     <th>المدفوع</th>
                                     <th>الباقي</th>
+                                    <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
                                     <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
 
 
@@ -292,19 +306,26 @@ $debt=Metier_get_debt();
                                             <td><?php  echo $row["namess"];?></td>
                                             <td><?php  echo $row["tel"];?></td>
                                             <td><?php  echo $row["amount"];?></td>
-                                            <td><?php  echo $row["reason"];?></td>
+
                                             <td><?php  echo $row["payed"];?></td>
                                             <td><?php  echo $row["unpayed"];?></td>
 
 
 
                                             <td align="center" >
-                                                <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
+                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
 
-                                                <button class="btn btn-default " onclick="modify_debt('<?php  echo $row["namess"];?>','<?php  echo $row["tel"];?>','<?php  echo $row["amount"];?>','<?php  echo $row["reason"];?>','<?php  echo $row["iddebt"];?>');"><em class="fa fa-pencil"></em></button>
 
 
                                             </td>
+                                                <td>
+                                                    <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
+
+                                                    <button class="btn btn-primary " onclick="open_to_increase_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["amount"];?>');"><em class="fa fa-money"></em></button>
+
+                                                      <button class="btn btn-success" onclick="show_history('<?php  echo $row["iddebt"];?>');"><em class="fa fa-history"></em></button>
+
+                                                </td>
 
                                         </tr>
                                     <?php  } }}?>
@@ -433,18 +454,16 @@ $debt=Metier_get_debt();
 <script type="text/javascript" src="../js/buttons.html5.min.js"></script>
 
 
+<script src="../date_time_picker/bootstrap-datetimepicker.min.js"></script>
+<script src="../date_time_picker/bootstrap-datetimepicker.ar.js"></script>
 
-<script>
+<script src="../js/date_timePicker_custom.js"></script>
+
+<script src="../js/increase_debt.js"></script>
+
+<script src="../js/show_history.js"></script>
 
 
-
-
-
-
-
-
-
-</script>
 
 <!-- Modal modify product  -->
 <div class="modal fade" id="model_modify_debt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -480,13 +499,7 @@ $debt=Metier_get_debt();
 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">السبب</label>
-                        <div class="col-sm-10" id="">
-                            <input type="text" class="form-control"  name="m_reason" id="m_reason"  value="none3">
 
-                        </div>
-                    </div>
 
 
 
@@ -628,6 +641,80 @@ $debt=Metier_get_debt();
 <!-- Modal -->
 
 
+
+<!-- incrise debt  -->
+<div class="modal fade" id="model_incrise_debt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> زيادة الدين
+                </h1>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" id="form_increase_debt" onsubmit="return false" method="post" action="">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >تاريخ</label>
+                        <div class="col-sm-10">
+
+                            <div class="input-append input-group  date debt_date ">
+                                <input class="form-control" size="16" type="text" value="" readonly id="m_date" name="m_date">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+                            </div>
+
+                            <input type="hidden" id="mirror_fieldss" name="mirror_fieldss" value="" readonly /><br/>
+                            <input type="hidden" id="to_debt" name="to_debt" value="" readonly /><br/>
+                            <input type="hidden" id="payed_debt" name="payed_debt" value="" readonly /><br/>
+
+                         <!--   <div class="form-group">
+                                <div class="input-group date debt_date col-md-7" data-date="2017-02-21T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p">
+                                    <input class="form-control" size="16" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                                <input type="hidden" id="mirror_fieldss"  name="date_debt" value="" readonly /><br/>
+                            </div>-->
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">السبب</label>
+                        <div class="col-sm-10" id="">
+
+                            <textarea  class="form-control" rows="5" id="m_comment" name="m_comment"></textarea>
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >المبلغ</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="m_new_amount" id="m_new_amount"  >
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+                <button type="button"  onclick="submit_increase_debt_form()" class="btn btn-info pull-right" data-dismiss="modal">حفظ </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+    $(".debt_date").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        language:  'ar',
+        linkField: "mirror_fieldss",
+        linkFormat: "yyyy-mm-dd hh:ii"
+    });
+</script>
 <style>
 .boled{
     font-weight: bold;

@@ -114,6 +114,7 @@ $space=trim($user);
 
             if (mysqli_query($conn, $sql)) {
 
+
             }else{
                 $log->error("Error while update rest_products   in products table "  . $sql . "\n" . mysqli_error($conn));
 

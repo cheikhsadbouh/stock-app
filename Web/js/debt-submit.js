@@ -11,6 +11,7 @@ $(document).ready(function() {
         if($("#name").val()==""){
 
             $("#name").css({"border-color":"#d9534f"});
+
             check = false;
         }else {
             $("#name").css({"border-color":"#5bc0de"});
