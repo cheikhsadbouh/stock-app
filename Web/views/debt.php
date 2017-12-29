@@ -237,6 +237,8 @@ $debt=Metier_get_debt();
 
                                                 <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
 
+                                                <button class="btn " style="    background-color: #18a78c;
+    border-color: #18a78c;     color: #fff;" onclick="show_history_payed('<?php  echo $row["iddebt"];?>');"><em class="fa fa-history"></em></button>
 
                                             </td>
                                             <td>
@@ -322,7 +324,11 @@ $debt=Metier_get_debt();
 
 
                                             <td align="center" >
+
                                                 <button class="btn btn-info " onclick="pay_debt('<?php  echo $row["iddebt"];?>','<?php  echo $row["payed"];?>','<?php  echo $row["unpayed"];?>');"><em class="fa fa-usd"></em></button>
+
+                                                <button class="btn " style="    background-color: #18a78c;
+    border-color: #18a78c;     color: #fff;" onclick="show_history_payed('<?php  echo $row["iddebt"];?>');"><em class="fa fa-history"></em></button>
 
 
 
@@ -470,6 +476,7 @@ $debt=Metier_get_debt();
 <script src="../js/increase_debt.js"></script>
 
 <script src="../js/show_history.js"></script>
+<script src="../js/show_payed_debt.js"></script>
 
 
 
@@ -602,6 +609,21 @@ $debt=Metier_get_debt();
 
                 <form class="form-horizontal" id="form_pay_debt" onsubmit="return false" method="post" action="">
                     <div class="form-group">
+                        <label class="control-label col-sm-2" >تاريخ</label>
+                        <div class="col-sm-10">
+                            <div class="input-append input-group  date debt_date ">
+                                <input class="form-control" size="16" type="text" value="" readonly id="p_m_date" name="p_m_date">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-group">
                         <label class="control-label col-sm-2" >المبلغ</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"  name="p_amount" id="p_amount"  oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
@@ -724,7 +746,7 @@ $debt=Metier_get_debt();
     });
 </script>
 
-<!-- history -->
+<!-- show history debt -->
 
 <div class="modal fade" id="history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -743,6 +765,42 @@ $debt=Metier_get_debt();
                         <th >السبب</th>
                         <th >المبلغ</th>
                         <th><i class="fa fa-cogs fa-align-center fa-2x " aria-hidden="true"></i></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">أغلق</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!--  show history payed_debt -->
+
+<div class="modal fade" id="history_payed_debt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-pencil-square-o" aria-hidden="true"></i> أرشيف الديون
+                </h1>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-bordered" id="history_debt_pay" cellspacing="0"  width="100%">
+                    <thead>
+                    <tr>
+                        <th >تاريخ</th>
+                        <th >المبلغ</th>
 
                     </tr>
                     </thead>

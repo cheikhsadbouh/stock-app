@@ -9,7 +9,7 @@
 require(dirname( dirname(dirname(__FILE__))).'/stock-app/Dao/logging.php');
 require(dirname( dirname(dirname(__FILE__))).'/stock-app/Dao/cnxn.php');
 
-function Dao_pay_debt($unpayed,$id,$payed,$amount){
+function Dao_pay_debt($unpayed,$id,$payed,$amount,$date){
 
 
     $conn = open_cnxn();
@@ -31,6 +31,12 @@ $n_payed= $payed  + $amount;
 
         if (mysqli_query($conn, $sql)) {
 
+            $sql1 = "INSERT show_payed_debt (amount,date,id_debt) VALUES ('$amount','$date','$id');";
+
+
+            if (mysqli_query($conn, $sql1)) {
+
+            }
         } else {
 
             $log->error("Error while  update   unpayed in debt table    " . $sql . "\n" . mysqli_error($conn));
